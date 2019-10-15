@@ -12,10 +12,6 @@
     "lint": "prettier --write --parser typescript 'packages/**/*.ts'",
     "test": "jest"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "node scripts/verifyCommit.js"
-  },
   "lint-staged": {
     "*.js": [
       "prettier --write",
