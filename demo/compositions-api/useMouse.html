@@ -12,14 +12,15 @@
 <body>
     <div id="app"></div>
     <script>
-        console.log('Vue:',Vue)
+        console.log('Vue:', Vue)
         const {
             createApp,
             reactive,
             computed,
             watch,
             onMounted,
-            onUnmounted
+            onUnmounted,
+            toRefs
         } = Vue
 
         // 尤大神的经典例子 鼠标位置侦听逻辑 
@@ -28,9 +29,6 @@
                 x: 0,
                 y: 0
             })
-            // 原api
-            // const x = value(0)
-            // const y = value(0)
             const update = e => {
                 state.x = e.pageX
                 state.y = e.pageY
@@ -41,7 +39,7 @@
             onUnmounted(() => {
                 window.removeEventListener('mousemove', update)
             })
-            return state
+            return toRefs(state)
         }
 
         function useOtherLogic() {
@@ -53,22 +51,26 @@
                     state.time = new Date()
                 }, 1000)
             })
-
-            return state
-
+            return toRefs(state)
         }
 
 
         const MyComponent = {
-            template: `<div>x:{{ state.x }} y:{{ state.y }} z:{{time.time}} </div>`,
+            template: `<div>x:{{ x }} y:{{ y }} z:{{ time }} </div>`,
 
             setup() {
-                const state = useMouse()
+                const {
+                    x,
+                    y
+                } = useMouse()
                 // 与其它函数配合使用
-                const time = useOtherLogic()
-                
+                const {
+                    time
+                } = useOtherLogic()
+
                 return {
-                    state,
+                    x,
+                    y,
                     time
                 }
             }
