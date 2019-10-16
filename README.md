@@ -1,42 +1,31 @@
-# vue-next [![CircleCI](https://circleci.com/gh/vuejs/vue-next.svg?style=svg&circle-token=fb883a2d0a73df46e80b2e79fd430959d8f2b488)](https://circleci.com/gh/vuejs/vue-next)
+# Vue3.0学习代码
+> 其实主要就是为了学习Vue3的源码设置的
+## 参考资料
+ - [vue3源码](https://github.com/vuejs/vue-next)
+ - [Vue3官方时间表](https://github.com/vuejs/vue/projects/6)
 
-## Status: Pre-Alpha.
 
-We have achieved most of the architectural goals and new features planned for v3:
 
-- Compiler
-  - [x] Modular architecture
-  - [x] "Block tree" optimization
-  - [x] More aggressive static tree hoisting
-  - [x] Source map support
-  - [x] Built-in identifier prefixing (aka "stripWith")
-  - [x] Built-in pretty-printing
-  - [x] Lean ~10kb brotli-compressed browser build after dropping source map and identifier prefixing
+## Start
+ - NodeJS 10.0 need
+ https://nodejs.org/en/
+ - Clone or download this repository
+ - Enter your local directory, and install dependencies:
 
-- Runtime
-  - [x] Significantly faster
-  - [x] Simultaneous Composition API + Options API support, **with typings**
-  - [x] Proxy-based change detection
-  - [x] Fragments
-  - [x] Portals
-  - [x] Suspense w/ `async setup()`
+``` bash
+npm install -g live-server
+npm start
+```
+如果不能自动打开浏览器 请浏览器访问: http://localhost:8081
 
-However, there are still some 2.x parity features not completed yet:
+## 
+尝鲜Vue3
+- [浏览器中如何断点调试Vue3 源码](https://juejin.im/post/5da442bb6fb9a04de42f76cf)
+- [最重要的变化CompositionApi](https://juejin.im/post/5da67d19f265da5b7525b716)
 
-- [ ] Server-side rendering
-- [ ] `<keep-alive>`
-- [ ] `<transition>`
-- [ ] Compiler DOM-specific transforms
-  - [ ] `v-on` DOM modifiers
-  - [ ] `v-model`
-  - [x] `v-text`
-  - [x] `v-pre`
-  - [x] `v-once`
-  - [x] `v-html`
-  - [ ] `v-show`
 
-The current implementation also requires native ES2015+ in the runtime environment and does not support IE11 (yet).
 
-## Contribution
 
-See [Contributing Guide](https://github.com/vuejs/vue-next/blob/master/.github/contributing.md).
+
+
+

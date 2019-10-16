@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../packages/vue/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        console.log('Vue:',Vue)
+        const {
+            createApp,
+            reactive,
+            computed,
+            watch,
+            onMounted,
+            onUnmounted
+        } = Vue
+
+        // 尤大神的经典例子 鼠标位置侦听逻辑 
+        function useMouse() {
+            const state = reactive({
+                x: 0,
+                y: 0
+            })
+            // 原api
+            // const x = value(0)
+            // const y = value(0)
+            const update = e => {
+                state.x = e.pageX
+                state.y = e.pageY
+            }
+            onMounted(() => {
+                window.addEventListener('mousemove', update)
+            })
+            onUnmounted(() => {
+                window.removeEventListener('mousemove', update)
+            })
+            return state
+        }
+
+        function useOtherLogic() {
+            const state = reactive({
+                time: ''
+            })
+            onMounted(() => {
+                setInterval(() => {
+                    state.time = new Date()
+                }, 1000)
+            })
+
+            return state
+
+        }
+
+
+        const MyComponent = {
+            template: `<div>x:{{ state.x }} y:{{ state.y }} z:{{time.time}} </div>`,
+
+            setup() {
+                const state = useMouse()
+                // 与其它函数配合使用
+                const time = useOtherLogic()
+                
+                return {
+                    state,
+                    time
+                }
+            }
+        }
+        createApp().mount(MyComponent, '#app')
+    </script>
+</body>
+
+</html>
