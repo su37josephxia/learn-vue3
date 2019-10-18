@@ -12,45 +12,89 @@
 <body>
     <div id="app"></div>
     <script>
+        console.log('Vue', Vue)
         const {
             createApp,
-            reactive,
-            computed,
-            watch,
+            reactive, // 创建响应式数据对象
+            ref, // 创建一个响应式的数据对象
+            toRefs, // 将响应式数据对象转换为单一响应式对象
+            isRef, // 判断某值是否是引用类型
+            computed, // 创建计算属性
+            watch, // 创建watch监听
+            effect,
+            // 生命周期钩子
+            onBeforeMount,
             onMounted,
+            onUpdated,
+            onUnmounted,
         } = Vue
         const MyComponent = {
             template: `
             <div>
-                <span>count is {{ state.count }} </span>
-                <span>plusOne is {{ state.plusOne }}</span>
+                <div>count is {{ state.count }} </div>
+                <div>plusOne is {{ state.plusOne }}</div>
+                <div>Date is {{ time }}</div>
+                <div>count is {{ count }} </div>
                 <button @click="increment">count++</button>
             </div>
             `,
+            
+            setup(props, context) {
+                console.log('setup....',)
+                console.log('props',props)
+                console.log('context',context)
 
-            setup() {
+
                 // reactive state
                 const state = reactive({
                     count: 0,
                     plusOne: computed(() => state.count + 1)
                 })
 
+                // 定义创建响应式数据
+                const time = ref(new Date())
+                // 设置定时器为了测试数据响应
+                setInterval(() => time.value = new Date(), 1000)
+
+                // 判断某值是否是响应式类型
+                console.log('time is ref:', isRef(time))
+                console.log('time', time)
+                console.log('time.value', time.value)
+
                 // method
                 const increment = () => {
                     console.log('increment....')
                     state.count++
                 }
-                // watch
+
+                // 定义监听
                 watch(() => state.count * 2, val => {
                     console.log(`count * 2 is ${val}`)
                 })
+
+                // 副作用函数
+                effect(() => {
+                    console.log('数值被修改了..',state.count)
+                })
+
                 // lifecycle
+                onBeforeMount(() => {
+                    console.log('onBeforeMount....')
+                })
                 onMounted(() => {
-                    console.log(`mounted`)
+                    console.log(`onMounted ...!`)
+                })
+                onUpdated(() => {
+                    console.log(`onUpdated ...!`)
+                })
+                onUnmounted(() => {
+                    console.log(`onUnmounted ...!`)
                 })
                 // expose bindings on render context
                 return {
                     state,
+                    ... toRefs(state),
+                    time,
                     increment
                 }
             }
