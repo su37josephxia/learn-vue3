@@ -16,5 +16,5 @@ module.exports = {
     '^@vue/(.*?)$': '<rootDir>/packages/$1/src'
   },
   rootDir: __dirname,
-  testMatch: ['<rootDir>/packages/**/__tests__/**/*spec.[jt]s?(x)']
+  // testMatch: ['<rootDir>/packages/**/__tests__/**/*spec.[jt]s?(x)']
 }
