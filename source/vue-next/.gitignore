@@ -1,8 +1,0 @@
-dist
-.DS_Store
-node_modules
-coverage
-temp
-explorations
-TODOs.md
-*.log
