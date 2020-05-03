@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="../../packages/vue/dist/vue.global.js"></script>
+    <script src="../../source/vue-next/packages/vue/dist/vue.global.js"></script>
 </head>
 
 <body>
     <div id="app"></div>
     <script>
-        console.log('Vue:', Vue)
         const {
             createApp,
             reactive,
@@ -42,13 +41,13 @@
             return toRefs(state)
         }
 
-        function useOtherLogic() {
+        function useCounter() {
             const state = reactive({
-                time: ''
+                num: 1
             })
             onMounted(() => {
                 setInterval(() => {
-                    state.time = new Date()
+                    state.num++
                 }, 1000)
             })
             return toRefs(state)
@@ -56,26 +55,15 @@
 
 
         const MyComponent = {
-            template: `<div>x:{{ x }} y:{{ y }} z:{{ time }} </div>`,
-
+            template: `<div>x:{{ x }} y:{{ y }} num: {{num}}</div>`,
             setup() {
-                const {
-                    x,
-                    y
-                } = useMouse()
-                // 与其它函数配合使用
-                const {
-                    time
-                } = useOtherLogic()
-
                 return {
-                    x,
-                    y,
-                    time
+                    ...useMouse(),
+                    ...useCounter()
                 }
             }
         }
-        createApp().mount(MyComponent, '#app')
+        createApp(MyComponent).mount('#app')
     </script>
 </body>
 

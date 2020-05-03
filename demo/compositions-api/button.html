@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../source/vue-next/packages/vue/dist/vue.global.js"></script>
+
+    <style>
+        .el-button {
+            display: inline-block;
+            line-height: 1;
+            white-space: nowrap;
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #dcdfe6;
+            color: #ffffff;
+            -webkit-appearance: none;
+            text-align: center;
+            box-sizing: border-box;
+            outline: none;
+            margin: 0;
+            transition: .1s;
+            font-weight: 500;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        const {
+            createApp,
+            reactive,
+            onMounted,
+            toRefs
+        } = Vue
+
+        function useColor(type, time) {
+            const state = reactive({
+                color: '#000000'
+            })
+            onMounted(() => {
+                setInterval(() => {
+                    const r = type === 'r' ? Math.floor(Math.random() * 255).toString(16) : '00'
+                    const g = type === 'g' ? Math.floor(Math.random() * 255).toString(16) : '00'
+                    const b = type === 'b' ? Math.floor(Math.random() * 255).toString(16) : '00'
+                    const color = `#${r + g +b}`
+                    state.color = color
+                }, time)
+            })
+            return toRefs(state)
+        }
+
+        const MyComponent = {
+            template: `<button type='button' class= 'el-button' :style='{background,color}'><span>按钮</span></button>`,
+            setup() {
+                const {
+                    color
+                } = useColor('b', 100)
+                const {
+                    color: background
+                } = useColor('r', 1000)
+
+                return {
+                    color,
+                    background
+                }
+            }
+        }
+
+
+        createApp(MyComponent).mount('#app')
+    </script>
+</body>
+
+</html>
