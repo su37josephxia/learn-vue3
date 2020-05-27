@@ -11,7 +11,7 @@ git submodule add https://github.com/vuejs/vue-next source/vue-next
 
 子模块内容记录在.gitmodules文件中
 ```bash
-# 更新模块
+# 初始化子模块
 git submodule init
 # 更新模块
 git submodule update --init --recursive
