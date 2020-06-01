@@ -21,7 +21,7 @@
             isRef, // 判断某值是否是引用类型
             computed, // 创建计算属性
             watch, // 创建watch监听
-            effect,
+            watchEffect,
             // 生命周期钩子
             onBeforeMount,
             onMounted,
@@ -73,7 +73,7 @@
                 })
 
                 // 副作用函数
-                effect(() => {
+                watchEffect(() => {
                     console.log('数值被修改了..',state.count)
                 })
 
@@ -99,7 +99,7 @@
                 }
             }
         }
-        createApp().mount(MyComponent, '#app')
+        createApp(MyComponent).mount('#app')
     </script>
 </body>
 

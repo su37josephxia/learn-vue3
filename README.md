@@ -25,8 +25,21 @@ yarn config set disturl https://npm.taobao.org/dist --global
 
 ## 去除pupteer
 # 忽略下载Chromium
+cd source/vue-next
+## 去除pupteer
 yarn --ignore-scripts
-yarn dev
+
+```
+### 编译Build
+``` bash
+cd source/vue-next
+yarn build
+```
+
+### 调试Vue代码
+``` bash
+cd source/vue-next
+yarn build
 ```
 
 ### 测试API
