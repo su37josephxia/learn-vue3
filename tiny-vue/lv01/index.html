@@ -1,0 +1,52 @@
+<html lang="en">
+
+<body>
+    <div id='app'></div>
+    <script>
+        const App = {
+            // 视图
+            template: `
+                <button @click='click'>{{message}}</button>
+            `,
+            data() {
+                return {
+                    message: 'Hello Vue 3!!'
+                }
+            },
+            methods: {
+                click() {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        }
+
+        const Vue = {
+            createApp(config) {
+
+                // 编译过程
+                const compile = (template) => (dom, data) => {
+                    console.log('render..', data)
+                    dom.innerHTML = `<button  >${data.message}</button>`
+                }
+
+                // 生成渲染函数
+                const render = compile()
+                return {
+                    mount: function (container) {
+                        const dom = document.querySelector(container)
+                        const data = config.data()
+                        render(dom, data)
+                    }
+
+                }
+            }
+        }
+
+        const {
+            createApp
+        } = Vue
+        createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
