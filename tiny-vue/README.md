@@ -385,7 +385,223 @@ OK今天写到这，终于完成了第一步虽然大部分还都是固定的至
 
 
 
-Step02 编译函数(Mock)
+## Step02 编译函数(Mock)
+
+这个章节我们主要看看compile这个功能。
+
+上文已经说过编译函数的功能
+
+```js
+// 编译函数
+// 输入值为视图模板
+const compile = (template) => {
+  //渲染函数
+  return (observed, dom) => {
+  	// 渲染过程
+	}
+}
+```
+
+简单的说就是
+
+- 输入：视图模板
+
+- 输出：渲染函数
+
+细分起来还可以分为三个个小步骤
+
+![Snip20200713_17](https://tva1.sinaimg.cn/large/007S8ZIlly1ggpcrnm718j30i804rmyr.jpg)
+
+- Parse  模板字符串 -> AST(Abstract Syntax Treee)抽象语法树
+
+- Transform  转换标记 譬如 v-bind v-if v-for的转换
+
+- Generate AST -> 渲染函数
+
+  ```js
+  //  模板字符串 -> AST(Abstract Syntax Treee)抽象语法树
+  let ast = parse(template)
+  // 转换处理 譬如 v-bind v-if v-for的转换
+  ast = transfer(ast)
+  // AST -> 渲染函数
+  return generator(ast)
+  ```
+
+  
+
+  我们可以通过在线版的VueTemplateExplorer感受一下
+
+  https://vue-next-template-explorer.netlify.com/
+
+![image-20200713150630150](https://tva1.sinaimg.cn/large/007S8ZIlly1ggpczn9iwdj31750i844t.jpg)
+
+
+
+> 
+>
+> [编译函数解析](https://juejin.im/post/5d9dbfb4e51d4577f7061978#heading-1)
+
+
+
+### Parse解析器
+
+解析器的工作原理其实就是一连串的正则匹配。
+
+比如：
+
+标签属性的匹配
+
+- class="title"
+
+- class='title'
+
+- class=title
+
+```js
+const attr = /([a-zA-Z_:][-a-zA-Z0-9_:.]*)=("([^"]*)"|'([^']*)'|([^\s"'=<>`]+)/
+
+"class=abc".match(attr);
+// output
+(6) ["class=abc", "class", "abc", undefined, undefined, "abc", index: 0, input: "class=abc", groups: undefined]
+
+"class='abc'".match(attr);
+// output
+(6) ["class='abc'", "class", "'abc'", undefined, "abc", undefined, index: 0, input: "class='abc'", groups: undefined]
+
+```
+
+这个等实现的时候再仔细讲。可以参考一下文章。
+
+[AST解析器实战](https://juejin.im/post/5d9c16686fb9a04e320a54c0#heading-5)
+
+
+
+那对于我们的项目来讲就可以写成这个样子
+
+```js
+// <input v-model="message"/>
+// <button @click='click'>{{message}}</button>
+// 转换后的AST语法树
+const parse = template => ({
+    children: [{
+            tag: 'input',
+            props: {
+                name: 'v-model',
+                exp: {
+                    content: 'message'
+                },
+            },
+        },
+        {
+            tag: 'button',
+            props: {
+                name: '@click',
+                exp: {
+                    content: 'message'
+                },
+            },
+            content:'{{message}}'
+        }
+    ],
+})
+```
+
+### Transform转换处理
+
+前一段知识做的是抽象语法树，对于Vue3模板的特别转换就是在这里进行。
+
+比如：vFor、vOn
+
+在Vue三种也会细致的分为两个层级进行处理
+
+- compile-core 核心编译逻辑
+
+  - AST-Parser
+
+  - 基础类型解析 v-for 、v-on
+
+    ![image-20200713183256931](https://tva1.sinaimg.cn/large/007S8ZIlly1ggpiygd8zvj30840ebt9y.jpg)
+
+- compile-dom 针对浏览器的编译逻辑
+
+  - v-html
+
+  - v-model
+
+  - v-clock
+
+    ![image-20200713183210079](https://tva1.sinaimg.cn/large/007S8ZIlly1ggpixmrpyoj309209ugmc.jpg)
+
+
+
+
+
+```js
+const transfer = ast => ({
+    children: [{
+            tag: 'input',
+            props: {
+                name: 'model',
+                exp: {
+                    content: 'message'
+                },
+            },
+        },
+        {
+            tag: 'button',
+            props: {
+                name: 'click',
+                exp: {
+                    content: 'message'
+                },
+            },
+            children: [{
+                content: {
+                    content: 'message'
+                },
+            }]
+        }
+    ],
+})
+```
+
+
+
+### Generate生成渲染器
+
+生成器其实就是根据转换后的AST语法树生成渲染函数。当然针对相同的语法树你可以渲染成不同结果。比如button你希望渲染成 button还是一个svg的方块就看你的喜欢了。这个就叫做自定义渲染器。这里我们先简单写一个固定的Dom的渲染器占位。到后面实现的时候我在展开处理。
+
+```js
+const generator = ast => (observed, dom) => {
+    // 重新渲染
+    let input = dom.querySelector('input')
+    if (!input) {
+        input = document.createElement('input')
+        input.setAttribute('value', observed.message)
+        input.addEventListener('keyup', function () {
+            observed.message = this.value
+        })
+        dom.appendChild(input)
+    }
+    let button = dom.querySelector('button')
+    if (!button) {
+        console.log('create button')
+        button = document.createElement('button')
+        button.addEventListener('click', () => {
+            return config.methods.click.apply(observed)
+        })
+        dom.appendChild(button)
+    }
+    button.innerText = observed.message
+}
+
+```
+
+
+
+
+
+
 
 
 
