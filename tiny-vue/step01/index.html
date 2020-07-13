@@ -3,35 +3,33 @@
 <body>
     <div id='app'></div>
     <script>
-        const App = {
-            // 视图
-            template: `
-                <button @click='click'>{{message}}</button>
-            `,
-            data() {
-                return {
-                    message: 'Hello Vue 3!!'
-                }
-            },
-            methods: {
-                click() {
-                    this.message = this.message.split('').reverse().join('')
-                }
-            }
-        }
-
         const Vue = {
             createApp(config) {
 
                 // 编译过程
                 const compile = (template) => (observed, dom) => {
-                    const click = () => {
-                        return config.methods.click.apply(observed)
-                    }
-                    dom.innerHTML = `<button  >${observed.message}</button>`
-                    dom.onclick = click
-                }
 
+                    // 重新渲染
+                    let input = dom.querySelector('input')
+                    if (!input) {
+                        input = document.createElement('input')
+                        input.setAttribute('value', observed.message)
+                        input.addEventListener('keyup', function () {
+                            observed.message = this.value
+                        })
+                        dom.appendChild(input)
+                    }
+                    let button = dom.querySelector('button')
+                    if (!button) {
+                        console.log('create button')
+                        button = document.createElement('button')
+                        button.addEventListener('click', () => {
+                            return config.methods.click.apply(observed)
+                        })
+                        dom.appendChild(button)
+                    }
+                    button.innerText = observed.message
+                }
                 // 生成渲染函数
                 const render = compile()
 
@@ -57,7 +55,23 @@
                 }
             }
         }
-
+        const App = {
+            // 视图
+            template: `
+                <input v-model="message"/>
+                <button @click='click'>{{message}}</button>
+            `,
+            data() {
+                return {
+                    message: 'Hello Vue 3!!'
+                }
+            },
+            methods: {
+                click() {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        }
         const {
             createApp
         } = Vue
