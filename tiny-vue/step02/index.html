@@ -59,35 +59,30 @@
                         ],
                     })
 
-const generator = ast => (observed, dom) => {
-    // 重新渲染
-    let input = dom.querySelector('input')
-    if (!input) {
-        input = document.createElement('input')
-        input.setAttribute('value', observed.message)
-        input.addEventListener('keyup', function () {
-            observed.message = this.value
-        })
-        dom.appendChild(input)
-    }
-    let button = dom.querySelector('button')
-    if (!button) {
-        console.log('create button')
-        button = document.createElement('button')
-        button.addEventListener('click', () => {
-            return config.methods.click.apply(observed)
-        })
-        dom.appendChild(button)
-    }
-    button.innerText = observed.message
-}
-//  模板字符串 -> AST(Abstract Syntax Treee)抽象语法树
-let ast = parse(template)
-// 转换处理 譬如 v-bind v-if v-for的转换
-ast = transfer(ast)
-// AST -> 渲染函数
-return generator(ast)
-}
+                    const generator = ast => (observed, dom) => {
+                        // 重新渲染
+                        let input = dom.querySelector('input')
+                        if (!input) {
+                            input = document.createElement('input')
+                            input.setAttribute('value', observed.message)
+                            input.addEventListener('keyup', function () {
+                                observed.message = this.value
+                            })
+                            dom.appendChild(input)
+                        }
+                        let button = dom.querySelector('button')
+                        if (!button) {
+                            console.log('create button')
+                            button = document.createElement('button')
+                            button.addEventListener('click', () => {
+                                return config.methods.click.apply(observed)
+                            })
+                            dom.appendChild(button)
+                        }
+                        button.innerText = observed.message
+                    }
+
+                }
 
                 // 生成渲染函数
                 const render = compile()

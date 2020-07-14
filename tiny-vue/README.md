@@ -1,18 +1,35 @@
-只有刻意练习才能提高。为了更好的理解Vue3源码我计划使用渐进式的方法完成一个简写版的Vue框架。
+只有刻意练习才能提高。
+
+前面关注Vue3主要是阅读源码也趁机摸鱼了提了一些PR,居然还有一个通过的算是给vue大业也做了点点贡献。
+
+https://github.com/vuejs/vue-next/pull/1389
+
+
+
+为了更好的理解Vue3源码我计划使用渐进式的方法完成一个简写版的Vue框架。
 
 ## 写作计划
-欢迎大家持续关注、计划肯定会变的越来越好。
+欢迎大家持续关注、首先做一个简单的计划。
 
-- Step00 NoMVVM
-- Step01 MVVM(Mock版)
-- Step02 编译函数(Mock)
-- Step03 数据劫持(精简版)
-    - defineProperty Vue2.0
-    - Proxy/Reflect Vue3.0
-- Step04 编译、渲染(Mock版)
-- Step05 (Ast、Transform、Generate)、渲染(精简版)
-- Step06 自定义渲染器(Mock版)
-- Step07 Dom Diff原理
+这个计划一定会变😜，要不然怎么叫迭代呢。
+
+📎 Mock状态
+
+🚀简版实现
+
+| Step       |              | 00   | 01   | 02   | 03   | 04   | 05   | 06   |
+| ---------- | ------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 响应式逻辑 |              | -    | 📎    | 🚀    | 🚀    | 🚀    | 🚀    | 🚀    |
+| 编译函数   |              | -    | 📎    | 📎    | 📎    | 🚀    | 🚀    | 🚀    |
+|            | Parser       |      | -    | 📎    | 📎    | 🚀    | 🚀    | 🚀    |
+|            | Transformer  | -    | -    | 📎    | 📎    | 🚀    | 🚀    | 🚀    |
+|            | Generator    | -    | -    | 📎    | 📎    | 🚀    | 🚀    | 🚀    |
+| 运行时环境 |              | -    | 📎    | 📎    | 🚀    | 🚀    | 🚀    | 🚀    |
+|            | 渲染器       | -    | 📎    | 📎    | 📎    | 🚀    | 🚀    | 🚀    |
+| 核心特性   | Dom Diff     | -    | -    | -    | -    | -    | 🚀    | 🚀    |
+|            | 静态提升     | -    | -    | -    | -    | -    | -    | 🚀    |
+|            | 自定义渲染器 | -    | -    | -    | -    | -    | -    | 🚀    |
+|            |              | -    | -    | -    | -    | -    | -    | 🚀    |
 
 [完整的代码](https://github.com/su37josephxia/vue3-study/tree/master/tiny-vue)
 
@@ -67,7 +84,7 @@ document.querySelector('input').addEventListener('keyup', function () {
 })
 ```
 
-## Step01 MVVM(Mock版)
+## Step01 总体架构 - MVVM(Mock版)
 
 ![MVVM原理](https://tva1.sinaimg.cn/large/007S8ZIlly1ggp6psq3ugg30dc0a0app.gif)
 
@@ -385,7 +402,7 @@ OK今天写到这，终于完成了第一步虽然大部分还都是固定的至
 
 
 
-## Step02 编译函数(Mock)
+## Step02 编译流程(Mock)
 
 这个章节我们主要看看compile这个功能。
 
