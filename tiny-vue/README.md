@@ -128,6 +128,10 @@ createApp(App).mount('#app')
 
 ### 程序骨架
 
+程序执行过程大概如图：
+
+![render-proxy](https://tva1.sinaimg.cn/large/007S8ZIlly1ggqhwsr24bg30dc0a0aij.gif)
+
 ```js
 const Vue = {
   createApp(config) {
@@ -406,6 +410,8 @@ OK今天写到这，终于完成了第一步虽然大部分还都是固定的至
 
 这个章节我们主要看看compile这个功能。
 
+![compiler](https://tva1.sinaimg.cn/large/007S8ZIlly1ggqjvxfqhjg30dc0a0hdu.gif)
+
 上文已经说过编译函数的功能
 
 ```js
@@ -454,8 +460,6 @@ const compile = (template) => {
 
 
 
-> 
->
 > [编译函数解析](https://juejin.im/post/5d9dbfb4e51d4577f7061978#heading-1)
 
 
