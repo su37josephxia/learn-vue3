@@ -1,0 +1,39 @@
+
+<script crossorigin="anonymous" integrity="sha384-By3cPqxThh0caEqh+N/Mz0GCmPpeAL1RGv5y/BcbLfgV0zdY77mQhL+SCZrKsp9m"
+  src="https://lib.baomitu.com/vue/3.0.0-beta.24/vue.global.js"></script>
+<div id="app"></div>
+<script>
+  const {
+    createApp,
+    reactive,
+    computed,
+    watchEffect
+  } = Vue
+
+  console.log('Vue', Vue)
+  const MyComponent = {
+    template: `
+                <button @click="click">
+                {{ state.message }}
+                </button>
+            `,
+    setup() {
+      const state = reactive({
+        message: 'Hello Vue 3!!'
+      })
+      watchEffect(() => {
+        console.log('state change ', state.message)
+      })
+
+      function click() {
+        state.message = state.message.split('').reverse().join('')
+      }
+      return {
+        state,
+        click
+      }
+    }
+  }
+  createApp(MyComponent).mount('#app')
+</script>
+</body>
