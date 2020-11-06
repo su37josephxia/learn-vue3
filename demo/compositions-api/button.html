@@ -6,32 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="../../source/vue-next/packages/vue/dist/vue.global.js"></script>
-
+    <script crossorigin="anonymous" integrity="sha512-REb0S2epbS0XtS28ifNa1haxmTZigXjB+Tx5IHCvXZndWB2RL431Vt1qONzFoe0dPwA8WGow+xxkQwhVr44nRg==" src="https://lib.baomitu.com/vue/3.0.2/vue.global.js"></script>
     <style>
         .el-button {
-            display: inline-block;
-            line-height: 1;
-            white-space: nowrap;
-            cursor: pointer;
-            background: #fff;
-            border: 1px solid #dcdfe6;
-            color: #ffffff;
-            -webkit-appearance: none;
-            text-align: center;
-            box-sizing: border-box;
-            outline: none;
-            margin: 0;
-            transition: .1s;
-            font-weight: 500;
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            padding: 12px 20px;
-            font-size: 14px;
-            border-radius: 4px;
-
-
+            width: 400px;
+            height: 100px;
+            font-size: 50px;
         }
     </style>
 </head>
@@ -63,18 +43,18 @@
         }
 
         const MyComponent = {
-            template: `<button type='button' class= 'el-button' :style='{background,color}'><span>按钮</span></button>`,
+            template: `<button type='button' class= 'el-button' :style='{background,color}'><span>全栈然叔</span></button>`,
             setup() {
                 const {
                     color
-                } = useColor('b', 100)
+                } = useColor('g', 100)
                 const {
                     color: background
-                } = useColor('r', 1000)
+                } = useColor('r', 100)
 
                 return {
                     color,
-                    background
+                    background,
                 }
             }
         }
