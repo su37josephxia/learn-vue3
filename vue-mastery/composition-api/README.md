@@ -1,4 +1,4 @@
-# CompositionAPI
+# CompositionAPI - 复合API
 
 ## 一、为什么选择CompositionAPI
 
@@ -55,7 +55,7 @@
 
 ### 3. 代码重用方法PK
 
-Vue2中的跨组件重用代码，我们大概会有三个选择。
+Vue2中的跨组件重用代码，我们大概会有四个选择。
 
 #### 3.1 Mixin - 混入
 
@@ -100,25 +100,32 @@ Vue2中的跨组件重用代码，我们大概会有三个选择。
 
 ## 二、 setup & ref
 
-1. When
+1. 使用CompositionAPI理由
+   - ✅更好的Typescript支持
+   - ✅在复杂功能组件中可以实现根据特性组织代码 - 代码内聚性👍 比如： 排序和搜索逻辑内聚
+   - ✅组件间代码复用
 
-### 三、Methods
 
-### 四、 Computed - 计算属性
 
-### 五、Reactive - 响应式语法
 
-### 六、 Modularizing
 
-### 七、 LifecycleHooks - 生命周期钩子
+## 三、Methods
 
-### 八、Watch
+## 四、 Computed - 计算属性
 
-### 九、Sharing State - 共享状态
+## 五、Reactive - 响应式语法
 
-### 十、Suspense - 悬念
+## 六、 Modularizing
 
-### 十一、Teleport
+## 七、 LifecycleHooks - 生命周期钩子
+
+## 八、Watch - 监听器
+
+## 九、Sharing State - 共享状态
+
+## 十、Suspense - 悬念
+
+## 十一、Teleport
 
 
 
