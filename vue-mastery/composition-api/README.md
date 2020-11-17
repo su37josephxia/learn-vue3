@@ -98,29 +98,40 @@ Vue2中的跨组件重用代码，我们大概会有三个选择。
 
 
 
-二、 setup & ref
+## 二、 setup & ref
+
+1. When
+
+### 三、Methods
+
+### 四、 Computed - 计算属性
+
+### 五、Reactive - 响应式语法
+
+### 六、 Modularizing
+
+### 七、 LifecycleHooks - 生命周期钩子
+
+### 八、Watch
+
+### 九、Sharing State - 共享状态
+
+### 十、Suspense - 悬念
+
+### 十一、Teleport
 
 
 
-三、Methods
+## 附录、
 
-四、 Computed - 计算属性
+### 环境搭建
 
-五、Reactive - 响应式语法
-
-六、 Modularizing
-
-七、 LifecycleHooks - 生命周期钩子
-
-八、Watch
-
-九、共享状态
-
-十、Suspense - 悬念
-
-十一、Teleport
-
-
+```
+$ npm init vite-app <project-name>
+$ cd <project-name>
+$ npm install
+$ npm run dev
+```
 
 
 
