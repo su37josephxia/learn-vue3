@@ -100,26 +100,226 @@ Vue2中的跨组件重用代码，我们大概会有四个选择。
 
 ## 二、 setup & ref
 
-1. 使用CompositionAPI理由
-   - ✅更好的Typescript支持
-   - ✅在复杂功能组件中可以实现根据特性组织代码 - 代码内聚性👍 比如： 排序和搜索逻辑内聚
-   - ✅组件间代码复用
+### 1. 使用CompositionAPI理由
 
+- ✅更好的Typescript支持
+- ✅在复杂功能组件中可以实现根据特性组织代码 - 代码内聚性👍 比如： 排序和搜索逻辑内聚
+- ✅组件间代码复用
 
+### 2. setup是什么
 
+- 在以下方法前执行：
+  - Components
+  - Props
+  - Data
+  - Methods
+  - Computed Properties
+  - Lifecycle methods
+-  可以不在使用难于理解的this
+- 有两个可选参数 
+  - props - 属性 (响应式对象 且 可以监听(watch))
 
+```js
+import {watch} from "vue"
+export defalut {
+	props: {
+		name: String
+	},
+	setup(props) {
+		watch(() => {
+			console.log(props.name)
+		})
+	}
+}
+```
+
+ - context 上下文对象 - 用于代替以前的this方法可以访问的属性
+
+   ```
+   setup (props,context) {
+   	const {attrs,slots,parent,root,emit} = context
+   }
+   ```
+
+### 3. ref是什么
+
+   This wraps our primitive in an object allowing up to track。
+
+​	对基本数据类型数据进行装箱操作使得成为一个响应式对象，可以跟踪数据变化。
+
+### 4. 总结
+
+![image-20201129123333148](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201129123333148.png)
+
+可维护性明显提高
+
+ - 可以控制哪些变量暴露
+
+ - 可以跟中哪些属性被定义 （属性继承与引用透明）
+
+   
 
 ## 三、Methods
 
+### 1. 基础用法
+
+添加方法如下：
+
+![image-20201129124845324](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201129124845324.png)
+
+### 2. 自动拆装箱总结
+
+![image-20201129125456248](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201129125456248.png)
+
+- JS ：需要通过.value访问包装对象
+- 模板:   自动拆箱
+
+
+
 ## 四、 Computed - 计算属性
+
+这个地方实在没什么好讲的，和Vue2没变化
+
+```html
+<template>
+  <div>
+    <div>Capacity： {{ capacity }}</div>
+    <p>Spases Left: {{ sapcesLeft }} out of {{ capacity }}</p>
+    <button @click="increaseCapacity()">Increase Capacity</button>
+  </div>
+</template>
+
+<script>
+import { ref, computed, watch } from "vue";
+export default {
+  setup(props, context) {
+    const capacity = ref(3);
+    const attending = ref(["Tim", "Bob", "Joe"]);
+    function increaseCapacity() {
+      capacity.value++;
+    }
+    const sapcesLeft = computed(() => {
+      return capacity.value - attending.value.length;
+    });
+    return { capacity, increaseCapacity, attending, sapcesLeft };
+  },
+};
+</script>
+
+```
 
 ## 五、Reactive - 响应式语法
 
+
+
+
+
+
+
 ## 六、 Modularizing
+
+使用CompositionAPI的两个理由
+
+- 可以按照功能组织代码
+
+  ![image-20201130163125995](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201130163125995.png)
+
+- 组件间功能代码复用
+
+![image-20201130163206869](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201130163206869.png)
+
+![image-20201130163458085](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201130163458085.png)
+
+
+
+
+
+
 
 ## 七、 LifecycleHooks - 生命周期钩子
 
+| Vue2          | Vue3            |
+| ------------- | --------------- |
+| beforeCreate  | ❌setup(替代)    |
+| created       | ❌setup(替代)    |
+| beforeMount   | onBeforeMount   |
+| mounted       | onMounted       |
+| beforeUpdate  | onBeforeUpdate  |
+| updated       | onUpdated       |
+| beforeDestroy | onBeforeUnmount |
+| destroyed     | onUnmounted     |
+| errorCaptured | onErrorCaptured |
+|      | 🎉onRenderTracked     |
+|  | 🎉onRenderTriggered |
+
+setup中调用生命周期钩子
+
+```js
+import { onBeforeMount,onMounted } from "vue";
+export default {
+  setup() {
+    onBeforeMount(() => {
+        console.log('Before Mount!')
+    }) 
+    onMounted(() => {
+        console.log('Before Mount!')
+    }) 
+  },
+};
+
+```
+
+
+
 ## 八、Watch - 监听器
+
+```js
+// 所有依赖响应式对象监听
+watchEffect(() => {
+   results.value = getEventCount(searchInput.value);
+ });
+
+// 特定响应式对象监听
+watch(
+  searchInput,
+  () => {
+    console.log("watch searchInput:");
+  }
+);
+
+// 特定响应式对象监听 可以获取新旧值
+watch(
+  searchInput,
+ (newVal, oldVal) => {
+    console.log("watch searchInput:", newVal, oldVal);
+  },
+);
+
+// 多响应式对象监听
+watch(
+  [firstName,lastName],
+ ([newFirst,newLast], [oldFirst,oldlast]) => {
+   // .....
+  },
+  
+);
+
+// 非懒加载方式监听 可以设置初始值
+watch(
+  searchInput,
+  (newVal, oldVal) => {
+    console.log("watch searchInput:", newVal, oldVal);
+  },
+  {
+    immediate: true, 
+  }
+);
+
+```
+
+
+
+
 
 ## 九、Sharing State - 共享状态
 
