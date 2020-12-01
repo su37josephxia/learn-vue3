@@ -12,6 +12,8 @@
     <LifecycleHooks />
     <div>=======Watch===========</div>
     <Watch />
+    <div>=======SharingState===========</div>
+    <SharingState />
   </div>
 </template>
 
@@ -19,9 +21,10 @@
 import Setup from "./components/Setup.vue";
 import Method from "./components/Method.vue";
 import Computed from "./components/Computed.vue";
-import Modularizing from "./components/Modularizing/Modularizing.vue";
+import Modularizing from "./components/Modularizing/index.vue";
 import LifecycleHooks from "./components/LifecycleHooks";
 import Watch from "./components/Watch.vue";
+import SharingState from "./components/SharingState/index.vue";
 export default {
   name: "App",
   components: {
@@ -31,6 +34,7 @@ export default {
     Modularizing,
     LifecycleHooks,
     Watch,
+    SharingState,
   },
 };
 </script>

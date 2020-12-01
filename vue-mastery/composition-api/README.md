@@ -319,11 +319,94 @@ watch(
 
 
 
-
-
 ## 九、Sharing State - 共享状态
 
+
+
+![image-20201201113328715](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201201113328715.png)
+
+
+
+编写一个公共函数usePromise函数需求如下：
+
+- results : 返回Promise执行结果
+- loading： 返回Promise运行状态 
+  - PENDING :true  
+  - REJECTED : false
+  - RESOLVED: false
+
+- error ： 返回执行错误
+
+
+
+![loading](https://gitee.com/josephxia/picgo/raw/master/juejin/loading.gif)
+
+
+
+
+
+```
+import { ref } from "vue";
+
+export default function usePromise(fn) {
+  const results = ref(null);
+  // is PENDING
+  const loading = ref(false);
+  const error = ref(null);
+
+  const createPromise = async (...args) => {
+    loading.value = true;
+    error.value = null;
+    results.value = null;
+    try {
+      results.value = await fn(...args);
+    } catch (err) {
+      error.value = err;
+    } finally {
+      loading.value = false;
+    }
+  };
+  return { results, loading, error, createPromise };
+}
+
+```
+
+
+
+应用
+
+```js
+import { ref, watch } from "vue";
+import usePromise from "./usePromise";
+export default {
+  setup() {
+    const searchInput = ref("");
+    function getEventCount() {
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(3), 1000);
+      });
+    }
+
+    const getEvents = usePromise((searchInput) => getEventCount());
+
+    watch(searchInput, () => {
+      if (searchInput.value !== "") {
+        getEvents.createPromise(searchInput);
+      } else {
+        getEvents.results.value = null;
+      }
+    });
+
+    return { searchInput, ...getEvents };
+  },
+};
+```
+
+
+
 ## 十、Suspense - 悬念
+
+
 
 ## 十一、Teleport
 
