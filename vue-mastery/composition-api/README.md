@@ -406,7 +406,46 @@ export default {
 
 ## 十、Suspense - 悬念
 
+我们考虑一下当你加载一个远程数据时，如何显示loading状态
 
+![loading](/Users/xiaran/Desktop/loading.gif)
+
+通常我们可以在模板中使用v-if
+
+![image-20201201221313907](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201201221313907.png)
+
+
+
+但是在一个组件树中，其中几个子组件需要远程加载数据，当加载完成前父组件希望处于Loading状态时我们就必须借助全局状态管理来管理这个Loading状态。
+
+![image-20201201221108667](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201201221108667.png)
+
+
+![image-20201201221336107](/Users/xiaran/Library/Application Support/typora-user-images/image-20201201221336107.png)
+
+
+
+这个问题在Vue3中有一个全新的解决方法。
+
+这就是Suspense Component，悬念组件。
+
+![image-20201201221927963](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201201221927963.png)
+
+
+
+悬念异常处理
+
+
+
+
+
+悬念制造骨架屏
+
+![](https://gitee.com/josephxia/picgo/raw/master/juejin/gu3.gif)
+
+
+
+![](https://gitee.com/josephxia/picgo/raw/master/juejin/gu4.gif)
 
 ## 十一、Teleport
 

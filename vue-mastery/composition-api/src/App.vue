@@ -21,10 +21,10 @@
 import Setup from "./components/Setup.vue";
 import Method from "./components/Method.vue";
 import Computed from "./components/Computed.vue";
-import Modularizing from "./components/Modularizing/index.vue";
+import Modularizing from "./components/Modularizing";
 import LifecycleHooks from "./components/LifecycleHooks";
 import Watch from "./components/Watch.vue";
-import SharingState from "./components/SharingState/index.vue";
+import SharingState from "./components/SharingState";
 export default {
   name: "App",
   components: {
