@@ -3,9 +3,10 @@
 </template>
 
 <script>
+import { ref } from "vue";
 export default {
   async setup() {
-    const count = ref("");
+    const count = ref(null);
     function getEventCount() {
       return new Promise((resolve) => {
         setTimeout(() => resolve(3), 1000);

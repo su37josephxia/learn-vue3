@@ -14,6 +14,8 @@
     <Watch />
     <div>=======SharingState===========</div>
     <SharingState />
+    <div>=======Suspense===========</div>
+    <SuspenseComponent />
   </div>
 </template>
 
@@ -25,6 +27,7 @@ import Modularizing from "./components/Modularizing";
 import LifecycleHooks from "./components/LifecycleHooks";
 import Watch from "./components/Watch.vue";
 import SharingState from "./components/SharingState";
+import SuspenseComponent from './components/Suspense'
 export default {
   name: "App",
   components: {
@@ -35,6 +38,7 @@ export default {
     LifecycleHooks,
     Watch,
     SharingState,
+    SuspenseComponent
   },
 };
 </script>
