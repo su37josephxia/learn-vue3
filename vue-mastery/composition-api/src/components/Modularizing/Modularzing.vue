@@ -8,7 +8,7 @@
 
 <script>
 import { ref, computed, watch } from "vue";
-import useEventSapce from "./event-space";
+import useEventSapce from "../composables/use-event-space";
 export default {
   setup(props, context) {
     const {
