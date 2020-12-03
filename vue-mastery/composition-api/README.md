@@ -190,6 +190,7 @@ export defalut {
 </template>
 
 <script>
+
 import { ref, computed, watch } from "vue";
 export default {
   setup(props, context) {
@@ -209,12 +210,56 @@ export default {
 ```
 
 ## 五、Reactive - 响应式语法
+<template>
+
+<div>
+   <p>Space Left : {{event.spacesLeft}} out of {{event.capacity}} </p>
+   <h2>Attending</h2>
+   <ul>
+      <li v-for="(name,index)" in event.attending :key="index">{{name}}
+      </li>
+      
+     
+   </ul>
+   <button @click="increaseCapacity">Increase Capacity</button>
+   </div>
+</template>
+<script>
+//第一种
+import {ref,computed } from 'vue'
+export default {
+  setup(){
+    const capacity = ref(4)
+    const attending = ref(["Tim","Bob","Joe"])
+    const spaceLeft = computed(()=>{
+      return capacity.value - attending.value.length;
+    });
+    function increaseCapacity(){ capacity.value++; }
+    return {capacity,increaseCapacity,attending,spaceLeft}   
+   
+  }
+} 
+
+//返回一个响应式函数 第二种
+import { reactive,computed } from 'vue'
+export default {
+  setup(){
+    const event = reactive({
+      capacity:4,
+      attending:["Tim","Bob","Joe"],
+      spaceLeft:computed(()=>{
+        return event.capacity - event.attending.length;
+      })
+    })
+    //我们不再使用.value
+    function increaseCapacity() { event.capacity++; }
+    //把这个event放入到template中
+    return { event,increaseCapacity}
+  }
+}
 
 
-
-
-
-
+</script>
 
 ## 六、 Modularizing
 
