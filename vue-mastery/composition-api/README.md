@@ -447,7 +447,25 @@ export default {
 
 ![](https://gitee.com/josephxia/picgo/raw/master/juejin/gu4.gif)
 
-## 十一、Teleport
+## 十一、Teleport - 传送门
+
+类似React中的Portal
+
+### 1. 可以将特定的html模板传送到Dom的任何位置
+
+![image-20201202164954276](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201202164954276.png)
+
+
+
+### 2. 通过选择器QuerySelector配置
+
+![image-20201202171235123](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201202171235123.png)
+
+
+
+### 3. 控制组件的
+
+
 
 
 
