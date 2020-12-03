@@ -17,7 +17,7 @@
     <div>=======Suspense===========</div>
     <!-- <SuspenseComponent /> -->
     <div>=======Teleport===========</div>
-    <Teleport />
+    <TeleportComponent />
   </div>
 </template>
 
@@ -30,7 +30,7 @@ import LifecycleHooks from "./components/LifecycleHooks";
 import Watch from "./components/Watch.vue";
 import SharingState from "./components/SharingState";
 import SuspenseComponent from "./components/Suspense";
-import Teleport from "./components/Teleport.vue";
+import TeleportComponent from "./components/Teleport.vue";
 export default {
   name: "App",
   components: {
@@ -42,7 +42,7 @@ export default {
     Watch,
     SharingState,
     SuspenseComponent,
-    Teleport,
+    TeleportComponent,
   },
 };
 </script>
