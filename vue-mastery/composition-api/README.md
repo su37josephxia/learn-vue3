@@ -213,11 +213,45 @@ export default {
 
 之前reactive 的 Ref 去声明所有的响应式属性
 
-![image-20201206171613601](README.assets/image-20201206171613601.png)
+```js
+import { ref,computed } from 'vue'
+export default {
+  setup(){
+    const capacity = ref(4);
+    const attending = ref(["Tim","Bob","Joe"]);
+    const spacesLeft = computed(()=>{
+      return capacity.value - attending.value.length
+    })
+    function increaseCapacity(){ capacity.value ++;}
+    return { capacity,increaseCapacity,attending,spacesLeft}
+  }
+}
+```
 
-但是有另一个等效的方法用他去代替 reactive 的Ref
 
-![image-20201206172905686](README.assets/image-20201206172905686.png)
+
+
+
+但是有另一个等效的方法用它去代替 reactive 的Ref
+
+
+
+```js
+import { reactive,computed } from 'vue'
+export default {
+  setup(){
+    const event = reactive({
+      capacity:4,
+      attending:["Tim","Bob","Joe"],
+      spacesLeft:computed(()=>{
+        return event.capacity - event.attending.length;
+      })
+    })
+  }
+}
+```
+
+
 
 过去我们用vue2.0的data来声明响应式对象,但是现在在这里每一个属性都是响应式的包括computed 计算属性
 
@@ -240,7 +274,20 @@ setup(){
 }
 ```
 
-![ ](README.assets/image-20201206174225781.png)
+
+
+```html
+<p>Spaces Left:{{event.spacesLeft}} out of {{event.capacity}}</p>
+<h2>Attending</h2>
+<ul>>
+	<li v-for="(name,index) in event.attending" :key="index">
+     {{name}}
+  </li>
+</ul>
+<button @click="increaseCapacity()"> Increase Capacity</button>
+```
+
+
 
 在这里我们使用对象都是.属性的方式，但是如果 这个结构变化了，event分开了编程了一个个片段，这个时候就不能用.属性的方式了
 
