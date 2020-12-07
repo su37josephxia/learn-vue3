@@ -558,9 +558,9 @@ export default {
 
 ## 十、Suspense - 悬念
 
-我们考虑一下当你加载一个远程数据时，如何显示loading状态
+### 1. 复杂的Loading实现
 
-![loading](/Users/xiaran/Desktop/loading.gif)
+我们考虑一下当你加载一个远程数据时，如何显示loading状态
 
 通常我们可以在模板中使用v-if
 
@@ -577,6 +577,10 @@ export default {
 
 
 
+
+
+### 2. Suspense基础语法
+
 这个问题在Vue3中有一个全新的解决方法。
 
 这就是Suspense Component，悬念组件。
@@ -585,13 +589,51 @@ export default {
 
 
 
-悬念异常处理
+```html
+<template>
+  <div>
+    <div v-if="error">Uh oh .. {{ error }}</div>
+    <Suspense>
+      <template #default>
+        <div>
+          <Event />
+          <AsyncEvent />
+        </div>
+      </template>
+      <template #fallback> Loading.... </template>
+    </Suspense>
+  </div>
+</template>
+
+<script>
+import { ref, onErrorCaptured, defineAsyncComponent } from "vue";
+
+import Event from "./Event.vue";
+
+const AsyncEvent = defineAsyncComponent(() => import("./Event.vue"));
+export default {
+  components: {
+    Event,
+    AsyncEvent,
+  },
+
+  setup() {
+    const error = ref(null);
+    onErrorCaptured((e) => {
+      error.value = e;
+      // 阻止错误继续冒泡
+      return true;
+    });
+    return { error };
+  },
+};
+</script>
+
+```
 
 
 
-
-
-悬念制造骨架屏
+### 3. 骨架屏实现
 
 ![](https://gitee.com/josephxia/picgo/raw/master/juejin/gu3.gif)
 
@@ -601,21 +643,59 @@ export default {
 
 ## 十一、Teleport - 传送门
 
-类似React中的Portal
+### 1. 功能
 
-### 1. 可以将特定的html模板传送到Dom的任何位置
+类似React中的Portal, 可以将特定的html模板传送到Dom的任何位置
 
 ![image-20201202164954276](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201202164954276.png)
 
 
 
-### 2. 通过选择器QuerySelector配置
+
+
+### 2. 基础语法
+
+通过选择器QuerySelector配置
 
 ![image-20201202171235123](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201202171235123.png)
 
 
 
-### 3. 控制组件的
+### 3. 示例代码
+
+![Kapture 2020-12-07 at 16.23.16](https://gitee.com/josephxia/picgo/raw/master/juejin/Kapture%202020-12-07%20at%2016.23.16.gif)
+
+
+```html
+<template>
+  <div>
+    <teleport to="#end-of-body" :disabled="!showText">
+      <!-- 【Teleport : This should be at the end 】 -->
+      <div>
+        <video src="../assets/flower.webm" muted controls="controls" autoplay="autoplay" loop="loop">
+          
+        </video>
+      </div>
+    </teleport>
+    <div>【Teleport : This should be at the top】</div>
+    <button @click="showText = !showText">Toggle showText</button>
+  </div>
+</template>
+<script>
+import { ref } from "vue";
+export default {
+  setup() {
+    const showText = ref(false);
+    setInterval(() => {
+      showText.value = !showText.value;
+    }, 1000);
+    return { showText };
+  },
+};
+</script>
+```
+
+
 
 
 
