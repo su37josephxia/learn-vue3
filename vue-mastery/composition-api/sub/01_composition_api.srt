@@ -1,0 +1,655 @@
+﻿1
+00:00:08,440 --> 00:00:09,705
+Hi, I'm Gregg Pollack
+嗨，我是格雷格·波拉克
+
+2
+00:00:09,705 --> 00:00:10,530
+In this video,
+在这个视频中，
+
+3
+00:00:10,530 --> 00:00:14,650
+we'll be looking at why the composition API was created for vue3.0
+我们将了解为什么要为vue3.0创建组合API
+
+4
+00:00:14,710 --> 00:00:18,614
+We'll start by taking a look at the limitations of vue2.0,
+我们首先看一下vue2.0的局限性，
+
+5
+00:00:18,614 --> 00:00:22,510
+and then look at how vue3.0 solve these problems for us.
+然后看看vue3.0是如何为我们解决这些问题的。
+
+6
+00:00:22,510 --> 00:00:27,050
+There are three limitations you may run into when using you to create components.
+在使用您创建组件时，可能会遇到三个限制。
+
+7
+00:00:27,950 --> 00:00:31,534
+The first is as your components grow and get bigger and uglier,
+第一个是当你的组件变得越来越大越来越丑，
+
+8
+00:00:32,046 --> 00:00:36,170
+they become less readable and therefore less maintainable
+它们变得可读性较差，因此可维护性较差
+
+9
+00:00:36,170 --> 00:00:39,824
+The second is that as you reuse pieces of code across components
+第二个问题是，当您跨多个组件重用代码片段时
+
+10
+00:00:39,824 --> 00:00:43,600
+each of these code reuse patterns in Vue2.0 has its drawbacks
+Vue2.0中的每种代码重用模式都有其缺点
+
+11
+00:00:44,830 --> 00:00:48,720
+The 3rd is that Vue2.0, has limited Typescript support.
+第三个是Vue2.0，Vue2.0对Typescript的支持有限。
+
+12
+00:00:48,720 --> 00:00:50,778
+There's ways to write it with Typescript,
+可以用TypeScript来写，
+
+13
+00:00:50,778 --> 00:00:52,610
+but they're not completely optimal.
+但它们并不完全是最优的。
+
+14
+00:00:52,610 --> 00:00:54,776
+Let's dive into the first limitation,
+让我们深入到第一个限制，
+
+15
+00:00:54,776 --> 00:00:58,550
+which is that large components may be hard to read and maintain.
+那就是大的组件可能难以读取和维护。
+
+16
+00:00:58,550 --> 00:01:01,798
+Let's imagine we're creating a simple search component,
+想象一下我们正在创建一个简单的搜索组件，
+
+17
+00:01:01,798 --> 00:01:04,350
+you know a search bar that looks like this,
+你知道一个像这样的搜索栏，
+
+18
+00:01:04,490 --> 00:01:07,120
+using the regular component syntax,
+使用常规组件语法，
+
+19
+00:01:07,130 --> 00:01:12,630
+we would create a .vue file which might have a data option with reactive properties.
+我们将创建一个.vue文件，它可能有一个带有反应属性的数据选项。
+
+20
+00:01:12,630 --> 00:01:15,280
+And our methods for our search logic.
+以及搜索逻辑的方法。
+
+21
+00:01:15,550 --> 00:01:18,705
+Once Complete,we realize we need some sorting functionality.
+一旦完成，我们意识到我们需要一些排序功能。
+
+22
+00:01:19,120 --> 00:01:20,545
+So we write up the code,
+所以我们写了代码，
+
+23
+00:01:20,545 --> 00:01:23,920
+which also has some reactive properties and some methods.
+其也具有一些反应性质和一些方法。
+
+24
+00:01:24,870 --> 00:01:27,493
+Our code for each feature, as you can see,is split up between two options.
+如您所见，每个功能的代码都被分为两个选项。
+
+25
+00:01:29,680 --> 00:01:34,405
+Things aren't too messy,but they would be if we added additional functionality for say
+事情不会太混乱，但是如果我们增加额外的功能，比如说
+
+26
+00:01:34,525 --> 00:01:36,729
+search filters and pageination.
+搜索过滤和分页。
+
+27
+00:01:36,729 --> 00:01:39,870
+The problem here is that logical concerns or features
+这里的问题是逻辑关系或特性
+
+28
+00:01:39,870 --> 00:01:42,680
+are organized by component options.
+按组件选项组织。
+
+29
+00:01:42,950 --> 00:01:45,398
+And there's a lot of component options in Vue,
+Vue中有很多组件选项，
+
+30
+00:01:45,398 --> 00:01:48,990
+things like components, props, data computed methods,and life cycle.
+比如组件、道具、数据计算方法和生命周期。
+
+31
+00:01:48,990 --> 00:01:53,030
+Our feature code might be divided up into six different places.
+我们的功能代码可能会被分成六个不同的位置。
+
+32
+00:01:53,160 --> 00:01:55,390
+And if you think about a more complex component,
+如果你考虑一个更复杂的组件，
+
+33
+00:01:55,390 --> 00:01:58,290
+having our code split up in multiple places
+把我们的代码分散在多个地方
+
+34
+00:01:58,290 --> 00:02:01,482
+just isn't as nice as having it all organized together,
+只是不像把一切都组织起来那么好，
+
+35
+00:02:01,482 --> 00:02:05,020
+which makes our component more readable and maintainable
+这使我们的组件更具可读性和可维护性
+
+36
+00:02:05,050 --> 00:02:06,730
+Even in our simple example,
+即使在我们这个简单的例子中，
+
+37
+00:02:06,730 --> 00:02:12,640
+it'd be nice if our search code and our sort code was kept together and Vue3.0 makes this possible.
+如果我们的搜索代码和排序代码可以放在一起，那么Vue3.0就能让这成为可能。
+
+38
+00:02:12,640 --> 00:02:14,071
+Using the composition API,
+使用合成API，
+
+39
+00:02:14,071 --> 00:02:16,360
+we can keep our components more readable.
+我们可以让我们的组件更具可读性。
+
+40
+00:02:18,030 --> 00:02:22,020
+This all starts with the new setup method inside of our components.
+这都是从我们组件内部的新设置方法开始的。
+
+41
+00:02:22,620 --> 00:02:28,000
+Inside the new setup function is where we can start using the composition API syntax.
+在新的设置函数中，我们可以开始使用Composition API语法。
+
+42
+00:02:28,000 --> 00:02:30,520
+And this syntax is completely optional.
+这个语法是完全可选的。
+
+43
+00:02:30,520 --> 00:02:36,250
+We can still continue to code up components like we have before using the regular syntax.
+我们仍然可以像使用常规语法之前那样继续编写组件代码。
+
+44
+00:02:36,880 --> 00:02:40,380
+I knew when I first saw this, I was saying, wait,
+我知道当我第一次看到这个的时候，我在说，等等，
+
+45
+00:02:40,380 --> 00:02:45,230
+does this mean I create a gigantic setup method with a ton of code?
+这是否意味着我用大量的代码创建了一个巨大的设置方法？
+
+46
+00:02:45,480 --> 00:02:48,318
+And the answer here is now
+答案就是现在
+
+47
+00:02:48,318 --> 00:02:51,110
+with Vue3.0，you end up writing composition functions.
+使用Vue3.0，你最终会编写合成函数。
+
+48
+00:02:51,110 --> 00:02:53,350
+These are outside of your setup method.
+这些是您的设置方法之外的。
+
+49
+00:02:53,350 --> 00:02:55,940
+And they could be in the same component file.
+它们可能在同一个组件文件中。
+
+50
+00:02:55,940 --> 00:03:00,220
+Here you can see I have a use search function and a use sorting function.
+这里您可以看到我有一个使用搜索函数和一个使用排序函数。
+
+51
+00:03:00,220 --> 00:03:02,610
+These are called composition functions.
+这些被称为复合函数。
+
+52
+00:03:02,830 --> 00:03:05,600
+And they're called from inside the setup method.
+它们从setup方法内部调用。
+
+53
+00:03:05,600 --> 00:03:07,110
+As you see here,
+如你所见，
+
+54
+00:03:10,450 --> 00:03:11,640
+Don't worry.
+别担心。
+
+55
+00:03:11,640 --> 00:03:14,180
+We'll dive into the details of the syntax later.
+稍后我们将深入讨论语法的细节。
+
+56
+00:03:14,180 --> 00:03:14,738
+For now,
+就目前而言，
+
+57
+00:03:14,738 --> 00:03:20,650
+just know that our code using composition functions can now be organized by logical concerns.
+只要知道我们使用复合函数的代码现在可以通过逻辑关系来组织。
+
+58
+00:03:20,650 --> 00:03:25,560
+I wanna point out that this doesn't mean our user interface has less components.
+我想指出，这并不意味着我们的用户界面有更少的组件。
+
+59
+00:03:25,560 --> 00:03:30,320
+I'm not gonna be writing each piece of my page in different composition functions.
+我不会用不同的排版功能来写我的每一页。
+
+60
+00:03:30,320 --> 00:03:35,390
+I'm still gonna have multiple components for each part of my user interface.
+我还是会有多个组件为我的用户界面的每个部分。
+
+61
+00:03:36,390 --> 00:03:42,470
+The second limitation of Vue2.0 is that there's no perfect way to reuse code across components.
+Vue2.0的第二个限制是，没有完美的方式在组件之间重用代码。
+
+62
+00:03:42,580 --> 00:03:45,360
+And Let me show you exactly what I mean.
+让我告诉你我的意思。
+
+63
+00:03:45,360 --> 00:03:47,190
+Back in our search component,
+回到我们的搜索部分，
+
+64
+00:03:47,190 --> 00:03:51,740
+there are three ways we could extract this code for reuse using Vue2.0.
+有三种方法可以使用Vue2.0提取此代码以供重用。
+
+65
+00:03:51,740 --> 00:03:54,120
+The first is Mixins.
+首先是混合。
+
+66
+00:03:54,470 --> 00:03:57,680
+With mixins, first we would separate our code.
+对于mixin，首先我们要分离代码。
+
+67
+00:03:57,720 --> 00:04:00,230
+Then we create a productSearchMixin,
+然后我们创建一个productSearchMixin，
+
+68
+00:04:00,800 --> 00:04:03,810
+create a resultSortMixin
+创建一个SortMixin
+
+69
+00:04:03,910 --> 00:04:06,960
+and then include the mixin and in our component.
+然后将mixin包含在我们的组件中。
+
+70
+00:04:10,760 --> 00:04:12,800
+I'll shrink this down for simplicity.
+为了简单起见我会缩小范围。
+
+71
+00:04:13,380 --> 00:04:17,220
+The good part about this is now our code is organized by feature.
+这个好的部分是现在我们的代码是按特征组织的。
+
+72
+00:04:17,780 --> 00:04:18,284
+However,
+然而，
+
+73
+00:04:18,284 --> 00:04:21,580
+with Mixins you can end up with property name conflicts.
+使用mixin可能会导致属性名称冲突。
+
+74
+00:04:21,600 --> 00:04:25,060
+It's not clear if and how these mixins interact.
+不清楚这些混音是否以及如何相互作用。
+
+75
+00:04:25,120 --> 00:04:27,980
+And We can't easily reuse this code to search and sort different things.
+我们不能轻易地重用这些代码来搜索和排序不同的东西。
+
+76
+00:04:28,916 --> 00:04:32,630
+Like maybe if we had a list of reviews or sellers or shipping options.
+比如，如果我们有一张书评、卖家或发货选项的清单。
+
+77
+00:04:33,230 --> 00:04:38,950
+The second solution we might use with Vue2.0 is by creating a mixin and factory.
+Vue2.0可能使用的第二个解决方案是创建一个混合工厂
+
+78
+00:04:39,120 --> 00:04:42,890
+These are functions that return a customized version of a mixin.
+这些函数返回mixin的定制版本。
+
+79
+00:04:43,390 --> 00:04:46,600
+Here you can see we have our searchMixinFactory.
+这里您可以看到我们searchMixinFactory。
+
+80
+00:04:47,220 --> 00:04:50,600
+And Then We have our sortingMixinFactory.
+然后我们有我们的sortingMixinFactory。
+
+81
+00:04:51,010 --> 00:04:54,690
+Then inside of our component, we import these two.
+然后在我们的组件中，我们导入这两个。
+
+82
+00:04:55,690 --> 00:04:59,630
+Then we use each of these mixins specifying a name space,
+然后我们使用这些mixin中的每一个指定一个命名空间，
+
+83
+00:04:59,720 --> 00:05:05,350
+and any configuration we need for each of the factories so that it can sort products.
+以及我们需要的每个工厂的任何配置，以便它可以分类产品。
+
+84
+00:05:07,410 --> 00:05:10,960
+Now, the generic parts of search and sorting can be reused.
+现在，可以重用搜索和排序的通用部分。
+
+85
+00:05:11,110 --> 00:05:15,070
+We also have clearer relationships with how our features interact.
+我们也有更清楚的关系与我们的特点如何互动。
+
+86
+00:05:15,070 --> 00:05:19,260
+However,namespacing requires strong conventions and discipline to do right.
+然而，命名空间需要强大的约定和规则来做正确的事。
+
+87
+00:05:19,350 --> 00:05:23,360
+We still have to look inside each mixin and to see what properties it exposes.
+我们仍然需要查看每个mixin的内部，并查看它暴露了哪些属性。
+
+88
+00:05:23,580 --> 00:05:26,950
+And mixin and factories can't be dynamically generated.
+混合和工厂不能动态生成。
+
+89
+00:05:27,950 --> 00:05:33,850
+Another solution that solves some of these problems in Vue2.0 are scopes slots. What might that look like?
+Vue2.0中解决这些问题的另一个解决方案是作用域插槽。 会是什么样子？
+
+90
+00:05:34,010 --> 00:05:36,630
+We'll start out with a generic search component.
+我们将从通用搜索组件开始。
+
+91
+00:05:36,950 --> 00:05:40,160
+This has props and it has a slot.
+这个有props，还有一个插槽。
+
+92
+00:05:41,970 --> 00:05:44,840
+Will also have a generic sorting component
+还将有一个通用排序组件
+
+93
+00:05:44,840 --> 00:05:47,970
+which has crops for configuration and a slot.
+其具有用于配置的props和插槽。
+
+94
+00:05:49,490 --> 00:05:51,770
+Then instead of our search component,
+不是我们的搜索组件，
+
+95
+00:05:51,770 --> 00:05:56,290
+we use these components sending in configuration specific product search.
+我们使用这些组件发送特定配置的产品搜索。
+
+96
+00:05:59,030 --> 00:06:02,180
+This address is just about every downside of mix ins.
+这个地址是几乎所有的缺点混合。
+
+97
+00:06:02,540 --> 00:06:04,841
+However, it does increase indentation,
+但是，它确实增加了压痕，
+
+98
+00:06:04,841 --> 00:06:06,600
+which decreases readability.
+会降低可读性。
+
+99
+00:06:06,620 --> 00:06:09,017
+Some of our configuration ends up in the template,
+我们的一些配置最终出现在模板中，
+
+100
+00:06:09,017 --> 00:06:11,770
+which ideally should just contain what we want to render.
+理想情况下应该包含我们想要渲染的内容。
+
+101
+00:06:12,040 --> 00:06:14,882
+Exposed properties like product search are only available
+只有产品搜索等公开属性可用
+
+102
+00:06:14,882 --> 00:06:15,715
+in the template.
+在模板中。
+
+103
+00:06:15,715 --> 00:06:19,730
+And having three instead of one component instance means it's less performance.
+而拥有三个而不是一个组件实例意味着它的性能更差。
+
+104
+00:06:19,730 --> 00:06:22,900
+And those are the three ways you could reuse code with you too.
+这三种方式也是你可以重用代码的方法。
+
+105
+00:06:23,020 --> 00:06:24,844
+However, in Vue3.0,
+然而，在Vue3.0中，
+
+106
+00:06:24,844 --> 00:06:29,330
+we now have composition functions a 4th way to reuse code.
+我们现在有了第四种重用代码的组合函数。
+
+107
+00:06:29,920 --> 00:06:33,040
+Like before we have a file for a search functionality
+就像之前我们有搜索功能的文件一样
+
+108
+00:06:33,040 --> 00:06:35,710
+and a file for our sorting functionality.
+以及我们分类功能的文件。
+
+109
+00:06:35,820 --> 00:06:41,670
+These each contain composition functions which have a new syntax we'll get into in later lessons.
+这些都包含组合函数，这些函数有一个新的语法，我们将在后面的课程中介绍。
+
+110
+00:06:42,830 --> 00:06:44,720
+Then inside of our search component,
+在我们的搜索范围内，
+
+111
+00:06:44,720 --> 00:06:49,870
+we include these composition functions and use them inside of our setup method,
+我们在设置方法中包含这些组合函数并使用它们，
+
+112
+00:06:50,380 --> 00:06:52,920
+sending in any configuration they need.
+发送他们需要的任何配置。
+
+113
+00:06:54,710 --> 00:06:56,730
+This solution uses less code.
+此解决方案使用较少的代码。
+
+114
+00:06:56,730 --> 00:06:59,127
+It also builds on your existing JavaScript skills.
+它还建立在您现有的JavaScript技能之上。
+
+115
+00:06:59,127 --> 00:07:01,360
+Since you're already familiar with functions,
+既然你已经熟悉了函数，
+
+116
+00:07:01,590 --> 00:07:04,668
+it's much more flexible than mix ins and scope slots,
+它比混合输入和作用域插槽更灵活，
+
+117
+00:07:04,668 --> 00:07:07,575
+censor diss functions, intellisense auto Complete,
+审查diss功能，intellisense自动完成，
+
+118
+00:07:07,575 --> 00:07:10,540
+and typing likely already work in your code editor.
+并且输入可能已经在代码编辑器中工作。
+
+119
+00:07:10,560 --> 00:07:13,296
+The only downside here is that with Vue3.0,
+唯一的缺点是Vue3.0，
+
+120
+00:07:13,296 --> 00:07:16,970
+now there are two different syntax is for defining components.
+现在有两种不同的语法用于定义组件。
+
+121
+00:07:16,970 --> 00:07:18,440
+The regular syntax
+常规语法
+
+122
+00:07:18,440 --> 00:07:21,400
+and this advanced composition API.
+以及这个composition API。
+
+123
+00:07:21,640 --> 00:07:22,520
+Yeah.
+是的。
+
+124
+00:07:23,360 --> 00:07:24,660
+Yeah.
+是的。
+
+125
+00:07:24,840 --> 00:07:27,140
+Yeah.
+是的。
+
+126
+00:07:28,820 --> 00:07:30,280
+Should be chilly.
+会很冷的。
+
+127
+00:07:30,280 --> 00:07:33,790
+We're more togetherness, togetherness. Separate our
+我们更团结，团结。 分开我们的
+
+128
+00:07:34,310 --> 00:07:35,490
+with Mixin.
+与Mixin。
+
+129
+00:07:35,560 --> 00:07:38,990
+Ah I'm excited. Ah Ooh Yeah.
+啊我很兴奋。 啊哦是的。
+
+130
+00:07:38,990 --> 00:07:40,090
+Sweet.
+很甜蜜。
+
+131
+00:07:40,090 --> 00:07:41,160
+Let's do it.
+我们开始吧。
+

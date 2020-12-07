@@ -1,0 +1,420 @@
+﻿1
+00:00:00,160 --> 00:00:02,240
+ 
+
+
+2
+00:00:03,680 --> 00:00:07,580
+ the previous video we looked at why the composition napi I was created
+在之前的视频中，我们了解了合成napi I的原因
+
+3
+00:00:08,120 --> 00:00:12,100
+ we're gonna review when to use the composition a p I
+我们要复习一下什么时候用作文
+
+4
+00:00:12,420 --> 00:00:14,880
+ learn about the setup method and reactive references
+了解设置方法和反应引用
+
+5
+00:00:15,340 --> 00:00:21,440
+ want to emphasize that the composition AP is just attitude it's a second way to write component
+想强调的是，作文AP只是一种态度，它是写组件的第二种方式
+
+6
+00:00:21,980 --> 00:00:25,800
+ all the previous component syntax that you're familiar with and view too
+您熟悉并查看的所有以前的组件语法
+
+7
+00:00:25,860 --> 00:00:28,000
+ still used its completely valid
+仍然使用它完全有效
+
+8
+00:00:28,120 --> 00:00:30,960
+ composition a p I is just a more advanced
+作文只是一个更高级的
+
+9
+00:00:31,180 --> 00:00:32,240
+ syntax
+语法
+
+10
+00:00:33,240 --> 00:00:37,440
+ that's the case then when should you use it so here we have a component
+这就是为什么你应该在什么时候使用它，这样我们就有了一个组件
+
+11
+00:00:37,560 --> 00:00:41,600
+ I might use the composition a p I if I really care about good
+如果我真的在乎好的话，我可能会用作文
+
+12
+00:00:41,720 --> 00:00:42,920
+ script support
+脚本支持
+
+13
+00:00:43,660 --> 00:00:45,500
+ I also might use the AP
+我也可以用美联社
+
+14
+00:00:45,580 --> 00:00:47,440
+ if I have a huge component
+如果我有一个巨大的组成部分
+
+15
+00:00:47,660 --> 00:00:50,140
+ I want to organize it by feature
+我想按功能组织
+
+16
+00:00:51,100 --> 00:00:54,600
+ I might use it if I have code that needs to be reused across multiple
+如果我有需要跨多个
+
+17
+00:00:54,820 --> 00:00:55,320
+ Ana
+安娜
+
+18
+00:00:56,460 --> 00:01:01,900
+ and lastly if I'm simply working with the team that prefers the syntax over the regular syntax
+最后，如果我只是和一个更喜欢语法而不是常规语法的团队合作
+
+19
+00:01:02,220 --> 00:01:03,500
+ I might be a good enough reason to
+我可能有足够的理由
+
+20
+00:01:03,880 --> 00:01:10,480
+ I'm about to show you is quite simple and you might be wondering why would I use the composition a p I in this case
+我要向你们展示的是非常简单的，你们可能会想知道为什么我要在这个例子中使用构图a p I
+
+21
+00:01:10,520 --> 00:01:14,440
+ you might be right my goal here was to make it as easy to learn as possible
+你可能是对的我的目标是让它尽可能的容易学习
+
+22
+00:01:15,960 --> 00:01:18,800
+ take a look at a component using the regular syntax
+看看使用常规语法的组件
+
+23
+00:01:19,160 --> 00:01:21,100
+ we're printing out the capacity of an event
+我们正在打印一个活动的容量
+
+24
+00:01:22,040 --> 00:01:23,860
+ capacity is in the data option
+容量在数据选项中
+
+25
+00:01:23,940 --> 00:01:24,840
+ reactive
+反应的
+
+26
+00:01:25,700 --> 00:01:27,500
+ eyebrows are WC capacity
+眉毛是厕所的容量
+
+27
+00:01:27,600 --> 00:01:27,980
+ 
+
+
+28
+00:01:29,760 --> 00:01:32,360
+ I would rewrite this using the composition a p I
+我会用作文a p I重写这个
+
+29
+00:01:33,160 --> 00:01:33,600
+ oh
+哦
+
+30
+00:01:34,020 --> 00:01:36,280
+ we need to create that setup method
+我们需要创建设置方法
+
+31
+00:01:36,920 --> 00:01:42,960
+ setup method executes before components props data methods computer properties and life cycle method
+安装方法在组件属性数据方法计算机属性和生命周期方法之前执行
+
+32
+00:01:43,900 --> 00:01:45,900
+ it also does not have access
+它也没有访问权限
+
+33
+00:01:46,200 --> 00:01:47,080
+ this
+这
+
+34
+00:01:47,720 --> 00:01:50,320
+ are code inside here is gonna look different
+里面的代码看起来会不同吗
+
+35
+00:01:51,880 --> 00:01:54,400
+ method also has two optional arguments
+方法还具有两个可选参数
+
+36
+00:01:54,620 --> 00:01:55,960
+ the first is props
+首先是道具
+
+37
+00:01:56,360 --> 00:01:58,800
+ which is reactive and can be watched
+它是反应性的，可以被观察到
+
+38
+00:01:59,080 --> 00:02:00,880
+ let me show you what that might look like
+让我给你看看那是什么样子
+
+39
+00:02:01,560 --> 00:02:03,920
+ you can see I have a prop which is name
+你可以看到我有一个道具，那就是名字
+
+40
+00:02:04,900 --> 00:02:06,060
+ then I declare setup
+然后我宣布安装
+
+41
+00:02:06,280 --> 00:02:07,700
+ the props argument
+道具论证
+
+42
+00:02:08,860 --> 00:02:10,780
+ I wanted to watch this proper changes
+我想看看这些变化
+
+43
+00:02:11,140 --> 00:02:12,780
+ import watch from view
+从视图导入监视
+
+44
+00:02:13,140 --> 00:02:15,420
+ I could log out to the console whenever it changes
+我可以随时注销控制台
+
+45
+00:02:18,760 --> 00:02:20,760
+ optional second argument for setup
+安装程序的可选第二个参数
+
+46
+00:02:20,840 --> 00:02:22,260
+ as context
+作为上下文
+
+47
+00:02:22,540 --> 00:02:25,880
+ use context to access properties that we'd previously access
+使用上下文访问我们以前访问的属性
+
+48
+00:02:26,540 --> 00:02:27,200
+ 
+
+
+49
+00:02:27,580 --> 00:02:30,100
+ the different properties that it gives us access to
+它提供给我们访问的不同属性
+
+50
+00:02:32,580 --> 00:02:33,540
+ back to our example
+回到我们的例子
+
+51
+00:02:35,360 --> 00:02:37,500
+ we need to import from view
+我们需要从视图导入
+
+52
+00:02:37,640 --> 00:02:40,900
+ and then declare capacity as a constant which equals
+然后声明容量为常数，等于
+
+53
+00:02:41,160 --> 00:02:41,620
+ f
+f
+
+54
+00:02:41,840 --> 00:02:42,320
+ EEE
+EEE公司
+
+55
+00:02:42,940 --> 00:02:45,600
+ function creates a reactive reference
+函数创建反应式引用
+
+56
+00:02:46,580 --> 00:02:48,860
+ wraps are primitive in an object
+包裹是对象中的基本体
+
+57
+00:02:48,960 --> 00:02:50,740
+ allowing us to track changes
+允许我们跟踪变化
+
+58
+00:02:51,660 --> 00:02:53,700
+ obviously we were using data
+很明显我们用的是数据
+
+59
+00:02:53,900 --> 00:02:56,900
+ data was rapping are primitives in an object for us
+对我们来说，数据是对象中的原语
+
+60
+00:02:57,700 --> 00:03:01,880
+ our creating a reactive reference which is an object that wraps our primitive
+我们创建了一个反应式引用，它是一个包装我们的原语的对象
+
+61
+00:03:02,000 --> 00:03:02,820
+ in this case is
+在这种情况下
+
+62
+00:03:02,900 --> 00:03:03,280
+ a
+一
+
+63
+00:03:03,520 --> 00:03:08,100
+ as a side note with the composition a p I and the way you three Desiree activity
+作为一个侧注的组成，我和你三个愿望的活动方式
+
+64
+00:03:08,440 --> 00:03:12,300
+ we can now declare reactive objects that aren't associated with the
+我们现在可以声明与
+
+65
+00:03:12,460 --> 00:03:12,760
+ 
+
+
+66
+00:03:13,700 --> 00:03:14,360
+ powerful
+强大的
+
+67
+00:03:15,320 --> 00:03:19,540
+ our setup method needs to return anything that needs to get access
+我们的setup方法需要返回任何需要访问的内容
+
+68
+00:03:19,640 --> 00:03:20,520
+ I am the template
+我就是模板
+
+69
+00:03:21,140 --> 00:03:21,980
+ in this case
+在这种情况下
+
+70
+00:03:22,000 --> 00:03:22,380
+ dads
+爸爸们
+
+71
+00:03:22,600 --> 00:03:23,360
+ pass it
+传过去
+
+72
+00:03:24,120 --> 00:03:27,040
+ am I initially think this is more for both
+我最初是不是觉得这对双方都更合适
+
+73
+00:03:27,460 --> 00:03:30,080
+ also makes our component more maintainable
+也使我们的组件更易于维护
+
+74
+00:03:30,180 --> 00:03:33,180
+ we can control what gets exposed in our template
+我们可以控制模板中暴露的内容
+
+75
+00:03:33,440 --> 00:03:36,720
+ and we can more easily trace where property is to
+我们可以更容易地追踪财产的去向
+
+76
+00:03:36,840 --> 00:03:37,280
+ 
+
+
+77
+00:03:38,340 --> 00:03:39,900
+ eyebrows are everything is working
+眉毛就是一切正常
+
+78
+00:03:41,180 --> 00:03:44,100
+ worth mentioning that this composition AP syntax
+值得一提的是，这个组合AP语法
+
+79
+00:03:44,180 --> 00:03:48,620
+ you can use in a view to app by using this plugin for view too
+你也可以用一个插件来查看这个应用
+
+80
+00:03:48,980 --> 00:03:51,940
+ I want to follow the installation options on the github page
+我想遵循github页面上的安装选项
+
+81
+00:03:52,540 --> 00:03:54,620
+ and instead of importing from view
+而不是从视图导入
+
+82
+00:03:54,980 --> 00:03:56,480
+ instead import
+而是导入
+
+83
+00:03:56,520 --> 00:03:58,140
+ view slash composition AP
+查看斜线合成AP
+
+84
+00:04:00,020 --> 00:04:02,280
+ this is how I tested all the code I'm showing you
+这就是我测试所有代码的方法
+

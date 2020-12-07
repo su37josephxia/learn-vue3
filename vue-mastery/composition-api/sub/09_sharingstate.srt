@@ -1,0 +1,715 @@
+﻿1
+00:00:00,260 --> 00:00:02,180
+ I
+我
+
+2
+00:00:03,820 --> 00:00:06,140
+ this lesson we're gonna be looking at solving a problem
+这节课我们要学习解决一个问题
+
+3
+00:00:06,300 --> 00:00:07,120
+ in the composition
+在构图中
+
+4
+00:00:07,520 --> 00:00:08,080
+ 
+
+
+5
+00:00:08,300 --> 00:00:10,060
+ we have two components
+我们有两个组成部分
+
+6
+00:00:10,120 --> 00:00:11,600
+ h to AP calls
+h到AP呼叫
+
+7
+00:00:12,120 --> 00:00:17,340
+ a bunch of metro code that usually you need to write around these AP calls
+一堆metro代码，通常需要围绕这些AP调用编写
+
+8
+00:00:17,580 --> 00:00:19,280
+ usually our promises
+通常是我们的承诺
+
+9
+00:00:19,460 --> 00:00:23,540
+ needed check for when it's loading are not loading are done loading
+需要检查的时候，它的装载是不装载完成装载
+
+10
+00:00:23,800 --> 00:00:25,920
+ if there's any errors that pop up
+如果出现任何错误
+
+11
+00:00:26,160 --> 00:00:32,060
+ usually what you end up doing in your code is creating another file that encapsulate this behavior
+通常，您在代码中所做的就是创建另一个封装此行为的文件
+
+12
+00:00:32,620 --> 00:00:36,540
+ arcades will be moving some of that shared code into a file called
+拱廊将将其中的一些共享代码移动到一个名为
+
+13
+00:00:36,680 --> 00:00:37,100
+ 
+
+
+14
+00:00:37,280 --> 00:00:38,780
+ our composer directory
+我们的作曲家目录
+
+15
+00:00:39,060 --> 00:00:40,600
+ I'll be more clear in our code example
+我将在我们的代码示例中更加清楚
+
+16
+00:00:40,840 --> 00:00:41,760
+ let's dive into it
+让我们深入研究一下
+
+17
+00:00:43,220 --> 00:00:46,080
+ here we have a single component which has a search input
+这里我们有一个单独的组件，它有一个搜索输入
+
+18
+00:00:46,220 --> 00:00:49,880
+ and for now we're just printing out the loading status the error status
+现在我们只是打印出加载状态错误状态
+
+19
+00:00:50,080 --> 00:00:53,000
+ the number of events that matched the search input
+与搜索输入匹配的事件数
+
+20
+00:00:53,360 --> 00:00:56,800
+ we're not actually returning the results just the number of results
+我们实际上并不是返回结果只是返回结果的数量
+
+21
+00:00:57,220 --> 00:01:00,620
+ in the browser this is what this template is going to look like
+在浏览器中，这就是模板的外观
+
+22
+00:01:03,580 --> 00:01:04,860
+ further down in the file
+在档案的后面
+
+23
+00:01:05,120 --> 00:01:07,020
+ you can see that we are importing
+你可以看到我们正在进口
+
+24
+00:01:07,080 --> 00:01:12,000
+ using our composition a p I so we're in view to using the composition a p I plug in
+使用我们的compositionapi，这样我们就可以使用compositionapi插件了
+
+25
+00:01:12,080 --> 00:01:15,160
+ also using this dummy event AP file which
+同时使用这个虚拟事件AP文件
+
+26
+00:01:15,220 --> 00:01:16,000
+ don't need to read
+不需要阅读
+
+27
+00:01:16,920 --> 00:01:18,820
+ we have inside of our setup method
+我们有内部的设置方法
+
+28
+00:01:18,880 --> 00:01:20,100
+ reactive references
+反应性参考
+
+29
+00:01:20,360 --> 00:01:21,460
+ our search input
+我们的搜索输入
+
+30
+00:01:21,540 --> 00:01:22,220
+ results
+结果
+
+31
+00:01:22,660 --> 00:01:23,500
+ loading
+加载
+
+32
+00:01:23,740 --> 00:01:24,800
+ and our state
+我们的国家呢
+
+33
+00:01:25,240 --> 00:01:26,880
+ and they each have an initial value
+它们都有一个初始值
+
+34
+00:01:29,040 --> 00:01:34,240
+ next we have our load data asynchronous function which is called whenever a search input changes
+接下来我们有加载数据异步函数，当搜索输入发生变化时调用它
+
+35
+00:01:34,360 --> 00:01:38,580
+ she said loading to true we reset the error and results values
+她说我们重新设置了结果
+
+36
+00:01:39,060 --> 00:01:40,560
+ we do our AP call
+我们打AP电话
+
+37
+00:01:40,900 --> 00:01:41,840
+ return we said
+我们说了回来
+
+38
+00:01:41,880 --> 00:01:42,960
+ result value
+结果值
+
+39
+00:01:43,000 --> 00:01:44,380
+ the errors are caught
+错误被发现了
+
+40
+00:01:44,660 --> 00:01:45,760
+ then finally
+最后呢
+
+41
+00:01:45,920 --> 00:01:47,740
+ he said loading value equal to false
+他说装载值等于假
+
+42
+00:01:49,600 --> 00:01:51,200
+ now we have a little bit of code to write
+现在我们有一点代码要写
+
+43
+00:01:51,740 --> 00:01:53,800
+ want to watch our search input
+想看看我们的搜索输入吗
+
+44
+00:01:54,140 --> 00:01:54,720
+ 
+
+
+45
+00:01:54,940 --> 00:02:00,820
+ when it changes first we check to see if our value is not empty if it's not empty
+当它第一次改变时，我们检查它的值是否不为空
+
+46
+00:02:00,920 --> 00:02:04,200
+ go ahead and call load data with their search input value
+继续使用搜索输入值调用加载数据
+
+47
+00:02:04,720 --> 00:02:06,960
+ otherwise of our search input is empty
+否则我们的搜索输入是空的
+
+48
+00:02:07,860 --> 00:02:08,840
+ the results
+结果
+
+49
+00:02:09,020 --> 00:02:09,480
+ 
+
+
+50
+00:02:10,900 --> 00:02:14,480
+ lastly we need to return the items that our template needs access to
+最后，我们需要返回模板需要访问的项
+
+51
+00:02:18,160 --> 00:02:21,960
+ jump in the browser we can see that as we type into the search field
+跳进浏览器，我们可以看到，当我们输入搜索字段
+
+52
+00:02:22,080 --> 00:02:23,380
+ loading gets toggled
+加载被切换
+
+53
+00:02:23,620 --> 00:02:25,020
+ the number of events gets return
+返回事件数
+
+54
+00:02:25,060 --> 00:02:25,480
+ 
+
+
+55
+00:02:26,780 --> 00:02:31,900
+ works great but let's modular eyes the code around are a p I call so that we can reuse this
+工作很好，但让我们模块化的眼睛周围的代码是一个p I调用，以便我们可以重用它
+
+56
+00:02:32,240 --> 00:02:33,080
+ other components
+其他部件
+
+57
+00:02:35,740 --> 00:02:36,440
+ do this
+做这个
+
+58
+00:02:36,640 --> 00:02:37,140
+ 
+
+
+59
+00:02:37,300 --> 00:02:41,020
+ I am going to copy some of the code in our component
+我将复制组件中的一些代码
+
+60
+00:02:42,620 --> 00:02:44,580
+ I am going to leave this code except for
+我要留下这个代码除了
+
+61
+00:02:44,600 --> 00:02:45,800
+ the AP call
+美联社电话
+
+62
+00:02:45,900 --> 00:02:47,560
+ which is specific to this component
+特定于此组件
+
+63
+00:02:48,360 --> 00:02:52,560
+ then I'm gonna jump into the use promise j s file which I just created
+然后我将跳转到我刚刚创建的use promise j s文件中
+
+64
+00:02:52,860 --> 00:02:54,780
+ inside the file I'm gonna import
+在我要导入的文件里面
+
+65
+00:02:54,940 --> 00:02:56,380
+ composition a p I
+成分a p I
+
+66
+00:02:57,100 --> 00:02:58,780
+ I'll create a function called you
+我将创建一个名为you的函数
+
+67
+00:02:58,800 --> 00:03:00,620
+ which receives
+它接收
+
+68
+00:03:00,740 --> 00:03:02,700
+ function to call with a sink away
+函数调用时使用接收器
+
+69
+00:03:03,180 --> 00:03:04,540
+ basically are a p I call
+基本上都是我打给你的
+
+70
+00:03:05,480 --> 00:03:07,880
+ based on our code here but it needs some modifications
+基于我们这里的代码，但它需要一些修改
+
+71
+00:03:09,420 --> 00:03:09,920
+ 
+
+
+72
+00:03:10,300 --> 00:03:11,620
+ we're going to create a
+我们要创建一个
+
+73
+00:03:11,840 --> 00:03:12,560
+ 
+
+
+74
+00:03:13,280 --> 00:03:14,740
+ create promise
+创造承诺
+
+75
+00:03:14,840 --> 00:03:16,140
+ which will contain
+它将包含
+
+76
+00:03:17,300 --> 00:03:18,160
+ asynchronous
+异步
+
+77
+00:03:18,200 --> 00:03:19,440
+ anonymous function
+匿名函数
+
+78
+00:03:19,560 --> 00:03:22,700
+ which receives any arguments that are a p I called needs
+它接收的任何参数都是我称为需要的p
+
+79
+00:03:25,100 --> 00:03:26,040
+ then instead of
+而不是
+
+80
+00:03:26,120 --> 00:03:27,760
+ the AP call here
+这里是美联社的电话
+
+81
+00:03:28,020 --> 00:03:30,820
+ this is where we call the function we passed in earlier
+这就是我们调用之前传递的函数的地方
+
+82
+00:03:31,080 --> 00:03:31,500
+ with
+具有
+
+83
+00:03:31,640 --> 00:03:33,120
+ arguments we said then
+我们当时说的论点
+
+84
+00:03:34,000 --> 00:03:38,680
+ our case will have a single argument which is the value of the search input
+我们的案例将有一个参数，即搜索输入的值
+
+85
+00:03:40,340 --> 00:03:41,920
+ lastly we will return results
+最后我们将返回结果
+
+86
+00:03:42,020 --> 00:03:43,240
+ loading error
+加载错误
+
+87
+00:03:43,480 --> 00:03:45,180
+ as well as our create promise function
+以及我们的创建承诺功能
+
+88
+00:03:48,820 --> 00:03:52,340
+ back in side of our apt view we can import
+回到我们正确的观点，我们可以导入
+
+89
+00:03:52,480 --> 00:03:53,780
+ use promise
+使用承诺
+
+90
+00:03:54,100 --> 00:03:54,640
+ I
+我
+
+91
+00:03:57,320 --> 00:03:59,760
+ then we'll create a new constant called and get event
+然后我们将创建一个新的常量，称为get event
+
+92
+00:04:00,960 --> 00:04:02,480
+ which calls used promise
+这叫用过的承诺
+
+93
+00:04:02,920 --> 00:04:05,020
+ has a single parameter which is search
+只有一个参数是search
+
+94
+00:04:08,140 --> 00:04:11,040
+ execute the AP I call specific to this component
+执行特定于此组件的AP I call
+
+95
+00:04:11,260 --> 00:04:12,280
+ get our vet count
+去查一下兽医
+
+96
+00:04:12,620 --> 00:04:13,860
+ our search value
+我们的搜索值
+
+97
+00:04:17,780 --> 00:04:19,180
+ and inside of watch
+以及手表内部
+
+98
+00:04:19,340 --> 00:04:21,300
+ now when the search input changes
+现在当搜索输入改变时
+
+99
+00:04:21,680 --> 00:04:23,120
+ need to call and get event
+需要打电话获取事件
+
+100
+00:04:23,260 --> 00:04:23,780
+ God
+上帝
+
+101
+00:04:24,080 --> 00:04:25,160
+ promise
+承诺
+
+102
+00:04:25,900 --> 00:04:26,980
+ in our search input
+在我们的搜索输入中
+
+103
+00:04:29,020 --> 00:04:29,620
+ results
+结果
+
+104
+00:04:29,680 --> 00:04:30,920
+ now inside get events
+现在，在获取事件中
+
+105
+00:04:31,000 --> 00:04:32,320
+ we need to reset them
+我们需要重置它们
+
+106
+00:04:33,100 --> 00:04:35,360
+ lastly results are and loading
+最后的结果是和加载
+
+107
+00:04:35,780 --> 00:04:37,900
+ restructured from the event object
+从事件对象重新构造
+
+108
+00:04:40,120 --> 00:04:41,560
+ if I jump into the browser
+如果我跳进浏览器
+
+109
+00:04:42,420 --> 00:04:44,700
+ I can see that everything is still working
+我看得出一切都还在工作
+
+110
+00:04:45,720 --> 00:04:47,480
+ now my code is more reusable
+现在我的代码更可重用了
+
+111
+00:04:50,580 --> 00:04:54,780
+ when I showed this code to two different members of the Vue core team
+当我向Vue核心团队的两个不同成员展示这段代码时
+
+112
+00:04:55,400 --> 00:04:56,720
+ I wanted to me to make a change
+我想让我改变一下
+
+113
+00:04:57,280 --> 00:04:58,780
+ basically said hey
+基本上是说嘿
+
+114
+00:04:59,140 --> 00:05:01,160
+ keep the return values named spaced
+保留名为spaced的返回值
+
+115
+00:05:01,440 --> 00:05:02,940
+ and are the object get event
+对象获取事件
+
+116
+00:05:03,560 --> 00:05:04,660
+ structure
+结构
+
+117
+00:05:05,700 --> 00:05:06,720
+ if I did this
+如果我这么做的话
+
+118
+00:05:06,920 --> 00:05:08,840
+ code would change to look like this
+代码会变成这样
+
+119
+00:05:09,560 --> 00:05:11,980
+ where I have been taught to get it on
+在那里我被教导要穿上它
+
+120
+00:05:12,080 --> 00:05:12,620
+ 
+
+
+121
+00:05:12,660 --> 00:05:13,000
+ 
+
+
+122
+00:05:13,520 --> 00:05:17,280
+ other day is a little more encapsulated and it's clear where it's coming from
+前几天有了一点封装，很清楚它是从哪里来的
+
+123
+00:05:18,580 --> 00:05:20,180
+ however if we look in a browser
+但是如果我们在浏览器中查看
+
+124
+00:05:20,460 --> 00:05:22,100
+ can see that it's not working
+可以看出它不起作用
+
+125
+00:05:22,320 --> 00:05:26,600
+ us in recognizing that these are reactive references in calling dot value on them
+我们认识到这些是在调用它们的点值时的反应性引用
+
+126
+00:05:27,800 --> 00:05:28,720
+ fix this
+解决这个问题
+
+127
+00:05:28,780 --> 00:05:34,620
+ due to using the composition AP aye we could just call dot value on each of those items in the template
+由于使用合成方法，我们可以在模板中的每一项上调用点值
+
+128
+00:05:36,440 --> 00:05:38,080
+ I'll be the solution here
+我来解决这个问题
+
+129
+00:05:38,740 --> 00:05:39,440
+ however
+然而
+
+130
+00:05:39,460 --> 00:05:42,880
+ I did want to validate if this worked or didn't work in
+我确实想验证一下这是否有效
+
+131
+00:05:43,000 --> 00:05:45,920
+ I fired up some code of you three and sure enough
+我启动了你们三个的密码，果然
+
+132
+00:05:46,300 --> 00:05:47,540
+ this code would work
+这个代码可以用
+
+133
+00:05:47,560 --> 00:05:52,560
+ as expected with you three you wouldn't have to call dot value it would recognise them as reactive record
+正如你所期望的那样，你不必调用点值，它会将它们识别为反应性记录
+
+134
+00:05:53,620 --> 00:05:56,480
+ it seems to be a bug in the composition API plugin for
+它似乎是
+
+135
+00:05:56,580 --> 00:05:56,880
+ you
+你
+
+136
+00:05:57,080 --> 00:05:57,380
+ I
+我
+
+137
+00:06:01,240 --> 00:06:11,240
+ gratulations you get to the end of the view three essentials course I am now going to go work on the view three reactivity course which by the time you're watching this male
+大家好了，视图三要素课程结束了，我现在要学习视图三反应性课程，当你们看到这个男性的时候
+
+138
+00:06:13,180 --> 00:06:13,660
+ oh
+哦
+
+139
+00:06:14,060 --> 00:06:16,680
+ either going to it or keep an eye out for it
+要么去，要么留心
+
+140
+00:06:17,080 --> 00:06:17,740
+ the other
+其他的
+
+141
+00:06:17,900 --> 00:06:18,640
+ ah
+啊
+
+142
+00:06:19,000 --> 00:06:19,880
+ and again
+再说一遍
+
+143
+00:06:20,020 --> 00:06:21,160
+ get through the course
+完成课程
+

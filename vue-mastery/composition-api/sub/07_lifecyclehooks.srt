@@ -1,0 +1,385 @@
+﻿1
+00:00:00,260 --> 00:00:02,180
+ I
+我
+
+2
+00:00:03,700 --> 00:00:06,440
+ probably already familiar with the view life cycle map
+可能已经熟悉视图生命周期图了
+
+3
+00:00:06,880 --> 00:00:07,200
+ 
+
+
+4
+00:00:07,300 --> 00:00:08,240
+ or create
+或者创造
+
+5
+00:00:08,840 --> 00:00:09,620
+ yay did
+是的
+
+6
+00:00:10,200 --> 00:00:11,020
+ are MT
+是MT吗
+
+7
+00:00:11,640 --> 00:00:12,400
+ 
+
+
+8
+00:00:13,160 --> 00:00:14,160
+ update
+更新
+
+9
+00:00:14,880 --> 00:00:15,680
+ updated
+更新
+
+10
+00:00:16,060 --> 00:00:17,100
+ or destroy
+或者毁灭
+
+11
+00:00:17,560 --> 00:00:21,040
+ and destroyed if you're not familiar with these positive video read the descriptions
+如果你不熟悉这些正面的视频，就把它销毁
+
+12
+00:00:21,320 --> 00:00:21,860
+ we got
+我们有
+
+13
+00:00:22,100 --> 00:00:28,480
+ some additional view to life cycle methods which were released in recent versions I want to make sure you're familiar with
+在最近的版本中发布的一些生命周期方法的附加视图，我想确保您熟悉这些方法
+
+14
+00:00:28,760 --> 00:00:29,840
+ vs activated
+vs激活
+
+15
+00:00:29,960 --> 00:00:32,300
+ this is used when you have dynamic components
+当您有动态组件时使用此选项
+
+16
+00:00:32,480 --> 00:00:33,560
+ keep alive
+活下去
+
+17
+00:00:33,700 --> 00:00:36,320
+ the component inside keep alive as toggled on
+内部组件保持激活状态
+
+18
+00:00:36,580 --> 00:00:38,020
+ and there is deactivated
+还有一个是无效的
+
+19
+00:00:38,260 --> 00:00:40,160
+ when the component inside keep alive is
+当keep alive内部的组件
+
+20
+00:00:40,280 --> 00:00:40,580
+ both
+二者都
+
+21
+00:00:40,640 --> 00:00:41,100
+ off
+远离的
+
+22
+00:00:41,500 --> 00:00:42,900
+ Erik captured
+埃里克被捕了
+
+23
+00:00:42,940 --> 00:00:43,720
+ this is called
+这叫做
+
+24
+00:00:43,800 --> 00:00:46,020
+ air from any descendant component
+来自任何后代的空气
+
+25
+00:00:46,120 --> 00:00:47,120
+ is captured
+被捕获
+
+26
+00:00:47,460 --> 00:00:50,220
+ want to learn more about how these work check out the documentation
+想了解更多关于这些工作原理的信息请查看文档
+
+27
+00:00:50,460 --> 00:00:52,200
+ let's now dive into
+现在让我们深入了解
+
+28
+00:00:52,260 --> 00:00:52,800
+ changes with you
+随您更改
+
+29
+00:00:53,060 --> 00:00:53,460
+ I
+我
+
+30
+00:00:53,860 --> 00:00:56,780
+ before destroy life cycle method
+销毁前生命周期法
+
+31
+00:00:57,100 --> 00:00:59,300
+ also be written as
+也写为
+
+32
+00:00:59,420 --> 00:01:00,740
+ for on mount
+用于装载
+
+33
+00:01:01,040 --> 00:01:01,880
+ should work
+应该行得通
+
+34
+00:01:02,220 --> 00:01:03,300
+ also destroyed
+也被摧毁了
+
+35
+00:01:03,700 --> 00:01:04,680
+ I also use
+我也用
+
+36
+00:01:04,800 --> 00:01:05,620
+ on mounted
+安装
+
+37
+00:01:05,820 --> 00:01:10,300
+ they should both work with you three and when I asked avenue why this change
+他们应该和你们三个一起工作当我问avenue为什么要改变
+
+38
+00:01:10,540 --> 00:01:11,960
+ it's pretty much because
+这在很大程度上是因为
+
+39
+00:01:12,000 --> 00:01:14,160
+ it's a better naming convention
+这是一个更好的命名约定
+
+40
+00:01:14,380 --> 00:01:15,680
+ mount the component
+安装部件
+
+41
+00:01:15,800 --> 00:01:17,380
+ and be on mount components
+安装组件
+
+42
+00:01:17,980 --> 00:01:21,480
+ 
+
+
+43
+00:01:22,000 --> 00:01:23,300
+ simply add
+只需添加
+
+44
+00:01:23,400 --> 00:01:24,900
+ on to the call back name
+回叫的名字
+
+45
+00:01:25,020 --> 00:01:26,200
+ inside the setup method
+设置方法内部
+
+46
+00:01:26,820 --> 00:01:29,420
+ here's what that might look like for before MT
+这是MT之前可能会出现的情况
+
+47
+00:01:29,480 --> 00:01:31,780
+ on mounted we need to import them
+我们需要进口
+
+48
+00:01:32,140 --> 00:01:36,420
+ then we can simply use them sending in anonymous functions inside of our setup method
+然后我们可以简单地使用它们在setup方法内部发送匿名函数
+
+49
+00:01:37,100 --> 00:01:41,520
+ list of all the different life cycle methods we can use inside the setup method
+我们可以在设置方法内部使用的所有不同生命周期方法的列表
+
+50
+00:01:42,680 --> 00:01:43,920
+ if you're being observant
+如果你有观察力
+
+51
+00:01:44,020 --> 00:01:46,320
+ you might notice that two are missing
+你可能注意到有两个不见了
+
+52
+00:01:47,160 --> 00:01:53,360
+ create and created are not needed when we're using the composition a p I and we have that set up method
+create和created在使用compositionapi时是不需要的，我们有设置方法
+
+53
+00:01:53,720 --> 00:01:55,520
+ this is because before create
+这是因为在创建之前
+
+54
+00:01:55,680 --> 00:01:57,520
+ called right before set up
+设置前打过电话
+
+55
+00:01:57,800 --> 00:01:59,480
+ and then created is called
+然后被称为
+
+56
+00:01:59,560 --> 00:02:00,620
+ right after setup
+安装后马上
+
+57
+00:02:01,000 --> 00:02:03,880
+ code that would normally be put inside of these hooks
+通常放在这些钩子中的代码
+
+58
+00:02:04,320 --> 00:02:06,580
+ now being placed inside of our setup method
+现在被放置在我们的设置方法内部
+
+59
+00:02:07,220 --> 00:02:09,060
+ example here would be AP calls
+这里的例子是AP电话
+
+60
+00:02:09,440 --> 00:02:13,620
+ we put those inside of before create or created and instead
+我们把它们放在创造或创造之前
+
+61
+00:02:13,900 --> 00:02:15,480
+ you can call them from our set at method
+你可以从我们的set at方法调用它们
+
+62
+00:02:15,880 --> 00:02:21,440
+ are two new view three life cycle methods the first of which is on rendered tract
+两个新的视图三个生命周期方法，其中第一个是在渲染域上
+
+63
+00:02:21,880 --> 00:02:27,100
+ this is called when a reactive dependency is first being accessed in the render function during render
+当在呈现期间第一次在render函数中访问反应性依赖项时，将调用此函数
+
+64
+00:02:27,320 --> 00:02:28,980
+ meaning this dependency will now be
+意味着这种依赖现在
+
+65
+00:02:29,100 --> 00:02:29,560
+ I
+我
+
+66
+00:02:29,680 --> 00:02:30,260
+ rangers
+游骑兵
+
+67
+00:02:30,900 --> 00:02:35,300
+ hook can be helpful when we want to see which dependencies are being tracked
+当我们想查看正在跟踪哪些依赖项时，钩子很有用
+
+68
+00:02:35,620 --> 00:02:36,900
+ debugging purposes
+调试目的
+
+69
+00:02:37,440 --> 00:02:39,320
+ also there's on rendered trigger
+也有一个渲染触发器
+
+70
+00:02:39,660 --> 00:02:46,120
+ this is called when a new render is triggered allowing you to inspect which dependency triggered a component to re render
+当触发新渲染时，将调用此选项，允许您检查哪个依赖项触发了要重新渲染的组件
+
+71
+00:02:46,380 --> 00:02:49,460
+ as you can imagine this is going to make the bugging a lot easier
+你可以想象这会让窃听变得容易得多
+
+72
+00:02:49,520 --> 00:02:52,080
+ we need to figure out which dependencies
+我们需要找出哪些依赖关系
+
+73
+00:02:52,180 --> 00:02:53,300
+ are being tracked
+正在被跟踪
+
+74
+00:02:53,740 --> 00:02:57,420
+ in which dependencies are triggering our component to re render
+其中依赖关系将触发组件重新呈现
+
+75
+00:02:57,600 --> 00:02:59,840
+ also can be good when we're doing performance optimism
+当我们表现乐观的时候也会很好
+
+76
+00:03:00,640 --> 00:03:04,480
+ really excited to see what sort of optimization tools can be created
+很高兴看到可以创建什么样的优化工具
+
+77
+00:03:04,720 --> 00:03:05,960
+ entering around these hooks
+进入这些钩子周围
+

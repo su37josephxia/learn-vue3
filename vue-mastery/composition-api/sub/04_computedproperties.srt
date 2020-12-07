@@ -1,0 +1,185 @@
+﻿1
+00:00:00,280 --> 00:00:02,220
+ I
+我
+
+2
+00:00:05,280 --> 00:00:07,540
+ consider component we're gonna add a list
+考虑组件，我们要添加一个列表
+
+3
+00:00:07,660 --> 00:00:09,900
+ the people who are attending our event
+参加我们活动的人
+
+4
+00:00:10,620 --> 00:00:13,720
+ in the setup method we're gonna add in the attending a a
+在设置方法中，我们要添加
+
+5
+00:00:13,920 --> 00:00:15,740
+ which is a reactive reference
+这是一个反应性参考
+
+6
+00:00:16,760 --> 00:00:18,520
+ give our template access to it
+给我们的模板访问权限
+
+7
+00:00:20,060 --> 00:00:22,640
+ then I'll print the list of those who are attending
+然后我会打印出参加会议的人名单
+
+8
+00:00:24,240 --> 00:00:26,360
+ grip on it now looks something like this
+抓住它现在看起来像这样
+
+9
+00:00:28,900 --> 00:00:31,080
+ in addition to printing our capacity
+除了印刷我们的能力
+
+10
+00:00:31,380 --> 00:00:35,200
+ we now want to show our users how many spaces are left
+现在，我们要向用户显示还有多少空间
+
+11
+00:00:35,280 --> 00:00:36,140
+ in our event
+在我们的活动中
+
+12
+00:00:37,080 --> 00:00:40,520
+ so in order to calculate this using a regular components in
+所以为了计算这个，用一个正则分量
+
+13
+00:00:40,580 --> 00:00:40,980
+ ask
+问
+
+14
+00:00:41,160 --> 00:00:42,800
+ my credit computer property
+我的信用电脑财产
+
+15
+00:00:42,900 --> 00:00:45,900
+ which takes the current capacity subtracted by
+电流容量减去
+
+16
+00:00:46,060 --> 00:00:47,940
+ length of our attending are a
+我们的出席时间是
+
+17
+00:00:48,860 --> 00:00:51,660
+ we do this using the composition a p I
+我们用构图a p I来做这个
+
+18
+00:00:51,740 --> 00:00:52,040
+ 
+
+
+19
+00:00:53,000 --> 00:00:55,260
+ sure nr template to make some room
+当然，nr模板可以腾出一些空间
+
+20
+00:00:55,500 --> 00:00:57,660
+ now inside of our setup method
+现在在我们的设置方法内部
+
+21
+00:00:57,980 --> 00:00:58,420
+ 
+
+
+22
+00:00:58,780 --> 00:01:00,260
+ we need to import
+我们需要进口
+
+23
+00:01:00,380 --> 00:01:01,480
+ computed
+计算的
+
+24
+00:01:01,500 --> 00:01:01,920
+ I
+我
+
+25
+00:01:02,960 --> 00:01:03,620
+ then
+然后
+
+26
+00:01:03,860 --> 00:01:06,340
+ create a new constant called spaces left
+创建一个名为spaces left的新常量
+
+27
+00:01:06,580 --> 00:01:08,720
+ sends into the computer function
+发送到计算机功能
+
+28
+00:01:08,840 --> 00:01:10,420
+ anonymous function
+匿名函数
+
+29
+00:01:10,480 --> 00:01:15,220
+ returns the result of taking capacity and subtracting the number of people who are attending
+返回占用容量并减去出席人数的结果
+
+30
+00:01:16,300 --> 00:01:18,460
+ I have to use that value here
+我必须在这里使用这个值
+
+31
+00:01:18,780 --> 00:01:21,240
+ I'm dealing with two reactive references
+我正在处理两个反应性引用
+
+32
+00:01:23,000 --> 00:01:24,740
+ then give the template access
+然后给模板访问权限
+
+33
+00:01:24,920 --> 00:01:26,120
+ this computer property
+此计算机属性
+
+34
+00:01:28,000 --> 00:01:29,160
+ jump in the browser
+在浏览器中跳转
+
+35
+00:01:29,360 --> 00:01:31,160
+ I can see that everything is working
+我看到一切都在运转
+
+36
+00:01:31,320 --> 00:01:32,600
+ if my computer property
+如果我的电脑属性
+
+37
+00:01:32,940 --> 00:01:33,820
+ God expect
+上帝保佑
+

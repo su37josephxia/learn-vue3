@@ -1,0 +1,475 @@
+﻿1
+00:00:00,160 --> 00:00:02,240
+ 
+
+
+2
+00:00:03,620 --> 00:00:06,860
+ its pretty common that our view applications make AP calls
+我们的视图应用程序调用AP是很常见的
+
+3
+00:00:07,020 --> 00:00:10,080
+ and when they do its the best practice to let our users know
+当他们这样做的时候，最好的做法是让我们的用户知道
+
+4
+00:00:10,440 --> 00:00:11,860
+ that something is loading
+有东西在装东西
+
+5
+00:00:11,920 --> 00:00:13,360
+ actually if it might take
+实际上，如果可能的话
+
+6
+00:00:13,420 --> 00:00:15,660
+ a little while to return from the VI call
+从VI电话回来还有一段时间
+
+7
+00:00:15,720 --> 00:00:17,960
+ want to return to redisplay the template
+想返回重新显示模板吗
+
+8
+00:00:18,040 --> 00:00:18,540
+ a h
+a小时
+
+9
+00:00:18,800 --> 00:00:20,480
+ simplest way to implement this
+最简单的实现方法
+
+10
+00:00:20,760 --> 00:00:22,220
+ with a simple
+用一个简单的
+
+11
+00:00:22,260 --> 00:00:22,840
+ else
+其他的
+
+12
+00:00:25,700 --> 00:00:29,860
+ their application grows its not uncommon to have one component that makes an AP I call
+他们的应用程序不断增长，其中有一个组件可以进行AP I调用
+
+13
+00:00:30,020 --> 00:00:32,820
+ and then another component somewhere else that makes an AP I call
+然后另一个组件在其他地方发出一个AP
+
+14
+00:00:33,080 --> 00:00:37,140
+ we might want to have a loading component up here at this parent component
+我们可能希望在这个父组件上有一个加载组件
+
+15
+00:00:37,180 --> 00:00:40,680
+ not display the component until both AP calls have been returned
+在两个AP调用都返回之前不显示组件
+
+16
+00:00:41,080 --> 00:00:46,480
+ mastery we've shown how to solve this problem using view acts because we can have a global state
+我们已经展示了如何使用viewacts来解决这个问题，因为我们可以有一个全局状态
+
+17
+00:00:46,860 --> 00:00:48,020
+ with loading status
+带装载状态
+
+18
+00:00:48,300 --> 00:00:49,780
+ however
+然而
+
+19
+00:00:49,900 --> 00:00:52,900
+ there's a new feature which provides an even better solution
+有一个新功能提供了更好的解决方案
+
+20
+00:00:53,880 --> 00:00:55,940
+ this is the suspense component
+这是悬念部分
+
+21
+00:00:56,900 --> 00:00:57,660
+ use it
+使用它
+
+22
+00:00:57,840 --> 00:01:01,400
+ simply put it inside of a template we don't have to import it
+只需将其放入模板中，我们不必导入它
+
+23
+00:01:01,440 --> 00:01:03,100
+ component already has access
+组件已具有访问权限
+
+24
+00:01:03,460 --> 00:01:05,780
+ we specify a default template
+我们指定一个默认模板
+
+25
+00:01:05,860 --> 00:01:07,320
+ this is where we put components
+这是我们放置组件的地方
+
+26
+00:01:07,520 --> 00:01:10,540
+ one or more of which has a set of method that returns a promise
+其中一个或多个具有一组返回promise的方法
+
+27
+00:01:10,740 --> 00:01:12,440
+ in a synchronous component
+在同步组件中
+
+28
+00:01:14,140 --> 00:01:16,060
+ we specify a fallback template
+我们指定一个后备模板
+
+29
+00:01:16,160 --> 00:01:18,200
+ this is what it is play when we're loading
+这就是我们装东西时要玩的东西
+
+30
+00:01:20,360 --> 00:01:21,960
+ its build out as simple example
+这是一个简单的例子
+
+31
+00:01:22,440 --> 00:01:24,420
+ will put our event component
+将把我们的事件组件
+
+32
+00:01:24,600 --> 00:01:26,400
+ i've used this in previous lessons
+我在以前的课上用过这个
+
+33
+00:01:27,980 --> 00:01:29,980
+ almost simply display loading
+几乎只是显示加载
+
+34
+00:01:30,060 --> 00:01:31,020
+ this is loading
+这是装货
+
+35
+00:01:32,800 --> 00:01:36,080
+ inside of a script tag will simply include this event component
+脚本标记的内部将只包含此事件组件
+
+36
+00:01:36,720 --> 00:01:39,240
+ let's take a look inside that file right now
+我们现在就去看看那个文件
+
+37
+00:01:39,620 --> 00:01:40,600
+ what's inside here
+里面有什么
+
+38
+00:01:41,420 --> 00:01:42,840
+ might look something like this
+可能看起来像这样
+
+39
+00:01:43,300 --> 00:01:45,440
+ we're using the events based composer
+我们使用基于事件的编辑器
+
+40
+00:01:45,540 --> 00:01:47,300
+ which we used in a previous lesson
+我们上节课用过的
+
+41
+00:01:47,920 --> 00:01:51,220
+ don't worry you don't have to know this in bank compose able to understand what's going on
+别担心，你不必知道银行里发生了什么事
+
+42
+00:01:52,440 --> 00:01:55,200
+ want you to notice that this component has a synchronous
+希望您注意到这个组件有一个同步的
+
+43
+00:01:55,280 --> 00:01:57,600
+ just a sink before it's set up
+只需要一个水槽就可以了
+
+44
+00:01:57,940 --> 00:02:00,920
+ functions that use a sink also need to use a weight
+使用接收器的函数也需要使用权重
+
+45
+00:02:02,520 --> 00:02:08,580
+ news events space come possible is making that AP call and we don't need to compose a BLE to call suspense
+新闻事件空间的到来使美联社的电话成为可能，而我们不需要编写一个能够呼叫的悬念
+
+46
+00:02:08,780 --> 00:02:12,340
+ could easily be a service library that does AP calls for us
+很容易成为AP呼叫我们的服务库
+
+47
+00:02:12,660 --> 00:02:15,700
+ or we could just be doing the AP call right here
+或者我们就在这里打电话
+
+48
+00:02:16,520 --> 00:02:19,680
+ others have been a browser we can see that our fallback template
+其他的浏览器我们可以看到我们的回退模板
+
+49
+00:02:19,900 --> 00:02:21,520
+ showing loading gets loaded first
+显示加载先加载
+
+50
+00:02:21,900 --> 00:02:23,460
+ and then when the promise resolve
+然后当承诺解决的时候
+
+51
+00:02:23,500 --> 00:02:25,220
+ it displays the default template
+它显示默认模板
+
+52
+00:02:28,540 --> 00:02:29,240
+ Spence
+斯彭斯
+
+53
+00:02:29,420 --> 00:02:33,660
+ waits for all the asynchronous calls to be resolved before displaying the default template
+在显示默认模板之前，等待所有异步调用被解析
+
+54
+00:02:34,900 --> 00:02:35,940
+ test this out
+测试一下这个
+
+55
+00:02:36,060 --> 00:02:37,840
+ simply by using the event component
+只需使用事件组件
+
+56
+00:02:37,980 --> 00:02:38,380
+ nice
+美好的
+
+57
+00:02:39,960 --> 00:02:41,160
+ he learned up her brows are
+他知道她的眉毛是
+
+58
+00:02:41,220 --> 00:02:42,200
+ we see loading
+我们看到装载
+
+59
+00:02:43,060 --> 00:02:45,620
+ only once both API calls are returned
+只返回两个API调用一次
+
+60
+00:02:45,820 --> 00:02:46,700
+ the display
+显示器
+
+61
+00:02:46,800 --> 00:02:47,840
+ default template
+默认模板
+
+62
+00:02:51,180 --> 00:02:53,000
+ killer feature of suspense
+悬念的杀手特征
+
+63
+00:02:53,700 --> 00:02:56,800
+ is that we can have a deeply nested a VI costs
+我们可以有一个深嵌套的a VI成本
+
+64
+00:02:57,100 --> 00:02:59,580
+ and it's going to wait until they're all resolved
+要等到他们都解决了
+
+65
+00:02:59,780 --> 00:03:04,560
+ pretty cool but when we're dealing with AP calls we also have to make sure to implement
+很酷，但当我们处理AP呼叫时，我们也必须确保实现
+
+66
+00:03:04,640 --> 00:03:05,360
+ air handling
+空气处理
+
+67
+00:03:05,740 --> 00:03:07,280
+ how do we do that with suspense
+我们怎样才能有悬念呢
+
+68
+00:03:09,040 --> 00:03:10,140
+ our previous code
+我们以前的代码
+
+69
+00:03:10,560 --> 00:03:12,060
+ and let's add some error handling
+让我们添加一些错误处理
+
+70
+00:03:13,320 --> 00:03:13,800
+ I
+我
+
+71
+00:03:13,860 --> 00:03:14,980
+ import rap
+导入rap
+
+72
+00:03:15,100 --> 00:03:18,480
+ will need to use the air captured life cycle hook
+将需要使用空气捕捉生命周期挂钩
+
+73
+00:03:19,520 --> 00:03:21,040
+ and inside our setup method
+在我们的设置方法中
+
+74
+00:03:21,340 --> 00:03:23,560
+ declare a reactive reference called error
+声明称为引用的反应性错误
+
+75
+00:03:24,820 --> 00:03:28,680
+ then will use the on air captured life cycle hook to listen for errors
+然后使用空中捕捉的生命周期钩子来监听错误
+
+76
+00:03:28,880 --> 00:03:31,320
+ and if they happen it will set the error
+如果它们发生了，它将设置错误
+
+77
+00:03:31,440 --> 00:03:32,660
+ then return true
+然后返回true
+
+78
+00:03:33,660 --> 00:03:36,760
+ it turned true simply prevents the air from propagating
+它变成真的只是阻止空气传播
+
+79
+00:03:36,800 --> 00:03:38,760
+ and then appearing in our user's browser
+然后出现在我们用户的浏览器中
+
+80
+00:03:39,800 --> 00:03:40,780
+ and in the template
+在模板中
+
+81
+00:03:40,820 --> 00:03:42,680
+ check to see if we have an error
+检查一下是否有错误
+
+82
+00:03:42,720 --> 00:03:43,620
+ if so let's do
+如果是这样的话，我们开始吧
+
+83
+00:03:43,680 --> 00:03:44,240
+ 
+
+
+84
+00:03:45,560 --> 00:03:46,720
+ let me put the vs
+让我把V
+
+85
+00:03:46,820 --> 00:03:49,040
+ as an attribute on the suspense component
+作为悬念组件的属性
+
+86
+00:03:50,400 --> 00:03:52,740
+ we look in our browser and we get a network error
+我们查看我们的浏览器，我们得到一个网络错误
+
+87
+00:03:53,060 --> 00:03:54,880
+ gets displayed as we would expect
+像我们预期的那样显示
+
+88
+00:03:56,300 --> 00:03:59,260
+ definitely king forward to using suspense in my view three application
+绝对王前进在我的观点三应用悬念
+
+89
+00:03:59,820 --> 00:04:02,600
+ one user interface best practice we can use with it
+我们可以使用一个用户界面最佳实践
+
+90
+00:04:02,780 --> 00:04:04,220
+ skeleton loading screens
+骨架装载筛
+
+91
+00:04:05,440 --> 00:04:07,120
+ rather than having a spinner
+而不是有一个旋转器
+
+92
+00:04:07,660 --> 00:04:09,440
+ you can do what you see here on the right
+你可以做你在右边看到的
+
+93
+00:04:12,580 --> 00:04:16,500
+ Skelton loading screens are getting more and more common all around the internet
+Skelton加载屏幕在互联网上越来越普遍
+
+94
+00:04:17,240 --> 00:04:21,160
+ in the lesson resources a link to a few articles that show you how to put them together
+在课程资源中，提供了一些文章的链接，这些文章向您展示了如何将它们组合在一起
+
+95
+00:04:21,600 --> 00:04:22,260
+ thanks for watching
+感谢收看
+

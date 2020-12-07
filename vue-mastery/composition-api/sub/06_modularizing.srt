@@ -1,0 +1,230 @@
+﻿1
+00:00:00,260 --> 00:00:02,180
+ I
+我
+
+2
+00:00:04,780 --> 00:00:06,520
+ aside from improved typescript support
+除了改进的typescript支持
+
+3
+00:00:06,560 --> 00:00:06,980
+ 
+
+
+4
+00:00:07,140 --> 00:00:09,480
+ two reasons we want to use the composition a p I
+我们想用构图的两个原因
+
+5
+00:00:09,620 --> 00:00:10,280
+ RT
+放射性同位素
+
+6
+00:00:10,780 --> 00:00:15,560
+ organize things by feature and to make the code reusable across other components
+按特性组织内容，并使代码在其他组件之间可重用
+
+7
+00:00:15,740 --> 00:00:22,280
+ and right now are sample code doesn't neither so let's re factor as if we wanted to make things more modular
+现在的示例代码也没有，所以让我们考虑一下，好像我们想让东西更模块化
+
+8
+00:00:23,340 --> 00:00:28,720
+ our current code this is nothing new based on what we've built however I am now using refs
+我们当前的代码这并不是什么新的基于我们已经构建的，但是我现在使用的是refs
+
+9
+00:00:28,960 --> 00:00:31,280
+ because honestly I think it's a little simpler
+因为说实话，我觉得简单一点
+
+10
+00:00:31,700 --> 00:00:35,320
+ organized the code by feature I would move the code out of the setup method
+按功能组织代码我会把代码移出设置方法
+
+11
+00:00:35,520 --> 00:00:36,600
+ a new function
+新功能
+
+12
+00:00:36,780 --> 00:00:38,640
+ use event space
+使用事件空间
+
+13
+00:00:38,820 --> 00:00:40,720
+ which is our composition function
+这是我们的构图函数
+
+14
+00:00:40,980 --> 00:00:42,920
+ and then call this composition function
+然后调用这个合成函数
+
+15
+00:00:42,980 --> 00:00:44,400
+ our setup method
+我们的设置方法
+
+16
+00:00:45,000 --> 00:00:46,880
+ our component is organized by feature
+我们的组件是按功能组织的
+
+17
+00:00:47,080 --> 00:00:51,540
+ if there was additional features I wanted to add I could just start reading another composition function
+如果我想添加其他功能，我可以开始阅读另一个合成函数
+
+18
+00:00:52,580 --> 00:00:56,320
+ what if I wanted to make this code were usable across other components
+如果我想让这些代码在其他组件中都可以使用呢
+
+19
+00:00:56,700 --> 00:01:00,340
+ do this I would move my composition function into another file
+这样我就把合成函数移到另一个文件中
+
+20
+00:01:00,860 --> 00:01:04,120
+ in the use directory and call it events based out j s
+在use目录中，并将其称为基于j s的事件
+
+21
+00:01:04,380 --> 00:01:05,820
+ then export this function
+然后导出此函数
+
+22
+00:01:06,140 --> 00:01:07,980
+ an imported into our component
+导入到我们的组件中
+
+23
+00:01:09,260 --> 00:01:10,440
+ that's all there is to it
+就这些了
+
+24
+00:01:11,840 --> 00:01:13,560
+ if I wanted to add another composition
+如果我想再加一篇作文
+
+25
+00:01:13,600 --> 00:01:13,960
+ I
+我
+
+26
+00:01:14,120 --> 00:01:14,780
+ inside this
+在这里面
+
+27
+00:01:14,860 --> 00:01:15,180
+ 
+
+
+28
+00:01:15,300 --> 00:01:15,800
+ 
+
+
+29
+00:01:15,900 --> 00:01:16,920
+ event mapping
+事件映射
+
+30
+00:01:16,940 --> 00:01:18,700
+ map out the location of the event
+标出活动地点
+
+31
+00:01:18,940 --> 00:01:20,400
+ I would just import it
+我会直接进口的
+
+32
+00:01:20,700 --> 00:01:23,940
+ and then inside the setup function you might think that I would just
+然后在设置函数中，你可能会认为我会
+
+33
+00:01:24,000 --> 00:01:24,800
+ albo
+阿尔博
+
+34
+00:01:24,840 --> 00:01:28,120
+ auctions but actually this isn't valid javascript
+但实际上这不是有效的javascript
+
+35
+00:01:28,420 --> 00:01:29,920
+ can't create objects like this
+不能创建这样的对象
+
+36
+00:01:30,740 --> 00:01:33,620
+ instead I would restructure the object that each of these return
+相反，我会重新构造这些元素返回的对象
+
+37
+00:01:33,680 --> 00:01:34,120
+ learn
+学习
+
+38
+00:01:34,380 --> 00:01:37,200
+ giving my template access to everything it needs to render
+给我的模板访问它需要呈现的一切
+
+39
+00:01:38,400 --> 00:01:39,920
+ solution is pretty efficient
+解决方案相当有效
+
+40
+00:01:40,000 --> 00:01:42,740
+ my coding this way we've introduced a problem
+我的编码方式我们引入了一个问题
+
+41
+00:01:42,840 --> 00:01:48,500
+ it's not clear by looking at this file which objects are being injected by which composition function
+通过查看这个文件不清楚哪个组合函数正在注入哪些对象
+
+42
+00:01:49,180 --> 00:01:52,420
+ this was one of the problems we previously had with Nixon
+这是我们以前和尼克松之间的问题之一
+
+43
+00:01:52,740 --> 00:01:57,560
+ all this we can create local objects for the data that are composition functions are sending in
+所有这些我们可以为合成函数发送的数据创建本地对象
+
+44
+00:01:57,620 --> 00:01:59,740
+ and then use those in the return object
+然后在return对象中使用它们
+
+45
+00:02:02,820 --> 00:02:06,600
+ now it's explicit which objects are coming from which composition function
+现在它明确了哪些对象来自哪个组合函数
+
+46
+00:02:06,820 --> 00:02:08,880
+ this is a view three best practice
+这是一个视图三最佳实践
+
