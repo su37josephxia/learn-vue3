@@ -211,7 +211,7 @@ export default {
 
 ## 五、Reactive - 响应式语法
 
-之前reactive 的 Ref 去声明所有的响应式属性
+之前reactive 的 Ref 去声明基本类型的数据
 
 ```js
 import { ref,computed } from 'vue'
@@ -228,13 +228,7 @@ export default {
 }
 ```
 
-
-
-
-
 但是有另一个等效的方法用它去代替 reactive 的Ref
-
-
 
 ```js
 import { reactive,computed } from 'vue'
@@ -250,8 +244,6 @@ export default {
   }
 }
 ```
-
-
 
 过去我们用vue2.0的data来声明响应式对象,但是现在在这里每一个属性都是响应式的包括computed 计算属性
 
@@ -274,8 +266,6 @@ setup(){
 }
 ```
 
-
-
 ```html
 <p>Spaces Left:{{event.spacesLeft}} out of {{event.capacity}}</p>
 <h2>Attending</h2>
@@ -286,8 +276,6 @@ setup(){
 </ul>
 <button @click="increaseCapacity()"> Increase Capacity</button>
 ```
-
-
 
 在这里我们使用对象都是.属性的方式，但是如果 这个结构变化了，event分开了编程了一个个片段，这个时候就不能用.属性的方式了
 
@@ -315,58 +303,6 @@ export default{
 ```js
 return toRefs(event)
 ```
-
-
-
-
-<div>
-   <p>Space Left : {{event.spacesLeft}} out of {{event.capacity}} </p>
-   <h2>Attending</h2>
-   <ul>
-      <li v-for="(name,index)" in event.attending :key="index">{{name}}
-      </li>
-
-​     
-   </ul>
-   <button @click="increaseCapacity">Increase Capacity</button>
-   </div>
-</template>
-<script>
-//第一种
-import {ref,computed } from 'vue'
-export default {
-  setup(){
-    const capacity = ref(4)
-    const attending = ref(["Tim","Bob","Joe"])
-    const spaceLeft = computed(()=>{
-      return capacity.value - attending.value.length;
-    });
-    function increaseCapacity(){ capacity.value++; }
-    return {capacity,increaseCapacity,attending,spaceLeft}   
-
-  }
-} 
-
-//返回一个响应式函数 第二种
-import { reactive,computed } from 'vue'
-export default {
-  setup(){
-    const event = reactive({
-      capacity:4,
-      attending:["Tim","Bob","Joe"],
-      spaceLeft:computed(()=>{
-        return event.capacity - event.attending.length;
-      })
-    })
-    //我们不再使用.value
-    function increaseCapacity() { event.capacity++; }
-    //把这个event放入到template中
-    return { event,increaseCapacity}
-  }
-}
-
-
-</script>
 
 ## 六、 Modularizing
 
