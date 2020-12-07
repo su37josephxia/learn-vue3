@@ -15,7 +15,7 @@
     <div>=======SharingState===========</div>
     <SharingState />
     <div>=======Suspense===========</div>
-    <!-- <SuspenseComponent /> -->
+    <SuspenseComponent />
     <div>=======Teleport===========</div>
     <TeleportComponent />
   </div>
