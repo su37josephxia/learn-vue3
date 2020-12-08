@@ -1,216 +1,209 @@
 ﻿1
-00:00:00,260 --> 00:00:02,180
- I
-我
-
+00:00:04,780 --> 00:00:06,980
+Aside from improved typescript support
+除了改善了typescript支持
+ 
 2
-00:00:04,780 --> 00:00:06,520
- aside from improved typescript support
-除了改进的typescript支持
+00:00:07,140 --> 00:00:09,480
+the two reasons we want to use the composition API are
+还有我们使用composition API的其他两个原因
 
 3
-00:00:06,560 --> 00:00:06,980
- 
-
+00:00:09,620 --> 00:00:15,560
+to organize things by feature 
+按特性组织内容 
 
 4
-00:00:07,140 --> 00:00:09,480
- two reasons we want to use the composition a p I
-我们想用构图的两个原因
+00:00:13,000 --> 00:00:15,000
+and to make the code reusable across other components
+并使代码在其他组件之间可重用
 
 5
-00:00:09,620 --> 00:00:10,280
- RT
-放射性同位素
-
+00:00:15,740 --> 00:00:17,280
+and right now are sample code doesn't neither
+并且现在我们的示例代码都没有 
+ 
 6
-00:00:10,780 --> 00:00:15,560
- organize things by feature and to make the code reusable across other components
-按特性组织内容，并使代码在其他组件之间可重用
+00:00:18,000 --> 00:00:19,000     
+so let's refactor 
+所以让我们重构  
 
 7
-00:00:15,740 --> 00:00:22,280
- and right now are sample code doesn't neither so let's re factor as if we wanted to make things more modular
-现在的示例代码也没有，所以让我们考虑一下，好像我们想让东西更模块化
+00:00:19,010 -->  00:00:21,110
+as if we wanted to make things more modular
+就像是类似我们的代码更模块化
 
 8
-00:00:23,340 --> 00:00:28,720
- our current code this is nothing new based on what we've built however I am now using refs
-我们当前的代码这并不是什么新的基于我们已经构建的，但是我现在使用的是refs
+00:00:22,340 --> 00:00:23,000
+Here is our current code 
+这是我们目前的代码
 
 9
-00:00:28,960 --> 00:00:31,280
- because honestly I think it's a little simpler
-因为说实话，我觉得简单一点
+00:00:24,000 --> 00:00:26,000
+this is nothing new based on what we've built
+这是我们在之前的代码上写好的
 
 10
-00:00:31,700 --> 00:00:35,320
- organized the code by feature I would move the code out of the setup method
-按功能组织代码我会把代码移出设置方法
+00:00:26,100 --> 00:00:28,100 
+However I am now using refs
+现在使用的是refs
 
 11
-00:00:35,520 --> 00:00:36,600
- a new function
-新功能
+00:00:28,960 --> 00:00:31,280
+ because honestly I think it's a little simpler
+因为说实话，我觉得refs的使用更简单一点
 
 12
-00:00:36,780 --> 00:00:38,640
- use event space
-使用事件空间
+00:00:31,700 --> 00:00:32,320
+To organized the code by feature 
+为了按功能组织代码 
 
 13
-00:00:38,820 --> 00:00:40,720
- which is our composition function
-这是我们的构图函数
+00:00:32,620 --> 00:00:35,420
+I would move the code out of the setup method
+我会把代码移出setup方法
 
 14
-00:00:40,980 --> 00:00:42,920
- and then call this composition function
-然后调用这个合成函数
+00:00:35,520 --> 00:00:38,640
+create a new function called useEventSpace
+创建一个叫做useEventSpace的函数
 
 15
-00:00:42,980 --> 00:00:44,400
- our setup method
-我们的设置方法
+00:00:38,820 --> 00:00:40,720
+which is our composition function
+这是我们的复合函数
 
 16
-00:00:45,000 --> 00:00:46,880
- our component is organized by feature
-我们的组件是按功能组织的
+00:00:40,980 --> 00:00:44,400
+And then call this composition function our setup method
+然后从我们的setup方法中调用这个复合函数
 
 17
-00:00:47,080 --> 00:00:51,540
- if there was additional features I wanted to add I could just start reading another composition function
-如果我想添加其他功能，我可以开始阅读另一个合成函数
+00:00:45,000 --> 00:00:46,880
+Now our component is organized by feature
+我们的组件是按功能组织的
 
 18
+00:00:47,080 --> 00:00:49,001
+And if there was additional features I wanted to add   
+如果我想添加其他功能
+
+19
+00:00:49,201 --> 00:00:51,201
+I could just start reading another composition function
+我可以写另外一个复合函数
+
+20
 00:00:52,580 --> 00:00:56,320
- what if I wanted to make this code were usable across other components
-如果我想让这些代码在其他组件中都可以使用呢
+ what if I wanted to make this code were reusable across other components
+如果我想让跨组件使用代码呢
 
 19
 00:00:56,700 --> 00:01:00,340
- do this I would move my composition function into another file
-这样我就把合成函数移到另一个文件中
+To do this, I would move my composition function into another file
+为了实现这个,我就把复合函数移到另一个文件中
 
 20
 00:01:00,860 --> 00:01:04,120
- in the use directory and call it events based out j s
-在use目录中，并将其称为基于j s的事件
+Let's put it in the use directory and call it events-sapce.js
+把它放入use目录中，event-space.js
 
 21
 00:01:04,380 --> 00:01:05,820
- then export this function
-然后导出此函数
+I'll then export this function
+然后导出
 
 22
 00:01:06,140 --> 00:01:07,980
- an imported into our component
-导入到我们的组件中
+and then import into our component
+然后引入到我们的组件中
 
 23
 00:01:09,260 --> 00:01:10,440
- that's all there is to it
-就这些了
+that's all there is to it
+就在这儿这样写
 
 24
 00:01:11,840 --> 00:01:13,560
- if I wanted to add another composition
-如果我想再加一篇作文
+What if I wanted to add another composition function
+如果我想添加另一个复合函数呢?
 
 25
-00:01:13,600 --> 00:01:13,960
- I
-我
+00:01:13,600 --> 00:01:14,780
+inside this component called event mapping
+在这个组件里面叫做事件的映射
 
 26
-00:01:14,120 --> 00:01:14,780
- inside this
-在这里面
+00:01:16,940 --> 00:01:18,700
+to map out the location of the event
+用来映射标出活动地点
 
 27
-00:01:14,860 --> 00:01:15,180
- 
-
+00:01:18,940 --> 00:01:20,400
+Well, I would just import it
+好吧,我会直接引入
 
 28
-00:01:15,300 --> 00:01:15,800
- 
-
+00:01:20,700 --> 00:01:23,940
+and then inside the setup function you might think that I would just
+然后在setup函数中,你也许会认为我会
 
 29
-00:01:15,900 --> 00:01:16,920
- event mapping
-事件映射
+00:01:24,000 --> 00:01:24,800
+call both function
+调用这两个函数
 
 30
-00:01:16,940 --> 00:01:18,700
- map out the location of the event
-标出活动地点
-
-31
-00:01:18,940 --> 00:01:20,400
- I would just import it
-我会直接进口的
-
-32
-00:01:20,700 --> 00:01:23,940
- and then inside the setup function you might think that I would just
-然后在设置函数中，你可能会认为我会
-
-33
-00:01:24,000 --> 00:01:24,800
- albo
-阿尔博
-
-34
 00:01:24,840 --> 00:01:28,120
- auctions but actually this isn't valid javascript
-但实际上这不是有效的javascript
+But actually, this isn't valid JavaScript
+但实际上这不是有效的js脚本
 
 35
 00:01:28,420 --> 00:01:29,920
- can't create objects like this
-不能创建这样的对象
+we can't create objects like this
+我们不能创建这样的对象
 
 36
 00:01:30,740 --> 00:01:33,620
- instead I would restructure the object that each of these return
-相反，我会重新构造这些元素返回的对象
-
-37
-00:01:33,680 --> 00:01:34,120
- learn
-学习
+instead I would restructure the object that each of these return
+相反，我会重构这些对象在return中返回
 
 38
-00:01:34,380 --> 00:01:37,200
- giving my template access to everything it needs to render
+00:01:33,680 --> 00:01:37,200
+giving my template access to everything it needs to render
 给我的模板访问它需要呈现的一切
 
 39
 00:01:38,400 --> 00:01:39,920
- solution is pretty efficient
+Our solution is pretty efficient
 解决方案相当有效
 
 40
 00:01:40,000 --> 00:01:42,740
- my coding this way we've introduced a problem
-我的编码方式我们引入了一个问题
+But my coding this way we've introduced a problem
+但是通过这种方式编码导致了一个新问题
 
 41
-00:01:42,840 --> 00:01:48,500
- it's not clear by looking at this file which objects are being injected by which composition function
-通过查看这个文件不清楚哪个组合函数正在注入哪些对象
+00:01:42,840 --> 00:01:44,000
+it's not clear by looking at this file
+这些复合函数写的并不是很清晰的注入到哪个文件中
 
 42
-00:01:49,180 --> 00:01:52,420
- this was one of the problems we previously had with Nixon
-这是我们以前和尼克松之间的问题之一
+00:01:44,300 --> 00:01:48,300
+which objects are being injected by which composition function
 
 43
+00:01:49,180 --> 00:01:52,420
+this was one of the problems we previously had with Mixin
+这个问题和以前Mixin的问题是同样的
+
+44
 00:01:52,740 --> 00:01:57,560
- all this we can create local objects for the data that are composition functions are sending in
+to solve this, we can create local objects 
+为了解决这个问题,我们可以在当前页面创建一些对象
+
+45
+for the data that are composition functions are sending in
 所有这些我们可以为合成函数发送的数据创建本地对象
 
 44
@@ -225,6 +218,6 @@
 
 46
 00:02:06,820 --> 00:02:08,880
- this is a view three best practice
-这是一个视图三最佳实践
+ this is a Vue3.0 best practice
+这是Vue3.0 最好的例子
 
