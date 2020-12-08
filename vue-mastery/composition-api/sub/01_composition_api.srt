@@ -91,7 +91,7 @@ using the regular component syntax,
 19
 00:01:07,130 --> 00:01:12,630
 we would create a .vue file which might have a data option with reactive properties.
-我们将创建一个.vue文件，它可能有一个带有反应属性的数据选项。
+我们将创建一个.vue文件，它可能有一个带有响应式的属性的数据选项。
 
 20
 00:01:12,630 --> 00:01:15,280
