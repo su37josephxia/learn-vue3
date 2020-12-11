@@ -165,7 +165,7 @@
 
 34
 00:01:22,200 --> 00:01:23,340
- if my computer property
+ if my computed property
 如果我的电脑属性
 
 35

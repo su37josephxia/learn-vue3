@@ -1,19 +1,13 @@
 ﻿1
-00:00:00,260 --> 00:00:02,180
- I
-我
-
-2
 00:00:04,380 --> 00:00:06,520
  code with our reactive reference in setup
 在setup中用我们响应式的ref编码
 
-3
+2
 00:00:06,620 --> 00:00:07,960
 
 
-
-4
+3
 00:00:09,040 --> 00:00:11,720
 and now is how do we add a method
 接下来演示如何添加方法
@@ -25,8 +19,8 @@ with our regular component syntax if we wanted to increase capacity
 
 6
 00:00:16,320 --> 00:00:18,380
- might create a method that looks like this
-可能会创建一个如下所示的方法
+we might create a method that looks like this
+可能会创建一个如下所示的方法像这样
 
 7
 00:00:19,100 --> 00:00:21,600
@@ -35,7 +29,7 @@ with our regular component syntax if we wanted to increase capacity
 
 8
 00:00:22,940 --> 00:00:23,660
- first
+Well first
 第一
 
 9
@@ -51,7 +45,7 @@ with our regular component syntax if we wanted to increase capacity
 11
 00:00:26,760 --> 00:00:28,000
  it calls this method
-它调用此方法
+调用此方法
 
 12
 00:00:28,880 --> 00:00:29,640
@@ -76,12 +70,12 @@ we declare a normal function in setup method
  we then need to return it from our setup method
 然后我们需要从setup方法里返回它
 
-17
+16
 00:00:40,480 --> 00:00:42,120
  because our template access to it
 因为我们的模板会访问它
 
-18
+17
 00:00:43,260 --> 00:00:46,400
 what goes inside of our increased capacity function
 我们增加capacity的函数内部要写点什么？
@@ -119,22 +113,22 @@ if we inspected capacity in the console, we would see that its a reference with 
 and also has this value property
 且有一个value属性
 
-26
+25
 00:01:07,520 --> 00:01:09,040
 which is what we need to access
 这才是我们需要访问的
 
-27
+26
 00:01:09,680 --> 00:01:13,600
 to increment capacity we call capacity to value plus plus
 为了增加capacity，我们调用capacity.value++
 
-28
+27
 00:01:14,320 --> 00:01:16,980
 this is how we access the value on a reactive reference
 这就是我们如何访问Ref上的值
 
-29
+28
 00:01:17,700 --> 00:01:19,040
  we jump in our browser
 我们切到浏览器
