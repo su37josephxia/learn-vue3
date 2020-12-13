@@ -1,17 +1,12 @@
-﻿1
-00:00:00,260 --> 00:00:02,180
- I
-我
-
+﻿
 2
 00:00:03,820 --> 00:00:06,140
- this lesson we're gonna be looking at solving a problem
-这节课我们要学习解决一个问题
-
+In this lesson we're gonna be looking at solving a problem
+这节课我们要学习用Composition API 去解决一个问题
 3
 00:00:06,300 --> 00:00:07,120
- in the composition
-在构图中
+in the composition
+
 
 4
 00:00:07,520 --> 00:00:08,080
