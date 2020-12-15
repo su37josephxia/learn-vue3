@@ -27,11 +27,12 @@
 
           // 生成渲染函数
           const render = compile(config.template);
-          const setupResult = config.setup();
 
           return {
             mount: function (container) {
               const dom = document.querySelector(container);
+
+              const setupResult = config.setup();
               // 修改
               // effective = () => render(setupResult, dom);
               watchEffect(() => render(setupResult, dom));

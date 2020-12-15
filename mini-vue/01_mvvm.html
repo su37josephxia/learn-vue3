@@ -7,7 +7,7 @@
           // 编译过程
           const compile = (template) => (content, dom) => {
             // 重新渲染
-            dom.innerText = ''
+            dom.innerText = "";
             input = document.createElement("input");
             input.addEventListener("keyup", function () {
               content.state.message = this.value;
@@ -23,14 +23,16 @@
             button.innerText = content.state.message;
             dom.appendChild(button);
           };
-
+          
           // 生成渲染函数
           const render = compile(config.template);
-          const setupResult = config.setup();
 
           return {
             mount: function (container) {
               const dom = document.querySelector(container);
+
+              const setupResult = config.setup();
+
               effective = () => render(setupResult, dom);
               render(setupResult, dom);
             },
