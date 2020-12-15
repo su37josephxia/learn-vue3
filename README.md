@@ -1,12 +1,12 @@
-# 然叔的Vue3学习笔记
+## Introduction
+
+然叔的Vue3.0学习笔记
 
 
 
+## 🏠欢迎一起交流
 
-
-### 🏠欢迎一起交流
-
-![image-20201215173229353](https://gitee.com/josephxia/picgo/raw/master/juejin/image-20201215173229353.png)
+![image-20201215173229353](./assets/Snip20201215_6.png)
 
 
 
@@ -37,6 +37,9 @@
 
 - [Vue3.0全球发布会干货总结](https://juejin.cn/post/6875236411349008398)
 - [如何参加开源项目-如何给Vue3.0提PR](https://juejin.cn/post/6844904191744278542)
+- [跟我一起编写Vue3版ElementUI](https://juejin.cn/post/6864462363039531022)
+
+- [忙了一夜用CompositionAPI征服产品妹子花里胡哨的需求](https://juejin.cn/post/6891885484524437518)
 
 
 
@@ -45,53 +48,3 @@
 
 
 
-
-
-
-
-
-
-## 参考资料
-
-### 试用Vue3
-> 参考资料 https://blog.csdn.net/guotianqing/article/details/82391665
-
-### 初始化子模块
-```bash
-git submodule add https://github.com/vuejs/vue-next source/vue-next
-```
-
-子模块内容记录在.gitmodules文件中
-```bash
-# 初始化子模块
-git submodule init
-# 更新模块
-git submodule update --init --recursive
-```
-
-### 安装依赖
-``` bash
-## 修改镜像
-yarn config set registry https://registry.npm.taobao.org --global
-yarn config set disturl https://npm.taobao.org/dist --global
-
-## 去除pupteer
-# 忽略下载Chromium
-cd source/vue-next
-## 去除pupteer
-yarn --ignore-scripts
-
-```
-### 编译Build
-``` bash
-cd source/vue-next
-yarn build
-```
-
-### 调试Vue代码
-``` bash
-cd source/vue-next
-yarn build
-```
-
-### 测试API
