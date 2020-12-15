@@ -14,13 +14,13 @@
 
 ```
 .
-├── mini-vite							 // 简写版Vite
+├── mini-vite              // 简写版Vite
 ├── mini-vue               // 简写版Vue
 ├── vue-mastery            // Vue-Mastery 内容demo
 ├── template-explorer      // Vue3模板编译调试工具
-├── demo									 // Vue基础APIDemo
-├── source								 // vue3源码 submodule
-└── vue-next-cli-demo			 // Vue3 CLI工具Demo
+├── demo                   // Vue基础APIDemo
+├── source                 // vue3源码 submodule
+└── vue-next-cli-demo      // Vue3 CLI工具Demo
 ```
 
 
