@@ -6,7 +6,7 @@
 
 ## 🏠欢迎一起交流
 
-![image-20201215173229353](./assets/Snip20201215_6.png)
+![Snip20201215_6](https://gitee.com/josephxia/picgo/raw/master/juejin/Snip20201215_6.png)
 
 
 
