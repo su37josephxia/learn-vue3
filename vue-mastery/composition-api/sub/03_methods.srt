@@ -1,47 +1,42 @@
 ﻿1
-00:00:00,260 --> 00:00:02,180
- I
-我
+00:00:04,380 --> 00:00:06,520
+Here's our code with our reactive reference
+这是setup内部的响应式引用
 
 2
-00:00:04,380 --> 00:00:06,520
- code with our reactive reference
-用我们的反应式参考编码
+00:00:06,620 --> 00:00:07,960
+inside of setup
+
 
 3
-00:00:06,620 --> 00:00:07,960
- 
-
-
-4
 00:00:09,040 --> 00:00:11,720
- now is how do we add a method
-现在是如何添加方法
+The problem now is how do we add a method
+现在的问题是如何添加方法
 
 5
 00:00:12,300 --> 00:00:16,040
- our regular component syntax if we wanted to increase capacity
-如果我们想增加容量，我们的常规组件语法
+In our regular component syntax if we wanted to increase capacity
+在我们的常规组件语法,如果我们想让capacity自增
 
 6
 00:00:16,320 --> 00:00:18,380
- might create a method that looks like this
-可能会创建一个如下所示的方法
+we might create a method that looks like this
+可能会创建一个如下所示的方法像这样
 
 7
 00:00:19,100 --> 00:00:21,600
- what might this look like using our new syntax
+But what might this look like using our new syntax
 使用我们的新语法会是什么样子
 
 8
 00:00:22,940 --> 00:00:23,660
- first
+Well first
 第一
 
 9
 00:00:23,700 --> 00:00:24,900
- inside of the template
-模板内部
+inside of the template
+在template的内部
 
 10
 00:00:25,020 --> 00:00:26,580
@@ -51,145 +46,119 @@
 11
 00:00:26,760 --> 00:00:28,000
  it calls this method
-它调用此方法
+调用此方法
 
 12
 00:00:28,880 --> 00:00:29,640
- enough
-足够地
+Simply enough
+很简单
 
 13
 00:00:30,940 --> 00:00:32,680
- great method using our new syntax
-使用我们新语法的好方法
+To create a method using our new Syntax
+为了在新语法中创建一个方法
 
 14
-00:00:33,120 --> 00:00:34,800
- declare a normal
-宣布正常
+00:00:33,120 --> 00:00:36,700
+We declare a normal function inside of our setup method
+我们在setup方法内部声明了一个普通函数
 
 15
-00:00:34,960 --> 00:00:36,700
- inside of our setup method
-设置方法内部
-
-16
 00:00:37,940 --> 00:00:40,240
  we then need to return it from our setup method
 然后我们需要从setup方法返回它
 
-17
+16
 00:00:40,480 --> 00:00:42,120
- because our template access to it
-因为我们的模板可以访问它
+which give our template access to it
+这样我们的模板就可以访问它
+
+17
+00:00:43,260 --> 00:00:46,400
+But what goes inside of our increaseCapacity function
+但是increaseCapacity这个功能里面写什么呢?
 
 18
-00:00:43,260 --> 00:00:46,400
- what goes inside of our increased capacity function
-我们增加容量功能的内部是什么
+00:00:47,140 --> 00:00:49,880
+Your first guess might be capacity plus
+第一个猜想也许是capacity++
 
 19
-00:00:47,140 --> 00:00:49,240
- first guest might be capacity plus
-第一位客人可能是容量加
+00:00:49,960 --> 00:00:51,000
+however this is not going to work, 
+但是这行不通
 
 20
-00:00:49,260 --> 00:00:49,880
- boss
-老板
+00:00:51,280 --> 00:00:55,240
+it's gonna error out because we can't increment an object
+它会出错,因为我们不能让一个对象自增
 
 21
-00:00:49,960 --> 00:00:55,240
- however this is not going to work it's gonna air out because we can't increment an object
-但是这行不通，因为我们不能增加一个物体，它会散发出来
+00:00:56,000 --> 00:00:58,480
+Remember,this is a reactive reference
+记住,这是一个响应式的引用
 
 22
-00:00:55,280 --> 00:00:57,400
- 
-
+00:00:59,380 --> 00:01:04,940
+If we inspected capacity in the console    
+我们检查了控制台中的capacity
 
 23
-00:00:57,560 --> 00:00:58,480
- not a primitive
-不是原始人
+we would see that its a reference with a getter and a setter
+我们可以看到它是一个带有getter和setter的引用对象
 
 24
-00:00:59,380 --> 00:01:04,940
- we inspected capacity in the console we would see that its a reference with a getter and a setter
-我们检查了控制台中的容量，我们会看到它是一个带有getter和setter的引用
+00:01:05,240 --> 00:01:07,360
+and it also has this value property
+并且它同时也有value这个属性
 
 25
-00:01:05,240 --> 00:01:07,360
- and also has this value property
-也有这个值属性
-
-26
 00:01:07,520 --> 00:01:09,040
  which is what we need to access
-这是我们需要访问的
+这是我们需要访问的value属性
+
+26
+00:01:09,680 --> 00:01:13,600
+So the increment capacity we call capacity to value plus plus
+所以capacity自增-capacity.value++
 
 27
-00:01:09,680 --> 00:01:13,600
- to increment capacity we call capacity to value plus plus
-为了增加容量，我们将容量称为增值
+00:01:14,320 --> 00:01:16,980
+this is how we access the value on a reactive reference
+这就是我们如何访问响应式对象的值
 
 28
-00:01:14,320 --> 00:01:16,980
- this is how we access the value on a reactive reference
-这就是我们如何访问反应引用上的值
-
-29
 00:01:17,700 --> 00:01:19,040
  we jump in our browser
-我们跳进浏览器
+我们打开浏览器
+
+29
+00:01:19,300 --> 00:01:22,700
+we can see that our button increase capacity
+我们看到点击按钮增加capacity
 
 30
-00:01:19,300 --> 00:01:20,180
- see
-看见
+00:01:25,140 --> 00:01:27,920
+At this point I was wondering and you might be too
+在这点上我很好奇，你可能也会这样想
 
 31
-00:01:20,560 --> 00:01:22,120
- 
-
+00:01:28,020 --> 00:01:32,660
+why don't we need to call that value in the template when we print out capacity
+当我们在template输出capacity的时候为什么不是.value
 
 32
-00:01:22,180 --> 00:01:22,700
- ambassador
-大使
-
-33
-00:01:25,140 --> 00:01:27,920
- at this point I was wondering and you might be too
-此时我在想你也可能
-
-34
-00:01:28,020 --> 00:01:32,660
- why don't we need to call that value in the template when we print out capacity
-为什么我们不需要在打印容量时调用模板中的值
-
-35
 00:01:33,340 --> 00:01:36,720
  it turns out that when you find a ref in the template
-当你在模板中找到一个ref
+当vue在template中找到ref的时候
 
-36
-00:01:36,880 --> 00:01:39,080
- automatically expose
-自动曝光
+33
+00:01:36,880 --> 00:01:40,260
+it will automatically expose the inter value
+它会自动曝光value的内部值
 
-37
-00:01:39,200 --> 00:01:40,260
- inter value
-内部价值
-
-38
-00:01:40,860 --> 00:01:42,960
- you should never need to call dot value
-你不应该调用点值
-
-39
-00:01:43,180 --> 00:01:44,140
- inside the template
-模板内部
+34
+00:01:40,860 --> 00:01:44,140
+So you should never need to call dot value inside the template
+所以你不需要在template中使用.value
 

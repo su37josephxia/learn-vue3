@@ -1,5 +1,14 @@
 # CompositionAPI - 复合API
 
+如何启动
+
+```
+$ npm install
+$ npm run dev
+```
+
+
+
 ## 一、为什么选择CompositionAPI
 
 ### 1. Vue2的局限性
@@ -587,19 +596,6 @@ export default {
 
 
 
-
-
-
-## 附录、
-
-### 环境搭建
-
-```
-$ npm init vite-app <project-name>
-$ cd <project-name>
-$ npm install
-$ npm run dev
-```
 
 
 
