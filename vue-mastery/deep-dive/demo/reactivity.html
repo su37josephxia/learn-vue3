@@ -1,0 +1,21 @@
+<script>
+    const state = reactive({
+        count : 0
+    })
+
+    watchEffect( () => {
+        console.log(state.count)
+    })
+
+    state.count ++
+
+
+    function reactive(raw) {
+        Object.keys(raw).forEach(key => {
+            const dep = new Dep()
+            let value = raw[key]
+        })
+    }
+
+
+</script>
