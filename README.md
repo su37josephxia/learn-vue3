@@ -2,13 +2,8 @@
 
 然叔的Vue3.0学习笔记
 
-
-
 ## 🏠欢迎一起交流
-
-![Snip20201215_6](https://gitee.com/josephxia/picgo/raw/master/juejin/Snip20201215_6.png)
-
-
+微信公众号 🔍【前端大班车】 ，多位【🔥Vue3代码贡献者】带你飞🚀
 
 ## 目录结构
 
