@@ -161,9 +161,9 @@ it will automatically expose the inner value
 35
 00:01:40,860 --> 00:01:42,960
 so you should never need to call dot value
-所以你永远不需要调用.value
+所以你永远不需要在模板中用.value
 
 36
 00:01:43,180 --> 00:01:44,140
 inside the template
-在模板中
+
