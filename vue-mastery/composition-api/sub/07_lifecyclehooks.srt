@@ -1,266 +1,253 @@
 ﻿1
-00:00:00,260 --> 00:00:02,180
- I
-我
+00:00:03,700 --> 00:00:06,440
+You're probably already familiar with 
+你可能已经熟悉了
 
 2
-00:00:03,700 --> 00:00:06,440
- probably already familiar with the view life cycle map
-可能已经熟悉视图生命周期图了
+00:00:06,880 --> 00:00:07,200
+the Vue LifeCycle methods
+Vue的生命周期
 
 3
-00:00:06,880 --> 00:00:07,200
- 
-
+00:00:07,300 --> 00:00:08,240
+like beforeCreate
+像 beforeCreate
 
 4
-00:00:07,300 --> 00:00:08,240
- or create
-或者创造
+00:00:08,840 --> 00:00:09,620
+created
+
 
 5
-00:00:08,840 --> 00:00:09,620
- yay did
-是的
+00:00:10,200 --> 00:00:11,020
+beforeMount
+
 
 6
-00:00:10,200 --> 00:00:11,020
- are MT
-是MT吗
+00:00:11,640 --> 00:00:12,400
+mounted 
+
 
 7
-00:00:11,640 --> 00:00:12,400
- 
+00:00:13,160 --> 00:00:14,160
+beforeUpdate
 
 
 8
-00:00:13,160 --> 00:00:14,160
- update
-更新
+00:00:14,880 --> 00:00:15,680
+updated
+
 
 9
-00:00:14,880 --> 00:00:15,680
- updated
-更新
+00:00:16,060 --> 00:00:17,100
+beforeDestroy and destroyed
+
 
 10
-00:00:16,060 --> 00:00:17,100
- or destroy
-或者毁灭
+00:00:17,560 --> 00:00:21,040
+if you're not familiar with these 
+如果你不熟悉这些
 
 11
-00:00:17,560 --> 00:00:21,040
- and destroyed if you're not familiar with these positive video read the descriptions
-如果你不熟悉这些正面的视频，就把它销毁
+00:00:21,320 --> 00:00:21,860
+pause the video, read the descriptions
+停止看这个视频,看官方文档
 
 12
-00:00:21,320 --> 00:00:21,860
- we got
-我们有
+00:00:21,960 --> 00:00:22,000
+Moving on
+然后我们继续
 
 13
-00:00:22,100 --> 00:00:28,480
- some additional view to life cycle methods which were released in recent versions I want to make sure you're familiar with
-在最近的版本中发布的一些生命周期方法的附加视图，我想确保您熟悉这些方法
+00:00:22,100 --> 00:00:25,000
+There's some additional Vue2.0 LifeCycle methods 
+还有一些Vue2.0其他的生命周期的方法
 
 14
-00:00:28,760 --> 00:00:29,840
- vs activated
-vs激活
+00:00:25,100 --> 00:00:26,900
+which were released in recent versions 
+在最新发布的版本中
 
 15
-00:00:29,960 --> 00:00:32,300
- this is used when you have dynamic components
-当您有动态组件时使用此选项
+00:00:26,990 --> 00:00:27,999
+I want to make sure you're familiar with
+为了确认你熟悉(在这里说一下)
 
 16
-00:00:32,480 --> 00:00:33,560
- keep alive
-活下去
+00:00:28,760 --> 00:00:29,840
+The first is activated
+第一个是 activated
 
 17
-00:00:33,700 --> 00:00:36,320
- the component inside keep alive as toggled on
-内部组件保持激活状态
+00:00:29,960 --> 00:00:32,300
+This is used when you have dynamic components
+当您有动态组件时使用这个生命周期
 
 18
-00:00:36,580 --> 00:00:38,020
- and there is deactivated
-还有一个是无效的
+00:00:32,480 --> 00:00:33,560
+using <keep-alive></keep-alive>
+活下去
 
 19
-00:00:38,260 --> 00:00:40,160
- when the component inside keep alive is
-当keep alive内部的组件
+00:00:33,700 --> 00:00:36,320
+when the component inside <keep-alive> is toggled on
+<keep-alive>被缓存的组件激活时调用
 
 20
-00:00:40,280 --> 00:00:40,580
- both
-二者都
+00:00:36,580 --> 00:00:38,020
+Then there is deactivated
+还有一个是deactivated
 
 21
-00:00:40,640 --> 00:00:41,100
- off
-远离的
+00:00:38,260 --> 00:00:41,100
+when the component inside <keep-alive> is toggled off
+被<keep-alive>缓存的组件停用时调用
 
 22
 00:00:41,500 --> 00:00:42,900
- Erik captured
-埃里克被捕了
+And errorCaptured
+并捕捉到错误了
 
 23
 00:00:42,940 --> 00:00:43,720
- this is called
-这叫做
+This is called when an error
+当出现错误的时候被调用这个生命周期
 
 24
-00:00:43,800 --> 00:00:46,020
- air from any descendant component
-来自任何后代的空气
+00:00:43,800 --> 00:00:47,120
+from any descendant component is captured
+错误在子组件中被捕获
 
 25
-00:00:46,120 --> 00:00:47,120
- is captured
-被捕获
+00:00:47,460 --> 00:00:49,000
+If you want to learn more about how these work   
+如果想了解更多关于这些实现原理的信息
 
 26
-00:00:47,460 --> 00:00:50,220
- want to learn more about how these work check out the documentation
-想了解更多关于这些工作原理的信息请查看文档
+00:00:49,460 --> 00:00:49,960
+check out the documentation
+看文档
 
 27
-00:00:50,460 --> 00:00:52,200
- let's now dive into
-现在让我们深入了解
+00:00:50,460 --> 00:00:52,800
+let's now dive into changes with Vue3.0
+但是现在请让我们了解Vue3.0的变化
 
 28
-00:00:52,260 --> 00:00:52,800
- changes with you
-随您更改
+00:00:54,060 --> 00:00:56,780
+First off,beforeDestroy LifeCycle Method
+首先,生命周期-beforeDestroy
 
 29
-00:00:53,060 --> 00:00:53,460
- I
-我
+00:00:57,100 --> 00:01:00,740
+can also be written as beforeUnmount
+也可以写成beforeUnmount
 
 30
-00:00:53,860 --> 00:00:56,780
- before destroy life cycle method
-销毁前生命周期法
+00:01:01,040 --> 00:01:01,880
+Both should work
+两个作用是一样的
 
 31
-00:00:57,100 --> 00:00:59,300
- also be written as
-也写为
+00:01:02,220 --> 00:01:05,620
+Also destroyed you can also use unmounted
+同样的destroyed,也可以用unmounted
 
 32
-00:00:59,420 --> 00:01:00,740
- for on mount
-用于装载
+00:01:05,820 --> 00:01:06,300
+These should both work with Vue3.0 
+这两种生命周期都可以用到Vue3.0
 
 33
-00:01:01,040 --> 00:01:01,880
- should work
-应该行得通
+00:01:06,900 --> 00:01:10,300
+and when I asked Evan You why this change
+我问了小尤为什么把他改成这样
 
 34
-00:01:02,220 --> 00:01:03,300
- also destroyed
-也被摧毁了
+00:01:10,540 --> 00:01:14,160
+it's pretty much because it's a better naming convention
+这在很大程度上是为了更好的命名约定
 
 35
-00:01:03,700 --> 00:01:04,680
- I also use
-我也用
+00:01:14,380 --> 00:01:17,380
+We mount the component and we unmount components
+我们挂载组件并且我们卸载组件
 
 36
-00:01:04,800 --> 00:01:05,620
- on mounted
-安装
+00:01:17,980 --> 00:01:19,480
+When we're using the Composition API
+当我们使用Composition API
 
 37
-00:01:05,820 --> 00:01:10,300
- they should both work with you three and when I asked avenue why this change
-他们应该和你们三个一起工作当我问avenue为什么要改变
+00:01:22,000 --> 00:01:21,300
+and we need LifeCycle methods
 
 38
-00:01:10,540 --> 00:01:11,960
- it's pretty much because
-这在很大程度上是因为
+00:01:22,400 --> 00:01:24,900
+We simply add "on" to the callback name 
+我们只需要在生命周期前面添加"on"
 
 39
-00:01:12,000 --> 00:01:14,160
- it's a better naming convention
-这是一个更好的命名约定
+00:01:25,020 --> 00:01:26,200
+inside the setup method
+在setup内部
 
 40
-00:01:14,380 --> 00:01:15,680
- mount the component
-安装部件
+00:01:26,820 --> 00:01:29,420
+So here's what that might look like 
+所以会变成什么样呢
 
 41
-00:01:15,800 --> 00:01:17,380
- and be on mount components
-安装组件
+00:01:28,420 --> 00:01:29,420
+for beforeMount and onMounted
 
 42
-00:01:17,980 --> 00:01:21,480
- 
-
+00:01:29,480 --> 00:01:33,780
+We need to import them and then we can simply use them
+我们只需要引入这些生命周期就可以使用啦
 
 43
-00:01:22,000 --> 00:01:23,300
- simply add
-只需添加
+00:01:32,140 --> 00:01:36,420
+sending in anonymous functions inside of our setup method
+在setup方法内部派发匿名函数
 
 44
-00:01:23,400 --> 00:01:24,900
- on to the call back name
-回叫的名字
+00:01:37,100 --> 00:01:39,520
+Here's list of all the different LifeCycle methods
+这是一些生命周期的钩子
 
 45
-00:01:25,020 --> 00:01:26,200
- inside the setup method
-设置方法内部
+00:01:39,620 --> 00:01:41,620
+we can use inside the setup method
+我们可以在setup方法内部使用
 
 46
-00:01:26,820 --> 00:01:29,420
- here's what that might look like for before MT
-这是MT之前可能会出现的情况
+00:01:42,680 --> 00:01:43,920
+if you're being observant
+如果你细心观察
 
 47
-00:01:29,480 --> 00:01:31,780
- on mounted we need to import them
-我们需要进口
-
-48
-00:01:32,140 --> 00:01:36,420
- then we can simply use them sending in anonymous functions inside of our setup method
-然后我们可以简单地使用它们在setup方法内部发送匿名函数
-
-49
-00:01:37,100 --> 00:01:41,520
- list of all the different life cycle methods we can use inside the setup method
-我们可以在设置方法内部使用的所有不同生命周期方法的列表
-
-50
-00:01:42,680 --> 00:01:43,920
- if you're being observant
-如果你有观察力
-
-51
 00:01:44,020 --> 00:01:46,320
- you might notice that two are missing
+you might notice that two are missing
 你可能注意到有两个不见了
 
-52
-00:01:47,160 --> 00:01:53,360
- create and created are not needed when we're using the composition a p I and we have that set up method
-create和created在使用compositionapi时是不需要的，我们有设置方法
+48
+00:01:47,160 --> 00:01:50,360
+beforeCreate and created are not needed 
+当我们正在使用composition API,beforeCreate和created不需要了
 
-53
+49
+00:01:50,960 --> 00:01:52,000
+when we're using the composition API
+
+50
+00:01:52,100 --> 00:01:53,010
+and we have that setup method
+我们有setup方法
+
+51
 00:01:53,720 --> 00:01:55,520
- this is because before create
+this is because beforeCreate is called right before setup
 这是因为在创建之前
 
 54

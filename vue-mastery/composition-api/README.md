@@ -1,5 +1,14 @@
 # CompositionAPI - 复合API
 
+如何启动
+
+```
+$ npm install
+$ npm run dev
+```
+
+
+
 ## 一、为什么选择CompositionAPI
 
 ### 1. Vue2的局限性
@@ -176,7 +185,7 @@ export defalut {
 
 
 
-## 四、 Computed - 计算属性
+## 四、Computed - 计算属性
 
 这个地方实在没什么好讲的，和Vue2没变化
 
@@ -211,97 +220,50 @@ export default {
 
 ## 五、Reactive - 响应式语法
 
-之前reactive 的 Ref 去声明基本类型的数据
+### 1.总结
 
-```js
-import { ref,computed } from 'vue'
-export default {
-  setup(){
-    const capacity = ref(4);
-    const attending = ref(["Tim","Bob","Joe"]);
-    const spacesLeft = computed(()=>{
-      return capacity.value - attending.value.length
-    })
-    function increaseCapacity(){ capacity.value ++;}
-    return { capacity,increaseCapacity,attending,spacesLeft}
-  }
-}
+```jsx
+const {
+            reactive, // 创建响应式数据对象
+            ref, // 创建一个响应式的数据对象
+            toRefs, // 将响应式数据对象转换为单一响应式对象
+            isRef, // 判断某值是否是引用类型
+        } = Vue
 ```
 
-但是有另一个等效的方法用它去代替 reactive 的Ref
-
-```js
-import { reactive,computed } from 'vue'
-export default {
-  setup(){
-    const event = reactive({
-      capacity:4,
-      attending:["Tim","Bob","Joe"],
-      spacesLeft:computed(()=>{
-        return event.capacity - event.attending.length;
-      })
-    })
-  }
-}
-```
-
-过去我们用vue2.0的data来声明响应式对象,但是现在在这里每一个属性都是响应式的包括computed 计算属性
-
-这2种方式相比于第一种没有使用.
-
-接下来 我们再声明method  这2种语法都ok，取决于你选择哪一种
-
-```js
-setup(){
-  const event = reactive(){
-    capacity:4,
-    attending:["Tim","Bob","Joe"],
-    spacesLeft:computed(()=>{
-      return event.capacity - event.attending.length;
-    })
-    function increaseCapacity(){event.capacity++}
-    //return整个对象
-    return {event,increaseCapacity}
-  }
-}
-```
+### 2.实例
 
 ```html
-<p>Spaces Left:{{event.spacesLeft}} out of {{event.capacity}}</p>
-<h2>Attending</h2>
-<ul>>
-	<li v-for="(name,index) in event.attending" :key="index">
-     {{name}}
-  </li>
-</ul>
-<button @click="increaseCapacity()"> Increase Capacity</button>
-```
-
-在这里我们使用对象都是.属性的方式，但是如果 这个结构变化了，event分开了编程了一个个片段，这个时候就不能用.属性的方式了
-
-```js
-//在这里可以使用toRefs
-import {reactive,computed,toRefs} from 'vue'
-export default{
-  setup(){
+<template>
+  <div>
+    <p>Space Left:{{ spaceLeft }} out of {{ capacity }}</p>
+    <h2>Attending</h2>
+    <ul>
+      <li v-for="(name, index) in attending" :key="index">
+        {{ name }}
+      </li>
+    </ul>
+    <button @click="increaseCapacity()">Increase Capacity</button>
+  </div>
+</template>
+<script>
+import { reactive, computed, toRefs } from "vue";
+export default {
+  setup() {
     const event = reactive({
-      capacity:4,
-      attending:["Tim","Bob","Joe"],
-      spacesLeft:computed(()=>{
-        return event.capacity -event.attending.length;
-        
-      })
-    })
-    function increaseCapacity(){ event.capacity ++ }
-    return {...toRefs(event),increaseCapacity}
-  }
-}
-```
-
-如果没有 increaseCapacity() 这个方法 直接可以简化为
-
-```js
-return toRefs(event)
+      capacity: 4,
+      attending: ["Tim", "Bob", "Joe"],
+      spaceLeft: computed(() => {
+        return event.capacity - event.attending.length;
+      }),
+    });
+    function increaseCapacity() {
+      event.capacity++;
+    }
+    return { ...toRefs(event), increaseCapacity };
+  },
+};
+</script>
 ```
 
 ## 六、 Modularizing
@@ -634,19 +596,6 @@ export default {
 
 
 
-
-
-
-## 附录、
-
-### 环境搭建
-
-```
-$ npm init vite-app <project-name>
-$ cd <project-name>
-$ npm install
-$ npm run dev
-```
 
 
 

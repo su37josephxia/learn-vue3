@@ -1,0 +1,44 @@
+<script src="https://unpkg.com/vue@next"></script>
+<style>
+  .mt-4 {
+    margin: 10px;
+  }
+</style>
+<div id="app"></div>
+
+<script>
+  const { h, createApp } = Vue;
+
+  const Stack = {
+    render() {
+      const slot = this.$slots.default ? this.$slots.default({}) : [];
+      return h(
+        "div",
+        { class: "stack" },
+        slot.map((child) => {
+          return h("div", { class: `mt-${this.$attrs.size}` }, [child]);
+        })
+      );
+    },
+  };
+
+  const App = {
+    components: {
+      Stack,
+    },
+    template: `
+        <Stack size="4">
+            <div>hello</div>
+            <Stack size="4">
+                <div>hello</div>
+                <div>hello</div>
+                <Stack size="4">
+                  <div>hello</div>
+                  <div>hello</div>
+                </Stack>
+            </Stack>
+        </Stack>
+    `,
+  };
+  createApp(App).mount("#app");
+</script>
