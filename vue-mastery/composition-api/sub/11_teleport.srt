@@ -1,0 +1,500 @@
+1
+00:00:03,520 --> 00:00:08,040
+use component architecture allows us to build our user interface into components
+使用组件架构允许我们将用户界面构建到组件中
+
+2
+00:00:08,040 --> 00:00:12,250
+which beautifully organize our business logic and our presentation layer
+它很好地组织了我们的业务逻辑和表示层
+
+3
+00:00:12,360 --> 00:00:12,864
+However
+但是
+
+4
+00:00:12,864 --> 00:00:16,610
+there are some instances where one component has some html
+在某些情况下，一个组件有一些html
+
+5
+00:00:16,610 --> 00:00:19,820
+that needs to get rendered in an alternative location
+它需要在另一个位置呈现
+
+6
+00:00:19,980 --> 00:00:21,470
+Why might you want to do this
+为什么你要这么做
+
+7
+00:00:21,470 --> 00:00:24,715
+well Some components like models with fixed or absolute
+一些组件像固定的或绝对的模型
+
+8
+00:00:24,715 --> 00:00:29,200
+positioning and z index may need to be placed right before the body tag
+可能需要在body标签之前放置positioning和zindex
+
+9
+00:00:29,200 --> 00:00:31,700
+and There's no best practice on how to do this
+关于如何做到这一点并没有最好的实践
+
+10
+00:00:31,730 --> 00:00:32,005
+Also
+另外
+
+11
+00:00:32,005 --> 00:00:35,870
+if our view application is running on a small part of our web page
+如果我们视图应用程序在网页的一小部分上运行
+
+12
+00:00:35,870 --> 00:00:40,120
+we might want to move some of that template code out of our view at
+我们可能需要将一些模板代码移出我们的视图
+
+13
+00:00:40,120 --> 00:00:42,520
+and Again, there's no easy way to do this
+再一次，没有简单的方法
+
+14
+00:00:42,670 --> 00:00:45,960
+Luckily, view three now has a teleport component
+幸运的是，视图3现在有一个传送组件
+
+15
+00:00:45,960 --> 00:00:47,932
+This was previously called portal
+这以前被称为门户
+
+16
+00:00:47,932 --> 00:00:51,490
+but the name was changed to teleport as to not conflict to a
+但是名字被改为心灵运输，以便不与.冲突
+
+17
+00:00:51,490 --> 00:00:55,130
+future version of html where they might have a tag called portal
+未来的html版本中，他们可能会有一个标签叫做门户
+
+18
+00:00:55,130 --> 00:01:00,710
+Teleport allows us to specify template html we can send to another part of the DOM
+Teleport允许我们指定模板html，我们可以将其发送到DOM的另一部分
+
+19
+00:01:00,890 --> 00:01:03,260
+Let's jump into a real simple example
+让我们来看看一个简单的例子
+
+20
+00:01:03,540 --> 00:01:06,700
+First, inside of our public index that html
+首先，在我们的公共索引中
+
+21
+00:01:06,870 --> 00:01:09,810
+right under where our application is rendered
+就在我们提交申请的地方
+
+22
+00:01:09,810 --> 00:01:13,110
+i've added an end of body div
+我增加了一个身体结尾部分
+
+23
+00:01:13,440 --> 00:01:15,630
+We want to tell a port some template code here
+我们想告诉一个端口一些模板代码
+
+24
+00:01:16,740 --> 00:01:19,860
+then inside of our appetite view, inside our template
+然后在我们的食欲视图中，在模板中
+
+25
+00:01:19,860 --> 00:01:20,800
+All right
+好吧
+
+26
+00:01:20,800 --> 00:01:21,730
+Teleport
+传送
+
+27
+00:01:21,730 --> 00:01:22,480
+2
+2
+
+28
+00:01:22,500 --> 00:01:23,560
+end of body
+车身尾部
+
+29
+00:01:24,410 --> 00:01:26,566
+We'll specify the text. We want to teleport
+我们会指定文本。 我们要传送
+
+30
+00:01:26,566 --> 00:01:27,800
+This should be the end
+一切都该结束了
+
+31
+00:01:27,800 --> 00:01:29,540
+and Then we'll write this should be the Top
+然后我们写这个应该是顶端
+
+32
+00:01:30,010 --> 00:01:32,510
+If this works right, this should be the end
+如果能成功，就该结束了
+
+33
+00:01:32,510 --> 00:01:35,380
+Should be teleport it out of our view application
+应该将其传送到我们的视图应用程序之外
+
+34
+00:01:35,380 --> 00:01:36,350
+And into this deal
+以及这笔交易
+
+35
+00:01:36,350 --> 00:01:38,680
+Actually putting it at the end of our page
+实际上把它放在我们页面的末尾
+
+36
+00:01:39,580 --> 00:01:42,172
+and If we look in a browser, we see that indeed
+如果我们在浏览器中看到，我们确实看到了
+
+37
+00:01:42,172 --> 00:01:43,280
+it is teleportation
+是心灵运输
+
+38
+00:01:43,280 --> 00:01:44,060
+to the end
+一直到最后
+
+39
+00:01:47,310 --> 00:01:49,338
+In order to use the teleport component
+以便使用远程传送组件
+
+40
+00:01:49,338 --> 00:01:53,350
+you need to define a two attribute which takes a valid DOM query selector
+您需要定义一个带有有效DOM查询选择器的two属性
+
+41
+00:01:54,060 --> 00:01:55,910
+In our case, we're using the ID
+在我们的案子里，我们用的是身份证
+
+42
+00:01:56,700 --> 00:01:59,710
+but we could also be using a class like so
+但是我们也可以使用像这样的类
+
+43
+00:02:01,230 --> 00:02:03,660
+or a data collector with square brackets
+或具有方括号的数据收集器
+
+44
+00:02:03,950 --> 00:02:05,971
+In this case, our div would look like this
+在这种情况下，我们分区是这样的
+
+45
+00:02:05,971 --> 00:02:08,550
+In case you're not familiar with the data attribute
+以防你不熟悉这个数据属性
+
+46
+00:02:09,810 --> 00:02:13,520
+Or this could even be a dynamic property by adding the colon
+或者这甚至可以是添加冒号的动态属性
+
+47
+00:02:16,030 --> 00:02:20,380
+models and pop UPS often stay hidden until they displayed on the screen
+型号和流行的UPS往往保持隐藏，直到他们显示在屏幕上
+
+48
+00:02:20,710 --> 00:02:24,260
+This is why teleport has a disabled attribute
+这就是为什么传送有一个禁用的属性
+
+49
+00:02:24,290 --> 00:02:27,120
+and When it's true, the contents can stay
+如果是真的，里面的东西可以留下来
+
+50
+00:02:27,120 --> 00:02:28,396
+inside the component
+在部件里面
+
+51
+00:02:28,396 --> 00:02:31,818
+And when it's false, it'll be teleport to the destination
+当它是假的，它会被传送到目的地
+
+52
+00:02:31,818 --> 00:02:32,650
+You specify
+你指定
+
+53
+00:02:32,650 --> 00:02:34,350
+Let's update our code and try this
+让我们更新我们的代码并尝试一下
+
+54
+00:02:34,380 --> 00:02:39,230
+We'll start by specifying a show text reactive property which defaults to false
+我们将首先指定一个show text reactive属性，该属性默认为false
+
+55
+00:02:40,880 --> 00:02:42,461
+Then back in our previous code
+回到我们之前的代码
+
+56
+00:02:42,461 --> 00:02:44,970
+this will be disabled when show text is false
+当显示文本为假时，此选项将被禁用
+
+57
+00:02:46,890 --> 00:02:50,140
+Then we'll create a button to toggle show text between true and false
+然后我们将创建一个按钮来切换显示文本之间的真和假
+
+58
+00:02:53,030 --> 00:02:53,258
+Now
+现在
+
+59
+00:02:53,258 --> 00:02:58,960
+our code is either insider component or is teleport outside the component when it's not disabled
+我们的代码要么是内部组件，要么在组件未禁用时传送到组件外
+
+60
+00:03:01,880 --> 00:03:03,750
+and If we look inside depth tools
+如果我们深入研究深度工具
+
+61
+00:03:03,750 --> 00:03:06,020
+we can see our code inside a template
+我们可以在模板中看到我们的代码
+
+62
+00:03:08,930 --> 00:03:10,700
+and Then once we talk, let
+一旦我们交谈，让
+
+63
+00:03:11,100 --> 00:03:13,150
+we can see it teleportation
+我们可以看到它的隐形传物
+
+64
+00:03:13,150 --> 00:03:15,570
+into the end of the body
+一直延伸到身体的末端
+
+65
+00:03:18,720 --> 00:03:20,270
+and If we toggle it back
+如果我们把它拨回
+
+66
+00:03:21,160 --> 00:03:23,240
+we see it back inside
+我们在里面看到的
+
+67
+00:03:23,240 --> 00:03:24,300
+of our component
+我们的零件
+
+68
+00:03:28,610 --> 00:03:31,260
+One killer feature of teleport is that it reuses
+传送的一个致命特性是它可以重复使用
+
+69
+00:03:31,260 --> 00:03:32,290
+the DOM elements
+DOM元素
+
+70
+00:03:32,290 --> 00:03:34,260
+so State is preserved
+因此国家得以保存
+
+71
+00:03:34,380 --> 00:03:37,980
+We can see this if we place a video inside of our teleport component
+如果我们把视频放在传送部件里面，我们就能看到这个
+
+72
+00:03:40,330 --> 00:03:43,920
+so Now we can see, as we toggle this video
+现在我们可以看到，当我们切换这个视频
+
+73
+00:03:45,090 --> 00:03:46,900
+the state is preserved
+国家得以保存
+
+74
+00:03:47,840 --> 00:03:49,390
+Let's watch that one more time
+我们再看一遍
+
+75
+00:03:52,470 --> 00:03:55,170
+If the content we had inside teleport was a modal
+如果我们传送的内容是模态的
+
+76
+00:03:55,170 --> 00:03:58,110
+we wouldn't want to display it until it was teleport
+在传送之前我们是不会展示的
+
+77
+00:03:58,110 --> 00:03:59,470
+and not disabled
+不是残疾
+
+78
+00:03:59,470 --> 00:04:01,020
+so How would we hide the text
+那么我们如何隐藏文本
+
+79
+00:04:01,020 --> 00:04:02,530
+When teleport is disabled
+当传送被禁用时
+
+80
+00:04:03,350 --> 00:04:04,860
+One way we can do this
+一种我们能做到的方法
+
+81
+00:04:04,860 --> 00:04:07,780
+is simply by using avf with show text
+简单地通过将avf与show text一起使用
+
+82
+00:04:09,010 --> 00:04:12,330
+So now it's only gonna show this should be the end
+所以现在只能证明这应该是结束了
+
+83
+00:04:12,480 --> 00:04:14,520
+When show text is true
+当显示文本为真时
+
+84
+00:04:14,590 --> 00:04:16,790
+In this case, only when it's teleportation
+在这种情况下，只有当它的隐形传物
+
+85
+00:04:20,020 --> 00:04:22,810
+When I first saw this feature, I started to wonder
+当我第一次看到这个特性时，我开始怀疑
+
+86
+00:04:22,810 --> 00:04:24,470
+what happens if we teleport
+如果我们传送
+
+87
+00:04:24,470 --> 00:04:25,690
+two different things
+两样不同的东西
+
+88
+00:04:25,690 --> 00:04:28,010
+To the same location. Does it still work
+去同一个地方。 它还能用吗
+
+89
+00:04:28,110 --> 00:04:29,710
+Let's give it a try
+让我们试一试
+
+90
+00:04:29,780 --> 00:04:31,610
+I'm gonna make some room in my code
+我要在我的代码中腾出一些空间
+
+91
+00:04:32,350 --> 00:04:35,310
+I'll add a new reactive property called show text two
+我将添加一个新的反应性属性，称为show text 2
+
+92
+00:04:37,190 --> 00:04:39,270
+I'll create a new teleport component
+我将创建一个新的传送组件
+
+93
+00:04:39,270 --> 00:04:42,830
+which uses show text two and says this should be at the end two
+它使用show text 2并说这应该是在末尾2
+
+94
+00:04:45,400 --> 00:04:47,620
+and then I'll create another button to toggle it
+然后我会创建另一个按钮来切换它
+
+95
+00:04:50,070 --> 00:04:52,110
+Let's take a look at what this does
+我们来看看这个能做什么
+
+96
+00:04:53,980 --> 00:04:56,760
+It's properly a pending and removing
+它应该是一个挂起和删除
+
+97
+00:04:56,790 --> 00:04:59,100
+the DOM nodes from the end of our page
+从页面末尾开始的DOM节点
+
+98
+00:05:01,700 --> 00:05:02,585
+As you can see
+如你所见
+
+99
+00:05:02,585 --> 00:05:08,380
+the teleport component and u three provides you a powerful way to write component template code
+teleportcomponent和u three为您提供了一种编写组件模板代码的强大方法
+
+100
+00:05:08,380 --> 00:05:11,580
+which gets teleport it to other parts of your application
+传送到应用程序的其他部分
+
