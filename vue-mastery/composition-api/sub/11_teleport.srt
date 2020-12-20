@@ -1,12 +1,12 @@
 1
 00:00:03,520 --> 00:00:08,040
-use component architecture allows us to build our user interface into components
-使用组件架构允许我们将用户界面构建到组件中
+Vue's component architecture allows us to build our user interface into components
+Vue的组件架构允许我们将用户界面构建到组件中
 
 2
 00:00:08,040 --> 00:00:12,250
 which beautifully organize our business logic and our presentation layer
-它很好地组织了我们的业务逻辑和表示层
+它很好地组织了我们的业务逻辑和视图层
 
 3
 00:00:12,360 --> 00:00:12,864
@@ -16,7 +16,7 @@ However
 4
 00:00:12,864 --> 00:00:16,610
 there are some instances where one component has some html
-在某些情况下，一个组件有一些html
+在某些情况下，某些组件有一些html
 
 5
 00:00:16,610 --> 00:00:19,820
@@ -55,33 +55,33 @@ if our view application is running on a small part of our web page
 
 12
 00:00:35,870 --> 00:00:40,120
-we might want to move some of that template code out of our view at
-我们可能需要将一些模板代码移出我们的视图
+we might want to move some of that template code out of our Vue at
+我们可能需要将一些模板代码移出我们的Vue
 
 13
 00:00:40,120 --> 00:00:42,520
 and Again, there's no easy way to do this
-再一次，没有简单的方法
+没有简单的方法
 
 14
 00:00:42,670 --> 00:00:45,960
-Luckily, view three now has a teleport component
-幸运的是，视图3现在有一个传送组件
+Luckily, Vue3.0 now has a teleport component
+幸运的是，Vue3.0现在有一个传送组件
 
 15
 00:00:45,960 --> 00:00:47,932
 This was previously called portal
-这以前被称为门户
+这以前被称为portal
 
 16
 00:00:47,932 --> 00:00:51,490
 but the name was changed to teleport as to not conflict to a
-但是名字被改为心灵运输，以便不与.冲突
+但是这个名字被改成teleport
 
 17
 00:00:51,490 --> 00:00:55,130
 future version of html where they might have a tag called portal
-未来的html版本中，他们可能会有一个标签叫做门户
+因为这样可以不与未来版本的html冲突,有一个标签叫做portal
 
 18
 00:00:55,130 --> 00:01:00,710
@@ -96,77 +96,62 @@ Let's jump into a real simple example
 20
 00:01:03,540 --> 00:01:06,700
 First, inside of our public index that html
-首先，在我们的公共索引中
+首先，在我们的public/index.html
 
 21
 00:01:06,870 --> 00:01:09,810
 right under where our application is rendered
-就在我们提交申请的地方
+这里就是我们的应用被渲染的地方
 
 22
 00:01:09,810 --> 00:01:13,110
 i've added an end of body div
-我增加了一个身体结尾部分
+我加了一个div在body的后面
 
 23
 00:01:13,440 --> 00:01:15,630
-We want to tell a port some template code here
-我们想告诉一个端口一些模板代码
+We want to teleport some template code here
+我想传送一些代码在这里
 
 24
 00:01:16,740 --> 00:01:19,860
-then inside of our appetite view, inside our template
-然后在我们的食欲视图中，在模板中
+then inside of our app Vue, inside our template
+在Vue APP内部，在模板内
 
 25
-00:01:19,860 --> 00:01:20,800
-All right
-好吧
+00:01:19,860 --> 00:01:23,560
+We'll write teleport to end of body
+需要写<teleport to="#end-to-body">
 
 26
-00:01:20,800 --> 00:01:21,730
-Teleport
-传送
-
-27
-00:01:21,730 --> 00:01:22,480
-2
-2
-
-28
-00:01:22,500 --> 00:01:23,560
-end of body
-车身尾部
-
-29
 00:01:24,410 --> 00:01:26,566
-We'll specify the text. We want to teleport
-我们会指定文本。 我们要传送
+We'll specify the text We want to teleport
+我们会指定我们想要传送的文本
 
 30
 00:01:26,566 --> 00:01:27,800
 This should be the end
-一切都该结束了
+内容是"This should be the end"
 
 31
 00:01:27,800 --> 00:01:29,540
 and Then we'll write this should be the Top
-然后我们写这个应该是顶端
+这个是"This should be the top"
 
 32
 00:01:30,010 --> 00:01:32,510
 If this works right, this should be the end
-如果能成功，就该结束了
+如果能成功，"this should be the end"
 
 33
 00:01:32,510 --> 00:01:35,380
-Should be teleport it out of our view application
-应该将其传送到我们的视图应用程序之外
+Should be teleport it out of our Vue application
+应该将其传送到Vue应用程序到这个div
 
 34
 00:01:35,380 --> 00:01:36,350
-And into this deal
-以及这笔交易
+And into this div
+
 
 35
 00:01:36,350 --> 00:01:38,680
@@ -181,82 +166,77 @@ and If we look in a browser, we see that indeed
 37
 00:01:42,172 --> 00:01:43,280
 it is teleportation
-是心灵运输
+被传送到页面的末尾
 
 38
 00:01:43,280 --> 00:01:44,060
 to the end
-一直到最后
+
 
 39
 00:01:47,310 --> 00:01:49,338
 In order to use the teleport component
-以便使用远程传送组件
+为了使用teleport 组件
 
 40
 00:01:49,338 --> 00:01:53,350
-you need to define a two attribute which takes a valid DOM query selector
-您需要定义一个带有有效DOM查询选择器的two属性
+you need to define a "to" attribute which takes a valid DOM query selector
+你需要定义一个"to"属性,接收一个Dom选择器
 
 41
 00:01:54,060 --> 00:01:55,910
 In our case, we're using the ID
-在我们的案子里，我们用的是身份证
+在我们的案例里，我们用的是ID选择器
 
 42
 00:01:56,700 --> 00:01:59,710
 but we could also be using a class like so
-但是我们也可以使用像这样的类
+但是我们也可以使用类选择器
 
 43
 00:02:01,230 --> 00:02:03,660
 or a data collector with square brackets
-或具有方括号的数据收集器
+或具有方括号的data自定义选择器
 
 44
 00:02:03,950 --> 00:02:05,971
 In this case, our div would look like this
-在这种情况下，我们分区是这样的
+在这种情况下，我们分区是这样的 <div data-modal></div>
 
 45
 00:02:05,971 --> 00:02:08,550
 In case you're not familiar with the data attribute
-以防你不熟悉这个数据属性
+以防你不熟悉这个data属性
 
 46
 00:02:09,810 --> 00:02:13,520
 Or this could even be a dynamic property by adding the colon
-或者这甚至可以是添加冒号的动态属性
+甚至可以是添加冒号的动态属性
 
 47
 00:02:16,030 --> 00:02:20,380
-models and pop UPS often stay hidden until they displayed on the screen
-型号和流行的UPS往往保持隐藏，直到他们显示在屏幕上
+models and Popup often stay hidden until they displayed on the screen
+models和Popup往往隐藏，直到他们显示在屏幕上
 
 48
 00:02:20,710 --> 00:02:24,260
 This is why teleport has a disabled attribute
-这就是为什么传送有一个禁用的属性
+这就是为什么传送有一个disabled的属性
 
 49
 00:02:24,290 --> 00:02:27,120
 and When it's true, the contents can stay
-如果是真的，里面的东西可以留下来
+如果是true，里面的东西可以保留下来
 
 50
 00:02:27,120 --> 00:02:28,396
 inside the component
-在部件里面
+在组件里面
 
 51
-00:02:28,396 --> 00:02:31,818
-And when it's false, it'll be teleport to the destination
-当它是假的，它会被传送到目的地
-
-52
-00:02:31,818 --> 00:02:32,650
-You specify
-你指定
+00:02:28,396 --> 00:02:32,650
+And when it's false, it'll be teleport to the destination you specify
+当它是false，它会被传送到你指定的地方
 
 53
 00:02:32,650 --> 00:02:34,350
@@ -266,7 +246,7 @@ Let's update our code and try this
 54
 00:02:34,380 --> 00:02:39,230
 We'll start by specifying a show text reactive property which defaults to false
-我们将首先指定一个show text reactive属性，该属性默认为false
+我们将首先指定一个showText 响应式属性，该属性默认为false
 
 55
 00:02:40,880 --> 00:02:42,461
@@ -275,13 +255,13 @@ Then back in our previous code
 
 56
 00:02:42,461 --> 00:02:44,970
-this will be disabled when show text is false
-当显示文本为假时，此选项将被禁用
+this will be disabled when showText is false
+当显示文本为false时，showText将被禁用
 
 57
 00:02:46,890 --> 00:02:50,140
-Then we'll create a button to toggle show text between true and false
-然后我们将创建一个按钮来切换显示文本之间的真和假
+Then we'll create a button to toggle showText between true and false
+然后我们将创建一个按钮来切换showText的值
 
 58
 00:02:53,030 --> 00:02:53,258
@@ -295,8 +275,8 @@ our code is either insider component or is teleport outside the component when i
 
 60
 00:03:01,880 --> 00:03:03,750
-and If we look inside depth tools
-如果我们深入研究深度工具
+and If we look inside devTools
+如果我们看里面的devTools的内部
 
 61
 00:03:03,750 --> 00:03:06,020
@@ -305,13 +285,13 @@ we can see our code inside a template
 
 62
 00:03:08,930 --> 00:03:10,700
-and Then once we talk, let
-一旦我们交谈，让
+and Then once we toggle it
+一旦我们切换它
 
 63
 00:03:11,100 --> 00:03:13,150
-we can see it teleportation
-我们可以看到它的隐形传物
+we can see it teleported into the end of body div
+我们可以看到它被传送到body的末尾
 
 64
 00:03:13,150 --> 00:03:15,570
@@ -321,17 +301,17 @@ into the end of the body
 65
 00:03:18,720 --> 00:03:20,270
 and If we toggle it back
-如果我们把它拨回
+如果我们把它切回去
 
 66
 00:03:21,160 --> 00:03:23,240
 we see it back inside
-我们在里面看到的
+我们在里面看到
 
 67
 00:03:23,240 --> 00:03:24,300
 of our component
-我们的零件
+又回到了组件内部
 
 68
 00:03:28,610 --> 00:03:31,260
@@ -346,22 +326,22 @@ DOM元素
 70
 00:03:32,290 --> 00:03:34,260
 so State is preserved
-因此国家得以保存
+因此数据得以保存
 
 71
 00:03:34,380 --> 00:03:37,980
 We can see this if we place a video inside of our teleport component
-如果我们把视频放在传送部件里面，我们就能看到这个
+如果我们把video放在teleport组件里面，
 
 72
 00:03:40,330 --> 00:03:43,920
 so Now we can see, as we toggle this video
-现在我们可以看到，当我们切换这个视频
+现在我们可以看到，当我们切换这个video
 
 73
 00:03:45,090 --> 00:03:46,900
 the state is preserved
-国家得以保存
+数据被保存
 
 74
 00:03:47,840 --> 00:03:49,390
@@ -371,17 +351,17 @@ Let's watch that one more time
 75
 00:03:52,470 --> 00:03:55,170
 If the content we had inside teleport was a modal
-如果我们传送的内容是模态的
+如果我们传送的内容是模态框
 
 76
 00:03:55,170 --> 00:03:58,110
 we wouldn't want to display it until it was teleport
-在传送之前我们是不会展示的
+在传送之前我们是不想展示的
 
 77
 00:03:58,110 --> 00:03:59,470
 and not disabled
-不是残疾
+直到他呗传送或者disabled为false的时候
 
 78
 00:03:59,470 --> 00:04:01,020
@@ -391,7 +371,7 @@ so How would we hide the text
 79
 00:04:01,020 --> 00:04:02,530
 When teleport is disabled
-当传送被禁用时
+当teleport被禁用时
 
 80
 00:04:03,350 --> 00:04:04,860
@@ -400,23 +380,23 @@ One way we can do this
 
 81
 00:04:04,860 --> 00:04:07,780
-is simply by using avf with show text
-简单地通过将avf与show text一起使用
+is simply by using a v-if with showText
+是简单的通过v-if来控制showText
 
 82
 00:04:09,010 --> 00:04:12,330
 So now it's only gonna show this should be the end
-所以现在只能证明这应该是结束了
+所以现在只能展示"this should be the end"
 
 83
 00:04:12,480 --> 00:04:14,520
-When show text is true
-当显示文本为真时
+When showText is true
+当showText为true
 
 84
 00:04:14,590 --> 00:04:16,790
-In this case, only when it's teleportation
-在这种情况下，只有当它的隐形传物
+In this case, only when it's teleported
+在这种情况下，只有当它被传送时才会这样展示
 
 85
 00:04:20,020 --> 00:04:22,810
@@ -451,7 +431,7 @@ I'm gonna make some room in my code
 91
 00:04:32,350 --> 00:04:35,310
 I'll add a new reactive property called show text two
-我将添加一个新的反应性属性，称为show text 2
+我将添加一个新的响应式属性，称为showText2
 
 92
 00:04:37,190 --> 00:04:39,270
@@ -460,8 +440,8 @@ I'll create a new teleport component
 
 93
 00:04:39,270 --> 00:04:42,830
-which uses show text two and says this should be at the end two
-它使用show text 2并说这应该是在末尾2
+which uses show text two and says this should be at the end too
+它使用showText2内容是"this should be at the end too"
 
 94
 00:04:45,400 --> 00:04:47,620
@@ -475,13 +455,13 @@ Let's take a look at what this does
 
 96
 00:04:53,980 --> 00:04:56,760
-It's properly a pending and removing
-它应该是一个挂起和删除
+It's properly appending and removing
+这是正确的追加和删除
 
 97
 00:04:56,790 --> 00:04:59,100
 the DOM nodes from the end of our page
-从页面末尾开始的DOM节点
+来控制页面末尾开始的DOM节点
 
 98
 00:05:01,700 --> 00:05:02,585
@@ -490,11 +470,11 @@ As you can see
 
 99
 00:05:02,585 --> 00:05:08,380
-the teleport component and u three provides you a powerful way to write component template code
-teleportcomponent和u three为您提供了一种编写组件模板代码的强大方法
+the teleport component and vue3.0 provides you a powerful way to write component template code
+teleport 组件和vue3.0为您提供了一种编写组件模板代码的强大方法
 
 100
 00:05:08,380 --> 00:05:11,580
 which gets teleport it to other parts of your application
-传送到应用程序的其他部分
+用来传送到应用程序的其他部分
 
