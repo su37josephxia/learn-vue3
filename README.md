@@ -44,7 +44,7 @@
 ## B站热门视频教程
 - [【全网首发】Vue3.0光速上手「持续更新中」](https://www.bilibili.com/video/BV1Wh411X7Xp)
 
-
+- [【Vue Mastery】composition API + 深度解读](https://www.bilibili.com/video/BV1my4y1m7sz)
 
 
 
