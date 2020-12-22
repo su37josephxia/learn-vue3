@@ -1,22 +1,14 @@
 ﻿
 2
-00:00:03,820 --> 00:00:06,140
-In this lesson we're gonna be looking at solving a problem
-这节课我们要学习用Composition API 去解决一个问题
-3
-00:00:06,300 --> 00:00:07,120
-in the composition
-
-
-4
-00:00:07,520 --> 00:00:08,080
- 
+00:00:03,820 --> 00:00:07,120
+In this lesson we're gonna be looking at solving a problem in the composition
+这节课我们要学习用Composition API去解决一个问题
 
 
 5
 00:00:08,300 --> 00:00:10,060
  we have two components
-我们有两个组成部分
+我们有两个组件
 
 6
 00:00:10,120 --> 00:00:11,600
@@ -675,12 +667,12 @@ h到AP呼叫
 
 137
 00:06:01,240 --> 00:06:11,240
- gratulations you get to the end of the view three essentials course I am now going to go work on the view three reactivity course which by the time you're watching this male
-大家好了，视图三要素课程结束了，我现在要学习视图三反应性课程，当你们看到这个男性的时候
+congratulations you get to the end of the vue three essentials course I am now going to go work on the vue3 reactivity course which by the time you're watching this male
+祝贺大家你们完成了这个vue3课程的学习，而我也要接着搞下一个关于响应式的课程啦
 
 138
 00:06:13,180 --> 00:06:13,660
- oh
+oh
 哦
 
 139
@@ -690,21 +682,21 @@ h到AP呼叫
 
 140
 00:06:17,080 --> 00:06:17,740
- the other
+the other
 其他的
 
 141
 00:06:17,900 --> 00:06:18,640
- ah
-啊
+hah
+哈哈
 
 142
 00:06:19,000 --> 00:06:19,880
- and again
+and again
 再说一遍
 
 143
 00:06:20,020 --> 00:06:21,160
  get through the course
-完成课程
+完成课程 淦!
 

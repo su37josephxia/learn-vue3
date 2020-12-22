@@ -76,22 +76,22 @@ I want to make sure you're familiar with
 16
 00:00:28,760 --> 00:00:29,840
 The first is activated
-第一个是 activated
+第一个是activated
 
 17
 00:00:29,960 --> 00:00:32,300
 This is used when you have dynamic components
-当您有动态组件时使用这个生命周期
+当您有动态组件时会用到它
 
 18
 00:00:32,480 --> 00:00:33,560
 using <keep-alive></keep-alive>
-活下去
+使用<keep-alive></keep-alive>
 
 19
 00:00:33,700 --> 00:00:36,320
 when the component inside <keep-alive> is toggled on
-<keep-alive>被缓存的组件激活时调用
+当<keep-alive>里面的组件激活时被触发
 
 20
 00:00:36,580 --> 00:00:38,020
@@ -106,27 +106,27 @@ when the component inside <keep-alive> is toggled off
 22
 00:00:41,500 --> 00:00:42,900
 And errorCaptured
-并捕捉到错误了
+还有errorCaptured
 
 23
 00:00:42,940 --> 00:00:43,720
 This is called when an error
-当出现错误的时候被调用这个生命周期
+会在后代组件中错误被捕获时调用
 
 24
 00:00:43,800 --> 00:00:47,120
 from any descendant component is captured
-错误在子组件中被捕获
+会在后代组件中错误被捕获时调用
 
 25
 00:00:47,460 --> 00:00:49,000
 If you want to learn more about how these work   
-如果想了解更多关于这些实现原理的信息
+如果想了解更多细节
 
 26
 00:00:49,460 --> 00:00:49,960
 check out the documentation
-看文档
+还得好好看文档
 
 27
 00:00:50,460 --> 00:00:52,800
@@ -136,7 +136,7 @@ let's now dive into changes with Vue3.0
 28
 00:00:54,060 --> 00:00:56,780
 First off,beforeDestroy LifeCycle Method
-首先,生命周期-beforeDestroy
+首先，生命周期beforeDestroy
 
 29
 00:00:57,100 --> 00:01:00,740
@@ -151,7 +151,7 @@ Both should work
 31
 00:01:02,220 --> 00:01:05,620
 Also destroyed you can also use unmounted
-同样的destroyed,也可以用unmounted
+同样的destroyed，也可以用unmounted
 
 32
 00:01:05,820 --> 00:01:06,300
@@ -161,7 +161,7 @@ These should both work with Vue3.0
 33
 00:01:06,900 --> 00:01:10,300
 and when I asked Evan You why this change
-我问了小尤为什么把他改成这样
+我问过小右为什么这么改
 
 34
 00:01:10,540 --> 00:01:14,160
@@ -179,8 +179,9 @@ When we're using the Composition API
 当我们使用Composition API
 
 37
-00:01:22,000 --> 00:01:21,300
+00:01:20,000 --> 00:01:22,000
 and we need LifeCycle methods
+且需要用到生命周期方法
 
 38
 00:01:22,400 --> 00:01:24,900
@@ -200,21 +201,22 @@ So here's what that might look like
 41
 00:01:28,420 --> 00:01:29,420
 for beforeMount and onMounted
+对于beforeMount和onMounted
 
 42
 00:01:29,480 --> 00:01:33,780
 We need to import them and then we can simply use them
-我们只需要引入这些生命周期就可以使用啦
+我们只需要引入这些生命周期就可以使用
 
 43
 00:01:32,140 --> 00:01:36,420
 sending in anonymous functions inside of our setup method
-在setup方法内部派发匿名函数
+在setup方法内部的匿名函数里也可以
 
 44
 00:01:37,100 --> 00:01:39,520
 Here's list of all the different LifeCycle methods
-这是一些生命周期的钩子
+这是所有生命周期方法不同点的列表
 
 45
 00:01:39,620 --> 00:01:41,620
@@ -234,11 +236,12 @@ you might notice that two are missing
 48
 00:01:47,160 --> 00:01:50,360
 beforeCreate and created are not needed 
-当我们正在使用composition API,beforeCreate和created不需要了
+当我们使用composition API时beforeCreate和created不需要了
 
 49
 00:01:50,960 --> 00:01:52,000
 when we're using the composition API
+当我们使用composition API时beforeCreate和created不需要了
 
 50
 00:01:52,100 --> 00:01:53,010
@@ -248,22 +251,19 @@ and we have that setup method
 51
 00:01:53,720 --> 00:01:55,520
 this is because beforeCreate is called right before setup
-这是因为在创建之前
+这是因为beforeCreate在setup之前就被调用了
 
 54
 00:01:55,680 --> 00:01:57,520
- called right before set up
-设置前打过电话
+(译者注：实测不是这样，setup早于beforeCreate和created)
 
 55
-00:01:57,800 --> 00:01:59,480
- and then created is called
-然后被称为
+00:01:57,800 --> 00:01:59,560
+and then created is called right after setup
+然后created在setup之后被调用
 
 56
 00:01:59,560 --> 00:02:00,620
- right after setup
-安装后马上
 
 57
 00:02:01,000 --> 00:02:03,880
@@ -273,37 +273,37 @@ this is because beforeCreate is called right before setup
 58
 00:02:04,320 --> 00:02:06,580
  now being placed inside of our setup method
-现在被放置在我们的设置方法内部
+现在被放置在我们的setup方法内部
 
 59
 00:02:07,220 --> 00:02:09,060
  example here would be AP calls
-这里的例子是AP电话
+这里的例子是AP调用
 
 60
 00:02:09,440 --> 00:02:13,620
- we put those inside of before create or created and instead
-我们把它们放在创造或创造之前
+ we put those inside of beforeCreate or created and instead
+我们把它们从beforeCreate或created
 
 61
 00:02:13,900 --> 00:02:15,480
- you can call them from our set at method
-你可以从我们的set at方法调用它们
+ you can call them from our setup method
+移至setup内部调用
 
 62
 00:02:15,880 --> 00:02:21,440
- are two new view three life cycle methods the first of which is on rendered tract
-两个新的视图三个生命周期方法，其中第一个是在渲染域上
+ are two new vue3 lifecycle methods the first of which is on renderTracked
+vue3还有两个新的生命周期方法，其中一个是renderTracked
 
 63
 00:02:21,880 --> 00:02:27,100
  this is called when a reactive dependency is first being accessed in the render function during render
-当在呈现期间第一次在render函数中访问反应性依赖项时，将调用此函数
+该钩子会在渲染函数首次访问响应式依赖的时候调用
 
 64
 00:02:27,320 --> 00:02:28,980
  meaning this dependency will now be
-意味着这种依赖现在
+意味着这个依赖现在
 
 65
 00:02:29,100 --> 00:02:29,560
@@ -312,7 +312,7 @@ this is because beforeCreate is called right before setup
 
 66
 00:02:29,680 --> 00:02:30,260
- rangers
+rangers
 游骑兵
 
 67
@@ -353,20 +353,19 @@ this is because beforeCreate is called right before setup
 74
 00:02:53,740 --> 00:02:57,420
  in which dependencies are triggering our component to re render
-其中依赖关系将触发组件重新呈现
+其中依赖关系将触发组件重新渲染
 
 75
 00:02:57,600 --> 00:02:59,840
  also can be good when we're doing performance optimism
-当我们表现乐观的时候也会很好
+同时当我们做性能优化时很有用
 
 76
 00:03:00,640 --> 00:03:04,480
  really excited to see what sort of optimization tools can be created
-很高兴看到可以创建什么样的优化工具
+真的很兴奋能看到它们能催生出什么样的优化工具
 
 77
 00:03:04,720 --> 00:03:05,960
  entering around these hooks
-进入这些钩子周围
-
+真的很兴奋能看到它们能催生出什么样的优化工具

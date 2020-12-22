@@ -1,217 +1,182 @@
-﻿1
-00:00:00,260 --> 00:00:02,180
- 
-
-
-2
+﻿2
 00:00:03,880 --> 00:00:07,480
- next few three syntax is best taught by looking at a code example
-接下来的三种语法最好通过查看代码示例来学习
+our next few three syntax is best taught by looking at a code example
+接下来的三种语法最好通过查看代码示例的方式来学习
 
 3
 00:00:08,200 --> 00:00:11,180
- here you can see the template with a search input box
-在这里您可以看到带有搜索输入框的模板
+so here you can see we have a template with a search input box
+在这里您可以看到我有一个带搜索框的模板
 
 4
 00:00:11,780 --> 00:00:12,800
- when we search
+and when we search
 当我们搜索的时候
 
 5
 00:00:12,920 --> 00:00:15,960
- wanted to return the number of event results
+we wanted to return the number of event results
 想要返回事件结果的数量
 
 6
 00:00:16,780 --> 00:00:20,360
- the script tag we need to import draft because will have some reactive references
-我们需要导入draft的脚本标记，因为它将有一些反应式引用
+inside the script tag we need to import ref because we'll have some reactive references
+在script标签中我们需要导入ref，因为我们会有一些响应式引用
 
 7
 00:00:20,700 --> 00:00:22,860
- I will import the event a p I
-我将导入事件a p I
+and we'll import the event API
+然后我导入事件相关的API
 
 8
 00:00:22,940 --> 00:00:26,100
- this is just a dummy a p I threw together for the example
-这只是一个虚拟的p，我把它放在一起作为例子
+this is just a dummy API I threw together for the example
+这只是我为了这个例子凑到一块的一个虚拟API
 
 9
 00:00:26,660 --> 00:00:30,900
- inside of our set at method we have our search input and our results for
-在set at方法中，我们有搜索输入和结果
+then inside of our setup method we have our search input and 
+然后在我们setup方法中，我们有搜索输入框
 
 10
 00:00:30,940 --> 00:00:35,340
- our reactive references remember we're just returning the number of results not the actual
-我们的反应式引用记住我们只是返回结果的数量，而不是实际的结果
+our results for our reactive references 
+和搜索结果的响应式引用
 
 11
-00:00:35,560 --> 00:00:35,940
- 
-
+00:00:35,560 --> 00:00:36,000
+remember we're just returning the number of results not the actual
+记住我们只是返回结果的数量，而不是实际结果
 
 12
 00:00:36,520 --> 00:00:38,580
- will call our event a p I
-将我们的活动称为p I
+then will call our event API
+然后将调用我们event API
 
 13
 00:00:38,840 --> 00:00:41,480
- ending in the search input value I'm returning the results
-以搜索输入值结尾我返回结果
+sending in the search input value and returning the results
+在输入搜索内容时发送并返回结果
 
 14
 00:00:42,160 --> 00:00:45,240
- and finally since we need these inside of our template
-最后，因为我们需要这些在模板中
+and then finally since we need these inside of our template
+最后，因为我们在模板中需要这些东西
 
 15
 00:00:45,440 --> 00:00:47,100
- returned both search input
-返回了两个搜索输入
+we'll return both search input
+因此我们返回搜索输入框
 
 16
-00:00:47,160 --> 00:00:47,960
- and results
-结果呢
-
-17
-00:00:48,080 --> 00:00:49,180
- active references
-活动引用
+00:00:47,160 --> 00:00:49,180
+and results reactive references
+和搜索结果响应式引用
 
 18
 00:00:49,900 --> 00:00:51,260
- if we jump in our browser
-如果我们进入浏览器
+now if we jump in our browser
+现在如果我们打开浏览器
 
 19
-00:00:51,440 --> 00:00:53,900
- I'll see that this doesn't
-我看这不会
-
-20
-00:00:53,980 --> 00:00:54,600
- 
-
-
-21
-00:00:54,920 --> 00:00:55,620
- 
-
+00:00:51,440 --> 00:00:55,620
+we'll see that this doesn't work yet
+我们会看到还不能正常工作
 
 22
-00:00:56,620 --> 00:00:57,300
- not at all
-一点也不
-
-23
-00:00:57,620 --> 00:00:59,500
- is that with our current code
-这是我们目前的代码吗
+00:00:56,620 --> 00:00:59,500
+not at all the problem is that with our current code
+我们当前代码的问题是
 
 24
-00:00:59,820 --> 00:01:02,600
- are you can I call only gets called once
-你能不能我只打一次电话
-
-25
-00:01:02,800 --> 00:01:04,740
- and setup is initially run
-安装程序开始运行
+00:00:59,820 --> 00:01:04,740
+our API call only gets called once when setup is initially run
+当setup初次执行时，我们仅调用了一次API
 
 26
 00:01:05,180 --> 00:01:08,420
- and we needed to run every time the search input changes
-我们需要在每次搜索输入改变时运行
+and we needed to run every time the search input changes
+但我们需要在每次搜索输入改变时都调用
 
 27
 00:01:10,140 --> 00:01:12,880
- this is where we need to use the watch effect syntax
-这就是我们需要使用监视效果语法的地方
+this is where we need to use the watch effect syntax
+这就是我们需要使用watchEffect语法的地方
 
 28
 00:01:12,920 --> 00:01:14,580
- which is new for view three
-对于视图3来说这是新的
+which is new for vue3
+这是vue3中的新api
 
 29
 00:01:15,780 --> 00:01:16,640
- important
-重要的
+we'll import it
+我们把它导入
 
 30
 00:01:17,440 --> 00:01:19,320
- barcode in a callback
-回调中的条形码
+and we'll wrap our code in a callback
+然后我们把代码包在一个回调函数里
 
 31
 00:01:20,860 --> 00:01:23,120
- watch effect will run this function on next tick
-“监视效果”将在下一个刻度上运行此函数
+watchEffect will run this function on next tick
+watchEffect将立刻运行此函数
 
 32
 00:01:23,300 --> 00:01:25,460
- re actively tracking its dependencies
-重新主动跟踪其依赖项
+while reactivity tracking its dependencies
+且响应式的追踪其依赖项
 
 33
 00:01:25,500 --> 00:01:28,000
- rerunning it when its dependencies change
-当依赖项更改时重新运行它
+and re running it when its dependencies change
+当依赖项更改时变回重新运行回调
 
 34
 00:01:29,160 --> 00:01:30,640
- if we look in our browser now
-如果我们现在查看浏览器
+so if we look at our browser now
+所以如果我们现在再看浏览器
 
 35
-00:01:31,220 --> 00:01:32,060
- as we type
-当我们打字时
-
-36
-00:01:32,620 --> 00:01:34,480
- a number of events gets updated
-许多事件得到更新
+00:01:31,220 --> 00:01:34,480
+as we type our number of events gets updated
+当我们打字时，我们时间数量会实时更新
 
 37
 00:01:38,020 --> 00:01:39,460
- you can think of watch effect
-你可以想到手表效应
+you can think of watchEffect
+你可以认为watchEffect
 
 38
 00:01:39,500 --> 00:01:41,780
- a simpler version of the watch
-更简单的手表
+as a simpler version of the watch
+是一个更简单的watch版本
 
 39
 00:01:41,940 --> 00:01:44,860
- auction that you might be familiar with from view too
-你可能从视图中熟悉的拍卖
+function that you might be familiar with from vue2
+就是vue2中熟悉的功能
 
 40
 00:01:45,820 --> 00:01:50,880
- I still use the watch function when we want to be specific about what triggers the watcher to run
-我仍然使用watch函数，当我们想具体说明什么触发观察程序运行时
+we still use the watch function when we want to be specific about what triggers the watcher to run
+当我们想具体说明什么东西会触发观察程序重新运行时我们仍然会使用watch函数
 
 41
 00:01:52,780 --> 00:01:55,960
- even if I call back includes other reactive objects
-即使我回叫也包括其他反应对象
+so even if our callback includes other reactive objects
+所以即使我们回调函数中还包括其他响应式对象
 
 42
 00:01:56,300 --> 00:01:59,100
- won't get called unless search input changes
-除非搜索输入更改，否则不会调用
+it won't get called unless search input changes
+只要搜索输入内容不变都不会调用
 
 43
 00:02:00,400 --> 00:02:05,160
- watch we can also get access to the new value and old value of the item being watched
-我们还可以访问被监视项目的新值和旧值
+using watch we can also get access to the new value and old value of the item being watched
+我们还可以访问被监视项目的新旧值
 
 44
 00:02:05,660 --> 00:02:06,600
@@ -221,21 +186,22 @@
 45
 00:02:09,280 --> 00:02:11,160
  I can watch multiple reactive objects
-我可以看到多个反应对象
+我可以侦听多个响应式对象
 
 46
 00:02:11,520 --> 00:02:12,920
- sending in an array
-在数组中发送
+by sending an array
+通过传递一个数组
 
 47
 00:02:13,780 --> 00:02:14,420
- 
+and
+并且
 
 
 48
 00:02:14,860 --> 00:02:19,040
- you can also get access to the new and old values of each of these
+we can also get access to the new and old values of each of these
 您还可以访问这些值的新值和旧值
 
 49
@@ -245,23 +211,18 @@
 
 50
 00:02:24,680 --> 00:02:29,160
- what might it look like if we use watch instead of watch effect in our example
-如果在我们的例子中使用手表而不是手表效果会是什么样子
+so what might it look like if we use watch instead of watch effect in our example
+所以如果在我们的例子中使用watch而不是watchEffect会是什么样子
 
 51
 00:02:30,520 --> 00:02:31,620
- we imported
-我们进口的
+first we imported
+我们首先导入
 
 52
-00:02:32,720 --> 00:02:33,700
- called watch
-叫手表
-
-53
-00:02:33,820 --> 00:02:34,580
- input
-输入
+00:02:32,720 --> 00:02:34,580
+then we'll called watch searchInput
+然后我们使用watch侦听searchInput
 
 54
 00:02:34,900 --> 00:02:37,940
@@ -281,22 +242,22 @@
 57
 00:02:41,900 --> 00:02:44,540
  number of events starts out as empty
-事件数以空开始
+事件数会以空开始
 
 58
 00:02:45,240 --> 00:02:46,760
  then it works as we type
-然后我们打字的时候就可以了
+然后我们打字的时候又可以了
 
 59
 00:02:48,360 --> 00:02:52,380
- started out as MT because it didn't get run on initial load
-一开始是MT，因为它没有在初始负载下运行
+it started out as empty because it didn't get run on initial load
+一开始是空，因为它没有在初始时运行
 
 60
 00:02:52,600 --> 00:02:53,820
  in other words watch
-换句话说，观察
+换句话说，watch
 
 61
 00:02:53,920 --> 00:02:55,960
@@ -305,28 +266,28 @@
 
 62
 00:02:56,480 --> 00:02:58,280
- might be the functionality you want
+this might be the functionality you want
 可能是你想要的功能
 
 63
 00:02:58,680 --> 00:03:00,380
- however if you did want to use watch
-但是如果你真的想用手表
+however if you did want to use watch
+但是如果你真的想让watch
 
 64
 00:03:00,600 --> 00:03:02,760
  have it run on initial load
-让它在初始负载下运行
+在初始化时就运行
 
 65
 00:03:03,200 --> 00:03:05,680
  you can send in the option immediate true
-你可以立即发送选项true
+你可以设置immediate选项为true
 
 66
 00:03:06,560 --> 00:03:09,700
  run the code immediately and then again when search input changes
-立即运行代码，然后在搜索输入更改时再次运行
+代码会立即运行，然后在搜索输入更改时再次运行
 
 67
 00:03:10,860 --> 00:03:14,000
@@ -335,7 +296,7 @@
 
 68
 00:03:14,080 --> 00:03:15,260
- as it ran initially
+ as it run initially
 就像它最初运行的那样
 
 69
@@ -346,22 +307,22 @@
 70
 00:03:16,600 --> 00:03:17,400
  as we expect
-如我们所料
+如我们期待的那样
 
 71
 00:03:19,720 --> 00:03:21,200
  watch effect
-手表效应
+watchEffect
 
 72
 00:03:21,280 --> 00:03:24,660
  only ever takes a single argument which is the call back
-只接受一个单独的参数，那就是回电
+只接受一个单独的参数，那就是回调函数
 
 73
 00:03:25,280 --> 00:03:26,140
  and watch
-看吧
+watch呢
 
 74
 00:03:26,400 --> 00:03:28,140
@@ -376,7 +337,7 @@
 76
 00:03:29,360 --> 00:03:31,880
  reactive object we want to watch
-我们要看的反应对象
+我们要跟踪的响应对象
 
 77
 00:03:32,440 --> 00:03:33,580
@@ -387,4 +348,3 @@
 00:03:33,740 --> 00:03:35,060
  we want to configure it
 我们要配置它
-
