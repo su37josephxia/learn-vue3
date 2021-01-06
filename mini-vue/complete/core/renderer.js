@@ -82,7 +82,7 @@ export function diff(v1, v2) {
     } else if (Array.isArray(newChildren)) {
       if (typeof oldChildren === "string") {
         // 清空之前的数据
-        n1.el.innerHTML = "";
+        el.innerHTML = "";
         // 把所有的 children mount 出来
         newChildren.forEach((vnode) => {
           mountElement(vnode, el);
@@ -123,7 +123,7 @@ export function diff(v1, v2) {
 
 export function mountElement(vnode, container) {
   // 渲染成真实的 dom 节点
-  const el = (vnode.el = createElement(vnode.type));
+  const el = (vnode.el = createElement(vnode.tag));
 
   // 处理 props
   if (vnode.props) {

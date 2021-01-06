@@ -123,7 +123,7 @@ function diff(v1, v2) {
 
 function mountElement(vnode, container) {
   // 渲染成真实的 dom 节点
-  const el = (vnode.el = createElement(vnode.type));
+  const el = (vnode.el = createElement(vnode.tag));
 
   // 处理 props
   if (vnode.props) {
