@@ -2,7 +2,7 @@
 00:00:04,780 --> 00:00:06,980
 Aside from improved typescript support
 除了改善了typescript支持
- 
+
 2
 00:00:07,140 --> 00:00:09,480
 the two reasons we want to use the composition API are
@@ -11,7 +11,7 @@ the two reasons we want to use the composition API are
 3
 00:00:09,620 --> 00:00:15,560
 to organize things by feature 
-按特性组织内容 
+按特性组织内容
 
 4
 00:00:13,000 --> 00:00:15,000
@@ -21,21 +21,21 @@ and to make the code reusable across other components
 5
 00:00:15,740 --> 00:00:17,280
 and right now are sample code doesn't neither
-并且现在我们的示例代码都没有 
- 
+而现在我们的示例代码都没有
+
 6
-00:00:18,000 --> 00:00:19,000     
-so let's refactor 
-所以让我们重构  
+00:00:18,000 --> 00:00:19,000
+so let's refactor
+所以我们来重构一下
 
 7
-00:00:19,010 -->  00:00:21,110
+00:00:19,010 --> 00:00:21,110
 as if we wanted to make things more modular
-就像是类似我们的代码更模块化
+我们想要代码更模块化一些
 
 8
 00:00:22,340 --> 00:00:23,000
-Here is our current code 
+Here is our current code
 这是我们目前的代码
 
 9
@@ -50,13 +50,13 @@ However I am now using refs
 
 11
 00:00:28,960 --> 00:00:31,280
- because honestly I think it's a little simpler
+because honestly I think it's a little simpler
 因为说实话，我觉得refs的使用更简单一点
 
 12
 00:00:31,700 --> 00:00:32,320
-To organized the code by feature 
-为了按功能组织代码 
+To organized the code by feature
+为了按功能组织代码
 
 13
 00:00:32,620 --> 00:00:35,420
@@ -85,7 +85,7 @@ Now our component is organized by feature
 
 18
 00:00:47,080 --> 00:00:49,001
-And if there was additional features I wanted to add   
+And if there was additional features I wanted to add 
 如果我想添加其他功能
 
 19
@@ -95,7 +95,7 @@ I could just start reading another composition function
 
 20
 00:00:52,580 --> 00:00:56,320
- what if I wanted to make this code were reusable across other components
+what if I wanted to make this code were reusable across other components
 如果我想让跨组件使用代码呢
 
 19
@@ -199,7 +199,7 @@ this was one of the problems we previously had with Mixin
 
 44
 00:01:52,740 --> 00:01:57,560
-to solve this, we can create local objects 
+to solve this, we can create local objects
 为了解决这个问题,我们可以在当前页面创建一些对象
 
 45
@@ -208,16 +208,16 @@ for the data that are composition functions are sending in
 
 44
 00:01:57,620 --> 00:01:59,740
- and then use those in the return object
+and then use those in the return object
 然后在return对象中使用它们
 
 45
 00:02:02,820 --> 00:02:06,600
- now it's explicit which objects are coming from which composition function
+now it's explicit which objects are coming from which composition function
 现在它明确了哪些对象来自哪个组合函数
 
 46
 00:02:06,820 --> 00:02:08,880
- this is a Vue3.0 best practice
+this is a Vue3.0 best practice
 这是Vue3.0 最好的例子
 

@@ -2,13 +2,8 @@
 
 然叔的Vue3.0学习笔记
 
-
-
 ## 🏠欢迎一起交流
-
-![Snip20201215_6](https://gitee.com/josephxia/picgo/raw/master/juejin/Snip20201215_6.png)
-
-
+微信公众号 🔍【前端大班车】 ，多位【🔥Vue3代码贡献者】带你飞🚀
 
 ## 目录结构
 
@@ -41,9 +36,15 @@
 
 - [忙了一夜用CompositionAPI征服产品妹子花里胡哨的需求](https://juejin.cn/post/6891885484524437518)
 
+- [闪电五连鞭：Composition API原理深度剖析](https://juejin.cn/post/6894993303486332941)
+- [又是一夜，这篇Composition-API实操还觉得短吗](https://juejin.cn/post/6892017198450081800)
+- [拿下vue3你要做好这些准备](https://juejin.cn/post/6866373381424414734)
 
 
+## B站热门视频教程
+- [【全网首发】Vue3.0光速上手「持续更新中」](https://www.bilibili.com/video/BV1Wh411X7Xp)
 
+- [【Vue Mastery】composition API + 深度解读](https://www.bilibili.com/video/BV1my4y1m7sz)
 
 
 

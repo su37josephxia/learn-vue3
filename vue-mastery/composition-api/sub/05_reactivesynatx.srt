@@ -1,175 +1,278 @@
 ﻿1
-00:00:00,260 --> 00:00:02,180
- I
-我
+00:00:04,680 --> 00:00:09,480
+ until now we've been using reactive references to declare all of our reactive properties
+到目前为止，我们一直在使用响应式引用来声明我们所有的响应式属性
 
 2
-00:00:04,760 --> 00:00:06,840
- consider component we're going to add a list
-考虑组件，我们要添加一个列表
+00:00:09,880 --> 00:00:15,620
+however the composition syntax comes with another equally valid way declare reactive properties
+然而，复合API语法有另一个同样有效的方法去响应式的声明一些属性
 
 3
-00:00:06,900 --> 00:00:08,960
- the people who are attending our event
-参加我们活动的人
+00:00:16,520 --> 00:00:17,760
+which I want to show you now
+我现在就给你秀一下
 
 4
-00:00:09,560 --> 00:00:12,380
- in the setup method were gonna add in the attending are a
-在设置方法中要添加主治医生
+00:00:18,080 --> 00:00:22,560
+ use it instead of reactive references first we need to import  be ractive
+使用reactive代替reactive reference 首先我们要先引入reactive
 
 5
-00:00:12,520 --> 00:00:14,220
- which is a reactive reference
-这是一个反应性参考
+00:00:23,240 --> 00:00:26,620
+ I will create an event constant and called the reactive function
+创建一个event常量，称为响应式函数
 
 6
-00:00:15,080 --> 00:00:16,700
- give our template access to it
-给我们的模板访问权限
+00:00:26,800 --> 00:00:28,480
+ it returns a reactive object
+它返回一个响应式对象
 
 7
-00:00:18,080 --> 00:00:20,400
- print the list of those who are attending
-打印出席人员名单
+00:00:29,480 --> 00:00:33,680
+send in an object with each of the properties that we want to be reactive
+派发一个对象，其中包含我们想要的每个属性
 
 8
-00:00:21,820 --> 00:00:23,760
- upon it now looks something like this
-现在看起来像这样
+00:00:34,460 --> 00:00:37,120
+ notice here it even contains our computed property
+注意这里它甚至包含了我们的计算属性
 
 9
-00:00:26,000 --> 00:00:28,020
- in addition to printing our capacity
-除了印刷我们的能力
+00:00:38,260 --> 00:00:41,460
+ this might feel a little more familiar since we're used to declaring
+我们可能有点熟悉,因为我们过去常常用option API 的data来声明我们的响应式对象
 
 10
-00:00:28,240 --> 00:00:31,720
- we now want to show our users how many spaces are left
-现在，我们要向用户显示还有多少空间
+00:00:41,620 --> 00:00:44,520
+ reactive object using our data option
+
 
 11
-00:00:31,760 --> 00:00:32,560
- in our event
-在我们的活动中
+00:00:45,280 --> 00:00:47,800
+ we are doing here is taking a reactive references
+我们在这里做的是响应式而不是
 
 12
-00:00:33,380 --> 00:00:36,480
- so in order to calculate this using a regular components
-所以为了计算这个用正则分量
+00:00:48,060 --> 00:00:49,820
+ instead declaring them in an object
+在对象里面声明它们
 
 13
-00:00:36,520 --> 00:00:36,940
- 
-
+00:00:50,380 --> 00:00:52,880
+ you should notice that inside of her computed property
+你应该能发现在computed属性 
 
 14
-00:00:37,060 --> 00:00:38,540
- my credit computer property
-我的信用电脑财产
+00:00:52,980 --> 00:00:55,180
+ I no longer have to use dot value
+不再使用.value 了
 
 15
-00:00:38,620 --> 00:00:41,360
- which takes the current capacity subtracted by
-电流容量减去
+00:00:56,380 --> 00:00:58,720
+since our object is taking care of reactivity
+因为我们考虑的是响应式
 
 16
-00:00:41,480 --> 00:00:43,180
- length of our attending are a
-我们的出席时间是
+00:00:59,300 --> 00:01:00,460
+Then we'll declare a method
+然后我们会声明一个方法
 
 17
-00:00:43,980 --> 00:00:46,500
- we do this using the composition Napier
-我们用纳皮尔构图来做这个
+00:01:00,760 --> 00:01:04,140
+again we don't have to use dot value 
+我们也不会使用.value
 
 18
-00:00:46,560 --> 00:00:46,860
- 
-
+00:01:04,260 --> 00:01:05,060
+we can just say event dot capacity plus plus
+我们可以写event.capacity++
 
 19
-00:00:47,700 --> 00:00:49,780
- I'll shorten our template to make some room
-我会缩短模板以腾出一些空间
+00:01:05,860 --> 00:01:09,100
+ and lastly notice I can send the entire event object
+最后请注意，我可以派发整个事件对象
 
 20
-00:00:49,960 --> 00:00:51,920
- now inside of our setup method
-现在在我们的设置方法内部
+00:01:09,140 --> 00:01:10,180
+ into the template
+返回到模板中
 
 21
-00:00:52,180 --> 00:00:52,600
- 
-
+00:01:10,380 --> 00:01:12,500
+Both of these are completely valid syntaxes
+这两种语法完全都是有效的
 
 22
-00:00:52,920 --> 00:00:55,760
- we need to import the computed function
-我们需要导入计算的函数
+00:01:12,760 --> 00:01:14,420
+It's up to you which one you use
+取决你想选择哪一种
 
 23
-00:00:56,660 --> 00:00:57,300
- then
-然后
+00:01:20,000 --> 00:01:21,340
+our template is going to look a little different
+我们的模板看起来会有点不同
 
 24
-00:00:57,480 --> 00:00:59,740
- create a new constant called spaces left
-创建一个名为spaces left的新常量
+00:01:21,920 --> 00:01:26,920
+ here we have to specify event dot event dot event dot
+这里我们必须指定event.dot
 
 25
-00:00:59,920 --> 00:01:01,880
- sends into the computer function
-发送到计算机功能
+00:01:26,960 --> 00:01:28,100
+to access the properties on this reactive object
+去访问这个对象上的属性
 
 26
-00:01:01,960 --> 00:01:03,400
- anonymous function
-匿名函数
+00:01:28,800 --> 00:01:32,800
+I saw this code I kinda of didn't like it
+当我看到这段代码的时候我不太喜欢这样
 
 27
-00:01:03,420 --> 00:01:07,740
- returns the result of taking capacity and subtracting the number of people who are attending
-返回接受能力并减去参加人数的结果
+00:01:32,900 --> 00:01:34,800
+like, I wanted to be able to destructure
+比如说,我想破坏结构
 
 28
-00:01:08,680 --> 00:01:10,640
- I have to use that value here
-我必须在这里使用这个值
+00:01:35,900 --> 00:01:36,800
+that event object into pieces so that 
+这个event对象变成了一段一段的
 
-29
-00:01:10,900 --> 00:01:13,020
- I'm dealing with two reactive references
-我正在处理两个反应性引用
+28
+00:01:37,900 --> 00:01:39,800
+in my template I didn't have to say event dot
+在我的模板中, 我不得不使用event.dot
 
 30
-00:01:14,720 --> 00:01:16,300
- then give the template access
-然后授予模板访问权限
+00:01:40,320 --> 00:01:43,840
+ I really wondered if I could destruction this event object so my template
+我真的很想知道我是否可以破坏这个事件对象的结构，这样我的template
 
 31
-00:01:16,440 --> 00:01:17,560
- this computer property
-此计算机属性
+00:01:43,860 --> 00:01:45,660
+ didn't have to have a event on
+就没有点了
 
 32
-00:01:19,200 --> 00:01:20,280
- jump in the browser
-在浏览器中跳转
+00:01:47,780 --> 00:01:50,380
+ now that i've changed my template it wouldn't currently work
+现在我已经改变了我的template，它目前不起作用
 
 33
-00:01:20,440 --> 00:01:22,080
- I can see that everything is working
-我看到一切都在运转
+00:01:50,580 --> 00:01:54,120
+To make this work I would have to change how I'm returning the event
+为了让这个起作用,我不得不返回这个事件
 
 34
-00:01:22,200 --> 00:01:23,340
- if my computed property
-如果我的电脑属性
+00:01:54,360 --> 00:01:55,620
+ my first guess
+我的第一个猜测
 
 35
-00:01:23,660 --> 00:01:24,480
- expect
-期待
+00:01:55,760 --> 00:01:59,080
+ it's just to use dot dot dot however that didn't work
+使用...去结构 但是没用
+
+36
+00:01:59,500 --> 00:02:02,520
+ second guess was simply to list out each of the properties
+第二个猜测是简单地列出每个属性
+
+37
+00:02:02,620 --> 00:02:04,840
+but also error out
+但是也错了
+
+38
+00:02:05,280 --> 00:02:10,440
+problem here is that splitting apart the event object is going to remove its reactivity
+问题是拆分event会使响应式消失
+
+39
+00:02:10,960 --> 00:02:12,200
+ it's not going to work
+这是行不通的
+
+40
+00:02:12,980 --> 00:02:14,040
+The solution here is to take
+解决方案是
+
+41
+00:02:14,200 --> 00:02:23,400
+to take our reactive object split each object up into its own reactive references
+把我们的响应式对象拆分成一个一个的reactive ref
+
+42
+00:02:23,600 --> 00:02:24,400
+Luckily,Vue3.0 come with a function called toRef
+幸运的是,vue3.0附带了一个函数叫toRef
+
+43
+00:02:25,820 --> 00:02:26,760
+So I'll import it
+我会引入
+
+44
+00:02:26,940 --> 00:02:30,140
+and then if I send event into this function
+如果我把事件发送到这个函数
+
+45
+00:02:30,320 --> 00:02:33,460
+ it's going to convert my reactive object 
+它会改变我的响应式对象
+
+46
+00:02:33,760 --> 00:02:36,840 into a plain object
+ each property being a reactive reference
+每个属性都是响应式引用
+
+47
+00:02:37,020 --> 00:02:39,220
+that points to the property on the original object
+指向原始对象的属性
+
+48
+00:02:40,760 --> 00:02:44,720
+I do a mention though but if I didn't need to expose increase capacity
+不过我还是想提一下如果我不需要让capacity++
+
+49
+00:02:44,880 --> 00:02:45,800
+ my template
+我的模板
+
+50
+00:02:46,000 --> 00:02:48,080
+ I could instead simply write
+我可以直接写
+
+51
+00:02:48,620 --> 00:02:49,200
+toRefs event
+return toRefs(event) 
+
+52
+00:02:49,540 --> 00:02:52,500
+And I wouldn't need to destructure it
+我不需要去解构event
+
+53
+00:02:52,600 --> 00:02:54,340
+ simply returning a plain object
+直接return一个对象
+
+54
+00:02:54,640 --> 00:02:56,140
+ which is what our setup function
+这就是我们的setup功能
+
+55
+00:02:56,240 --> 00:02:57,020
+ is expected to return
+被return回来
+
+ 
+
 
