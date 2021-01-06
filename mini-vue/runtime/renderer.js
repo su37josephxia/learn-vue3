@@ -121,6 +121,7 @@ function diff(v1, v2) {
   }
 }
 
+
 function mountElement(vnode, container) {
   // 渲染成真实的 dom 节点
   const el = (vnode.el = createElement(vnode.type));
