@@ -24,8 +24,8 @@
               let isMounted = false;
               let prevSubTree;
               watchEffect(() => {
-                dom.innerHTML = "";
-                if (true) {
+                if (!isMounted) {
+                  dom.innerHTML = "";
                   // mount
                   isMounted = true;
                   const subTree = config.render(setupResult);
