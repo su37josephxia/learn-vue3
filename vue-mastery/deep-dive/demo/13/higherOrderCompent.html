@@ -1,0 +1,47 @@
+<script src="https://unpkg.com/vue@next"></script>
+<div id="app"></div>
+<script>
+    const {
+        createApp,
+        h
+    } = Vue
+
+
+
+    function withMouse(Inner) {
+        return {
+            data() {
+                return {
+                    x: 0,
+                    y: 0
+                }
+            },
+            methods: {
+                updated(e) {
+                    this.x = e.pageX
+                    this.y = e.pageY
+                }
+            },
+            mounted() {
+                window.addEventListener('mousemove', this.updated)
+            },
+            unmounted() {
+                window.removeEventListener('mousemove', this.updated)
+            },
+            render() {
+                return h(Inner, {
+                    x:this.x,
+                    y:this.y
+                })
+            }
+        }
+
+    }
+    //不能解决真正的问题
+    const App = withMouse({
+        template: `{{ x }} {{ y }}`,
+        props: ['x', 'y'],
+        mixins: [MouseMixin]
+    })
+    createApp(App).mount('#app')
+</script>

@@ -1,38 +1,22 @@
 <script src="https://unpkg.com/vue@next"></script>
 <div id="app"></div>
 <script>
-    const { createApp,h } = Vue
-    const mouseMixin = {
+    const { createApp } = Vue 
+    const App = {
+        template:`{{ x }} {{ y }}`,
         data(){
-            return { x:0,y:0 }
+            return {
+                x:0,
+                y:0
+            }
         },
-        methods: {
-            update (e) {
+
+        mounted () {
+            window.addEventListener('mousemove',e=>{
                 this.x = e.pageX
                 this.y = e.pageY
-            }
-        },
-        mounted () {
-            window.addEventListener('mousemove',this.update)
-        },
-        unmounted(){
-            window.removeEventListener('mousemove',this.update)
+            })
         }
     }
-
-    function withMouse(Inner) {
-        return { 
-            render() {
-                return h(Inner)
-            }
-        }
-    }
-
-    const App = withMouse({
-        //需要什么注入什么
-        props:['x','y'],
-        template:`{{ x }} {{ y }}`,
-       
-    })
     createApp(App).mount('#app')
 </script>
