@@ -1,17 +1,7 @@
-<style>
-  .red {
-    color: red;
-  }
-  .green {
-    color: green;
-  }
-  
-</style>
-<div id="app"></div>
-
+<div id='app'></div>
 <script>
 
-  function h(tag, props, children) {
+function h(tag, props, children) {
     return {
       tag,
       props,
@@ -36,6 +26,7 @@
   }
   
   function insert(el, parent) {
+      console.log(parent,el);
     parent.append(el);
   }
   
@@ -106,7 +97,7 @@
           el.innerHTML = "";
           // 把所有的 children mount 出来
           newChildren.forEach((vnode) => {
-            mountElement(vnode, el);
+            mount(vnode, el);
           });
         } else if (Array.isArray(oldChildren)) {
           // a, b, c, d, e -> new
@@ -134,7 +125,7 @@
             // 说明 new 的节点多
             // 那么需要创建对应的节点
             for (let i = length; i < newChildren.length; i++) {
-              mountElement(newChildren[i], el);
+              mount(newChildren[i], el);
             }
           }
         }
@@ -142,7 +133,7 @@
     }
   }
   
-  function mountElement(vnode, container) {
+  function mount(vnode, container) {
     // 渲染成真实的 dom 节点
     const el = (vnode.el = createElement(vnode.tag));
   
@@ -157,22 +148,179 @@
     // 要处理 children
     if (Array.isArray(vnode.children)) {
       vnode.children.forEach((v) => {
-        mountElement(v, el);
+        mount(v, el);
       });
     } else {
       insert(createText(vnode.children), el);
     }
-  
+    
     // 插入到视图内
     insert(el, container);
   }
   
+// reactivity part
+// 1. 收集依赖
+// 2. 触发依赖
+let currentEffect;
+class Dep {
+  constructor() {
+    // 收集依赖的容器
+    this.effects = new Set();
+  }
+  // get value() {
+  //   this.depend();
+  //   return this.val;
+  // }
 
-  const vdom = h("div", { class: "red" }, [h("span", null, "hello")]);
+  // set value(newVal) {
+  //   this.val = newVal;
+  //   this.notice();
+  // }
+  depend() {
+    if (currentEffect) {
+      this.effects.add(currentEffect);
+    }
+  }
 
-  const vdom2 = h("div", { class: "green" }, [h("span", null, "changed!")]);
+  notice() {
+    for (const effect of this.effects) {
+      effect();
+    }
+  }
+}
 
-  mountElement(vdom, document.getElementById("app"));
+function watchEffect (effect)  {
+  currentEffect = effect;
+  effect();
+  currentEffect = null;
+};
 
-  patch(vdom, vdom2);
+// export function ref (rawVal) {
+//     return new Dep(rawVal)
+// }
+
+const targetMap = new WeakMap();
+function getDep (target, key){
+    // 去找到当前 key 对应的 dep
+    let depsMap = targetMap.get(target);
+    if (!depsMap) {
+      depsMap = new Map();
+      targetMap.set(target, depsMap);
+    }
+
+    let dep = depsMap.get(key);
+    if (!dep) {
+      dep = new Dep();
+      depsMap.set(key, dep);
+    }
+
+    return dep;
+  }
+function reactive(raw) {
+  // 对象
+  // 如果对象的每个 key 当做之前的 dep 的话，那么一个 key 就应该有一个 dep
+  // 每一个 key 的 dep 应该存储在哪里
+  // 设置的时候，是不是需要调用到 dep 的 notice 或者是 depend
+  // 之前我们学过用 object.definePropriety
+  // Proxy
+
+  // 多个对象
+  // 当前这个对象
+  // 基于它的key 来找对应的 dep 啊
+
+  return new Proxy(raw, {
+    get(target, key) {
+      // 去找到当前 key 对应的 dep
+      const dep = getDep(target, key);
+      // 依赖收集
+      dep.depend();
+
+      // return target[key]
+      return Reflect.get(target, key);
+    },
+    set(target, key, val) {
+      // 还是需要找到 dep
+      const dep = getDep(target, key);
+      const result = Reflect.set(target, key, val);
+      dep.notice();
+      return result;
+    },
+  });
+}
+
+// 考虑到最终的框架API 定义一个组件
+const App={
+    render(content) {
+          return h("div", null, [
+            h("div", null, String(content.state.message)),
+            h(
+              "button",
+              {
+                onClick: content.click,
+              },
+              "click"
+            ),
+          ]);
+        },
+    
+    setup() {
+          const state = reactive({
+            message: "Hello Vue 3!!",
+          });
+
+          const click = () => {
+            state.message = state.message.split("").reverse().join("");
+          };
+          return { state, click };
+        },
+
+
+}
+
+const Vue={
+    createApp(config){
+        return {
+            mount:function(container){
+            
+                let setupResult= config.setup();
+                let render=config.render(setupResult);
+                let el= document.querySelector(container);
+                let isMounted=false;
+                let prevVdom;
+                watchEffect(()=>{
+                    if(!isMounted){
+                        prevVdom=config.render(setupResult);
+                        mount(prevVdom,el);
+                        isMounted=true;
+                    }else{
+                        const newVdom=config.render(setupResult);
+                        patch(prevVdom,newVdom);
+                        prevVdom=newVdom;
+                    }
+                });
+
+            }
+        }
+    }
+}
+function mountApp(component,container){
+    let isMounted=false;
+    let prevVdom;
+    watchEffect(()=>{
+        if(!isMounted){
+            prevVdom=component.render();
+            mount(prevVdom,container);
+            isMounted=true;
+        }else{
+            const newVdom=component.render();
+            patch(prevVdom,newVdom);
+            prevVdom=newVdom;
+        }
+    });
+}
+
+
+// mountApp(App,document.getElementById('app'));
+const { createApp} =Vue;
+createApp(App).mount('#app');
 </script>
