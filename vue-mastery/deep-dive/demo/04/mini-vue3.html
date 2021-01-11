@@ -289,6 +289,8 @@ const Vue={
                 let prevVdom;
                 watchEffect(()=>{
                     if(!isMounted){
+                        // clear content before mounting
+                        el.innerHTML=''
                         prevVdom=config.render(setupResult);
                         mount(prevVdom,el);
                         isMounted=true;
