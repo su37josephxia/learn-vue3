@@ -1,12 +1,12 @@
 /**
  * 返回一个虚拟DOM节点
- * @param {*} type 
+ * @param {*} tag 
  * @param {*} props 
  * @param {*} children 
  */
-function h(type, props, children = []) {
+function h(tag, props, children = []) {
   return {
-    type,
+    tag,
     props,
     children,
   };
