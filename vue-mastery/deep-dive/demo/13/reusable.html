@@ -1,0 +1,32 @@
+<script src="https://unpkg.com/vue@next"></script>
+<div id="app"></div>
+<script>
+    const { createApp } = Vue 
+
+    const MouseMixin = {
+        data(){
+            return {
+                x:0,
+                y:0
+            }
+        },
+        methods: {
+            updated (e) {
+                this.x = e.pageX
+                this.y = e.pageY
+            }
+        },
+        mounted () {
+            window.addEventListener('mousemove',this.updated)
+        },
+        unmounted(){
+            window.removeEventListener('mousemove',this.updated)
+        }
+    }
+
+    const App = {
+        template:`{{ x }} {{ y }}`,
+        mixins:[MouseMixin]
+    }
+    createApp(App).mount('#app')
+</script>
