@@ -1,6 +1,6 @@
-export function h(type, props, children = []) {
+export function h(tag, props, children = []) {
   return {
-    type,
+    tag,
     props,
     children,
   };
