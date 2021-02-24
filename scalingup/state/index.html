@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+
+  <body>
+    <!-- <div id="app-a">App A: {{ message }}</div>
+    <div id="app-b">App B: {{ message }}</div> -->
+
+    <div id="app-a">{{sharedState.message}}</div>
+    <div id="app-b">{{sharedState.message}}</div>
+
+    <script>
+      const sourceOfTruth = Vue.reactive({
+        message: "Hello",
+      });
+
+      const store = {
+        debug: true,
+
+        state: Vue.reactive({
+          message: "Hello!",
+        }),
+
+        setMessageAction(newValue) {
+          if (this.debug) {
+            console.log("setMessageAction triggered with", newValue);
+          }
+
+          this.state.message = newValue;
+        },
+
+        clearMessageAction() {
+          if (this.debug) {
+            console.log("clearMessageAction triggered");
+          }
+
+          this.state.message = "";
+        },
+      };
+
+      const appA = Vue.createApp({
+        data() {
+          // return sourceOfTruth;
+          return {
+            sharedState: store.state,
+          };
+        },
+      }).mount("#app-a");
+
+      const appB = Vue.createApp({
+        data() {
+          // return sourceOfTruth;
+          return {
+            sharedState: store.state,
+          };
+        },
+
+        mounted() {
+          setTimeout(() => {
+            // sourceOfTruth.message = "Goodbye";
+            store.setMessageAction("Goodbye!");
+          }, 2000);
+        },
+      }).mount("#app-b");
+    </script>
+  </body>
+</html>
