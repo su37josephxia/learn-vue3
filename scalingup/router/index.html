@@ -2,25 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
     <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
   </head>
-
   <body>
     <div id="app"></div>
     <script>
-      const NotFoundComponent = { template: "<p>Page not found</p>" };
-      const HomeComponent = { template: "<p>Home page</p>" };
-      const AboutComponent = { template: "<p>About page</p>" };
+      const NotFoundComponent = { template: "<p>Page not Found</p>" };
+      const HomeComponent = { template: "<p>Home Page</p>" };
+      const AboutComponent = { template: "<p>About Page</p>" };
 
-      // 配置路由策略
+      // 路由策略
       const routes = {
         "/": HomeComponent,
         "/about": AboutComponent,
       };
 
+      // 路由组件
       const SimpleRouter = {
         data: () => ({
           currentRoute: window.location.pathname,
@@ -31,7 +31,8 @@
             return routes[this.currentRoute] || NotFoundComponent;
           },
         },
-        // 通过H函数渲染组件
+
+        // 渲染
         render() {
           return Vue.h(this.CurrentComponent);
         },
@@ -40,8 +41,8 @@
       const app = Vue.createApp(SimpleRouter).mount("#app");
 
       setTimeout(() => {
-        app.currentRoute = '/about'
-        history.pushState(null, "about", "about")
+        app.currentRoute = "/about";
+        history.pushState(null, "about", "/about");
       }, 1000);
     </script>
   </body>
