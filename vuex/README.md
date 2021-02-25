@@ -61,15 +61,26 @@ app.mount('#app')
 HelloWorld.vue
 
 ```
-<button @click="increment">Add</button>
-<h1> {{ $store.state.count }}</h1>
+<template>
+  <div>
+    <button @click="increment">Add</button>
+    <h1> {{ $store.state.count }}</h1>
+  </div>
+</template>
 
-
-methods: {
+<script>
+export default {
+  methods: {
     increment() {
       this.$store.commit("increment");
       console.log(this.$store.state.count);
     },
-},
+  },
+};
+</script>
 ```
+
+## 核心概念 - Core Concepts
+
+### State
 
