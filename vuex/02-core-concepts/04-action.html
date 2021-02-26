@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+    <script src="https://unpkg.com/vuex@next"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      // import {createApp} from 'vue'
+      // import {createStore} from 'vuex'
+      const { createApp } = Vue;
+      const { createStore, mapActions } = Vuex;
+
+      const getData = () => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            console.log('getData...')
+            resolve()
+          },1000)
+        })
+      }
+
+      const getOtherData = () => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            console.log('getOtherData...')
+            resolve()
+          },1000)
+        })
+      }
+
+
+      const store = createStore({
+        state: {
+          count: 0,
+        },
+        mutations: {
+          increment(state) {
+            state.count++;
+          },
+        },
+        actions: {
+          increment(context) {
+            context.commit("increment");
+          },
+          // 异步过程
+          incrementAsync({ commit }, payload) {
+            console.log("payload:", payload);
+            setTimeout(() => {
+              commit("increment");
+            }, 1000);
+          },
+          // Composing Actions
+          // actionA({ commit }) {
+          //   return new Promise((resolve, reject) => {
+          //     setTimeout(() => {
+          //       commit("increment");
+          //       resolve();
+          //     }, 1000);
+          //   });
+          // },
+          // actionB({ dispatch, commit }) {
+          //   return dispatch("actionA").then(() => {
+          //     commit("increment");
+          //   });
+          // },
+
+          // assuming `getData()` and `getOtherData()` return Promises
+          async actionA({ commit }) {
+            commit("increment", await getData());
+          },
+          async actionB({ dispatch, commit }) {
+            await dispatch("actionA"); // wait for `actionA` to finish
+            commit("increment", await getOtherData());
+          },
+        },
+      });
+
+      
+
+
+      const app = createApp({
+        template: `
+            <div>{{ $store.state.count }}</div>
+            <button @click="$store.dispatch('increment')">increment</button><br>
+            <button @click="$store.dispatch('incrementAsync')">incrementAsync</button><br>
+            <button @click="$store.dispatch('incrementAsync', {amount:10})">incrementAsync</button><br>
+            <button @click="$store.dispatch({type:'incrementAsync', amount:10})">incrementAsync</button><br>
+            <button @click="increment">increment</button><br>
+            <button @click="add">add</button><br>
+            <button @click="$store.dispatch('actionB')">actionB</button><br>
+            
+        `,
+        methods: {
+          ...mapActions([
+            "increment", // map `this.increment()` to `this.$store.dispatch('increment')`
+
+            // `mapActions` also supports payloads:
+            "incrementBy", // map `this.incrementBy(amount)` to `this.$store.dispatch('incrementBy', amount)`
+          ]),
+          ...mapActions({
+            add: "increment", // map `this.add()` to `this.$store.dispatch('increment')`
+          }),
+        },
+      });
+      app.use(store);
+      app.mount("#app");
+    </script>
+  </body>
+</html>

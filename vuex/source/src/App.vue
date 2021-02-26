@@ -1,37 +1,19 @@
-<template>
-  <div>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-    <h1>=======Getter======</h1>
-    <Getter style="display:none"/>
-    <h1>=======Mutation======</h1>
-    <Mutation />
-  </div>
-</template>
-
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-import Getter from "./components/Getter.vue";
-import Mutation from "./components/Mutation.vue";
-
-
+import State from "./components/State.js";
+import HelloWorld from "./components/HelloWorld.js";
+import Getter from "./components/Getter.js";
+import Mutation from "./components/Mutation.js";
+import { h } from "vue/dist/vue.esm-bundler";
 export default {
   name: "App",
-  components: {
-    HelloWorld,
-    Getter,
-    Mutation
+  components: {},
+  render() {
+    // return h(HelloWorld);
+    // return h(State);
+    // return h(Getter);
+    //  return h(Mutation);
+
   },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

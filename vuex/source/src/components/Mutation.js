@@ -1,12 +1,10 @@
-<template>
-  <div>
-    {{ $store.state.count }}
-  </div>
-</template>
 
-
-<script>
 export default {
+  template: `
+    <div>
+      {{ $store.state.count }}
+    </div>
+  `,
   mounted() {
     setTimeout(() => {
       this.$store.commit("increment");
@@ -27,4 +25,3 @@ export default {
     }, 4000);
   },
 };
-</script>

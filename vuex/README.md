@@ -5,8 +5,21 @@
 > Vuex 3.0 中文 https://vuex.vuejs.org/zh/guide/
 
 
+## 困难解决
+### CLI工具增加模板编译
+```js
+// main.js
+import { createApp } from 'vue/dist/vue.esm-bundler'
+```
 
+### 忽略语法检查
+vue.config.js
+```
+module.exports = {
+  lintOnSave: false,
+};
 
+```
 
 ## Start
 

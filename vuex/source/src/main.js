@@ -1,6 +1,8 @@
-import { createApp } from 'vue'
+import { createApp } from 'vue/dist/vue.esm-bundler'
 import { createStore } from 'vuex'
-import App from "./App.vue";
+// import App from "./App.vue";
+
+import HelloWorld from './components/HelloWorld'
 
 // Create a new store instance.
 const store = createStore({
@@ -13,6 +15,7 @@ const store = createStore({
       ]
     }
   },
+
   mutations: {
     increment (state) {
       state.count++
@@ -24,6 +27,7 @@ const store = createStore({
       state.count += payload.amount
     }
   },
+
   getters: {
     doneTodos: state => {
       return state.todos.filter(todo => todo.done)
@@ -38,7 +42,9 @@ store.commit('increment')
 
 console.log(store.state.count) // -> 1
 
-const app = createApp(App)
-app.store = store
+const app = createApp(HelloWorld)
+// app.store = store
 app.use(store)
 app.mount('#app')
+
+

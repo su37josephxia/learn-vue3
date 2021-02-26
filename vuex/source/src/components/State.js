@@ -1,13 +1,12 @@
-<template>
-  <div>{{ count }}</div>
-  <div>{{ countPlusLocalState }}</div>
-  <div>{{ countAlias }}</div>
-  <div>{{ localComputed }}</div> 
-</template>
-<script>
 import { mapState } from "vuex";
 
 export default {
+  template: `
+    <div>{{ count }}</div>
+    <div>{{ countPlusLocalState }}</div>
+    <div>{{ countAlias }}</div>
+    <div>{{ localComputed }}</div> 
+  `,
   //   computed: {
   //     count() {
   //       console.log("computed", this.$store.state.count);
@@ -52,4 +51,3 @@ export default {
     console.log("monted...");
   },
 };
-</script>
