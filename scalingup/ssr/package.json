@@ -1,0 +1,19 @@
+{
+  "name": "ssr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vue/compiler-dom": "^3.0.7",
+    "@vue/compiler-sfc": "^3.0.7",
+    "@vue/compiler-ssr": "^3.0.7",
+    "@vue/server-renderer": "^3.0.7",
+    "vue": "^3.0.7"
+  }
+}
