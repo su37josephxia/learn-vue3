@@ -97,3 +97,16 @@ export default {
 
 ### State
 
+
+
+下载Vuex
+
+```
+
+yarn --ignorescript
+```
+
+
+
+
+
