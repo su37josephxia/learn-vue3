@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+    <script src="https://unpkg.com/vuex@next"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      // import {createApp} from 'vue'
+      // import {createStore} from 'vuex'
+      const { createApp } = Vue;
+      const { createStore } = Vuex;
+
+      var socket = io();
+
+      const createWebSocketPlugin = (socket) => {
+        return (store) => {
+          socket.on("data", (data) => {
+            store.commit("receiveData", data);
+          });
+          store.subscribe((mutation) => {
+            if (mutation.type === "UPDATE_DATA") {
+                console.log('update:',mutation.payload)
+              socket.emit("update", mutation.payload);
+            }
+          });
+        };
+      };
+
+      const plugin = createWebSocketPlugin(socket);
+
+      const store = createStore({
+        state: {
+          count: 0,
+        },
+        mutations: {
+          receiveData(state, payload) {
+            state.count = payload;
+          },
+          ["UPDATE_DATA"]: (state, payload) => {
+            state.count = payload;
+          },
+        },
+        plugins: [plugin],
+      });
+
+      const app = createApp({
+        template: `
+            <div>{{ $store.state.count }}</div>
+            <button @click="$store.commit('UPDATE_DATA',0)">CLEAR</button>
+        `,
+      });
+      app.use(store);
+      app.mount("#app");
+    </script>
+  </body>
+</html>
