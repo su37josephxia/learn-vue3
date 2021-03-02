@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+    <script src="https://unpkg.com/vuex@next"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      // import {createApp} from 'vue'
+      // import {createStore} from 'vuex'
+      const { createApp } = Vue;
+      const { createStore, mapGetters } = Vuex;
+
+      const store = createStore({
+        state: {
+          count: 0,
+          todos: [
+            { id: 1, text: "...", done: true },
+            { id: 2, text: "...", done: false },
+          ],
+        },
+        getters: {
+          doneTodos: (state) => {
+            return state.todos.filter((todo) => todo.done);
+          },
+          doneTodosCount: (state, getters) => {
+            return getters.doneTodos.length;
+          },
+        },
+      });
+
+      const app = createApp({
+        template: `
+            <h1>{{ $store.getters.doneTodos }}</h1>
+            <h1>{{ $store.getters.doneTodosCount }}</h1>
+            <h1>{{ doneTodosCount }}</h1>
+            <h1>{{ doneCount }}</h1>
+        `,
+        // 展开运算符
+        computed: {
+          // doneTodosCount() {
+          //   return this.$store.getters.doneTodosCount;
+          // },
+          ...mapGetters(["doneTodosCount"]),
+          ...mapGetters({
+            doneCount: "doneTodosCount",
+          }),
+        },
+      });
+      app.use(store);
+      app.mount("#app");
+    </script>
+  </body>
+</html>
