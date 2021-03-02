@@ -2,6 +2,7 @@ var app = require("express")();
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
 
+let i = 0;
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/index.html");
 });
@@ -12,11 +13,10 @@ io.on("connection", function (socket) {
   //响应某用户发送消息
   socket.on("update", function (data) {
     console.log("update:" + data);
-
+    i = data
     // 广播给所有人
     io.emit("data", data);
   });
-  let i = 0;
   setInterval(() => {
     io.emit("data", i++);
   }, 1000);
