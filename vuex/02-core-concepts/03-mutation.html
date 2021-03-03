@@ -15,7 +15,9 @@
       // import {createApp} from 'vue'
       // import {createStore} from 'vuex'
       const { createApp } = Vue;
-      const { createStore, mapGetters } = Vuex;
+      const { createStore, mapMutations } = Vuex;
+
+      const INCREMENTN = "INCREMENTN";
 
       const store = createStore({
         state: {
@@ -25,39 +27,41 @@
           increment(state) {
             state.count++;
           },
-          incrementN(state, n) {
-            state.count += n;
+          incrementN(state, { amount }) {
+            state.count = state.count + amount;
           },
-          incrementO(state, payload) {
-            state.count += payload.amount;
+          [INCREMENTN](state, { amount }) {
+            // mutate state
+            state.count = state.count + amount;
           },
         },
       });
 
       const app = createApp({
         template: `
-        <div>
-            {{ $store.state.count }}
-        </div>
-        `,
+                <div>{{ $store.state.count }}</div>
+                <button @click="$store.commit('increment')">Add</button>
+                <button @click="$store.commit('incrementN',{amount: 10})">AddN</button>
+                <button @click="$store.commit({type: 'incrementN',amount: 10})">AddN</button>
+                <button @click="increment()">increment()</button>
+                <button @click="incrementN({amount: 200})">incrementN({amount: 200})</button>
+                <button @click="add()">add()</button>
+            `,
+        methods: {
+          ...mapMutations([
+            "increment", // map `this.increment()` to `this.$store.commit('increment')`
+
+            // `mapMutations` also supports payloads:
+            "incrementN", // map `this.incrementBy(amount)` to `this.$store.commit('incrementBy', amount)`
+          ]),
+          ...mapMutations({
+            add: "increment", // map `this.add()` to `this.$store.commit('increment')`
+          }),
+        },
         mounted() {
           setTimeout(() => {
-            this.$store.commit("increment");
+            this.$store.commit(INCREMENTN, { amount: 500 });
           }, 1000);
-          setTimeout(() => {
-            this.$store.commit("incrementN", 100);
-          }, 2000);
-          setTimeout(() => {
-            this.$store.commit("incrementO", {
-              amount: 300,
-            });
-          }, 3000);
-          setTimeout(() => {
-            this.$store.commit({
-              type: "incrementO",
-              amount: 200,
-            });
-          }, 4000);
         },
       });
       app.use(store);
