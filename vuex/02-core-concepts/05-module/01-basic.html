@@ -16,14 +16,14 @@
       // import {createStore} from 'vuex'
       const { createApp } = Vue;
       const { createStore } = Vuex;
+
       const moduleA = {
         state: () => ({
-          count: 0,
+          count: 100,
         }),
         mutations: {
           increment(state) {
-            // `state` is the local module state
-            state.count+=10;
+            state.count += 100;
           },
         },
         getters: {
@@ -36,13 +36,18 @@
         },
         actions: {
           incrementIfOddOnRootSum({ state, commit, rootState }) {
-            console.log("incrementIfOddOnRootSum:", state, rootState);
+            console.log(
+              "incrementIfOddOnRootSum",
+              state.count,
+              rootState.count
+            );
             if ((state.count + rootState.count) % 2 === 1) {
               commit("increment");
             }
           },
         },
       };
+
       const store = createStore({
         state: {
           count: 0,
@@ -61,9 +66,9 @@
         template: `
             <div>root: {{ $store.state.count }}</div>
             <div>a: {{ $store.state.a.count }}</div>
-            <div>a doubleCount: {{ $store.getters.doubleCount }}</div>
-            <div>a sumWithRootCount: {{ $store.getters.sumWithRootCount }}</div>
-            <button @click="$store.commit('increment')">root.increment</button>
+            <div>doubleCount: {{ $store.getters.doubleCount }}</div>
+            <div>sumWithRootCount: {{ $store.getters.sumWithRootCount }}</div>
+            <button @click="$store.commit('increment')">Add</button>
             <button @click="$store.dispatch('incrementIfOddOnRootSum')">incrementIfOddOnRootSum</button>
         `,
       });
