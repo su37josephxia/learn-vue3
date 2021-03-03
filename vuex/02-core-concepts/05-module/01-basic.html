@@ -15,64 +15,56 @@
       // import {createApp} from 'vue'
       // import {createStore} from 'vuex'
       const { createApp } = Vue;
-      const { createStore, createNamespacedHelpers } = Vuex;
-
+      const { createStore } = Vuex;
       const moduleA = {
         state: () => ({
           count: 0,
         }),
         mutations: {
           increment(state) {
-            state.count++;
+            // `state` is the local module state
+            state.count+=10;
           },
         },
         getters: {
           doubleCount(state) {
             return state.count * 2;
           },
+          sumWithRootCount(state, getters, rootState) {
+            return state.count + rootState.count;
+          },
         },
         actions: {
           incrementIfOddOnRootSum({ state, commit, rootState }) {
-            console.log('rootState:',rootState)
+            console.log("incrementIfOddOnRootSum:", state, rootState);
             if ((state.count + rootState.count) % 2 === 1) {
               commit("increment");
             }
           },
         },
       };
-
-      const moduleB = {
-        namespaced: true,
-        state: () => ({
-          count: 100,
-        }),
+      const store = createStore({
+        state: {
+          count: 0,
+        },
         mutations: {
           increment(state) {
-            console.log("state", state);
             state.count++;
           },
         },
-      };
-
-      const store = createStore({
         modules: {
           a: moduleA,
-          b: moduleB,
         },
       });
 
       const app = createApp({
         template: `
-            <div>a: {{ $store.state.a.count }}  </div>
-            <div>double : {{ $store.getters.doubleCount }} </div>
-            
-            <button @click="$store.commit('increment')">Add A</button>
+            <div>root: {{ $store.state.count }}</div>
+            <div>a: {{ $store.state.a.count }}</div>
+            <div>a doubleCount: {{ $store.getters.doubleCount }}</div>
+            <div>a sumWithRootCount: {{ $store.getters.sumWithRootCount }}</div>
+            <button @click="$store.commit('increment')">root.increment</button>
             <button @click="$store.dispatch('incrementIfOddOnRootSum')">incrementIfOddOnRootSum</button>
-            
-            <div>b: {{ $store.state.b.count }}</div>
-            <button @click="$store.commit('increment')">Add B</button>
-
-            <button @click="$store.commit('b/increment')">Add B</button>
         `,
       });
       app.use(store);
