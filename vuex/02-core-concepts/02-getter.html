@@ -32,22 +32,30 @@
           doneTodosCount: (state, getters) => {
             return getters.doneTodos.length;
           },
+          getTodoById: (state) => (id) => {
+            return state.todos.find((todo) => todo.id === id);
+          },
+        },
+        mutations: {
+          increment(state) {
+            state.count++;
+          },
         },
       });
 
       const app = createApp({
         template: `
-            <h1>{{ $store.getters.doneTodos }}</h1>
-            <h1>{{ $store.getters.doneTodosCount }}</h1>
-            <h1>{{ doneTodosCount }}</h1>
-            <h1>{{ doneCount }}</h1>
+            <div>{{ $store.getters.doneTodos }}</div>
+            <div>{{ $store.getters.doneTodosCount }}</div>
+            <div>{{ doneTodosCount }}</div>
+            <div>{{ $store.getters.getTodoById(2) }}</div>
+            <div>{{ doneCount }}</div>
+            <button @click="$store.commit('increment')">Add</button>
         `,
-        // 展开运算符
         computed: {
-          // doneTodosCount() {
-          //   return this.$store.getters.doneTodosCount;
-          // },
-          ...mapGetters(["doneTodosCount"]),
+          doneTodosCount() {
+            return this.$store.getters.doneTodosCount;
+          },
           ...mapGetters({
             doneCount: "doneTodosCount",
           }),
