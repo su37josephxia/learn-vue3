@@ -18,23 +18,22 @@
       const { createStore, mapActions } = Vuex;
 
       const getData = () => {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           setTimeout(() => {
-            console.log('getData...')
-            resolve()
-          },1000)
-        })
-      }
+            console.log("getData....");
+            resolve();
+          }, 1000);
+        });
+      };
 
       const getOtherData = () => {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           setTimeout(() => {
-            console.log('getOtherData...')
-            resolve()
-          },1000)
-        })
-      }
-
+            console.log("getOtherData....");
+            resolve();
+          }, 1000);
+        });
+      };
 
       const store = createStore({
         state: {
@@ -42,6 +41,7 @@
         },
         mutations: {
           increment(state) {
+            console.log('increment...')
             state.count++;
           },
         },
@@ -49,60 +49,54 @@
           increment(context) {
             context.commit("increment");
           },
-          // 异步过程
           incrementAsync({ commit }, payload) {
-            console.log("payload:", payload);
+            console.log("incrementAsync:", payload);
             setTimeout(() => {
               commit("increment");
             }, 1000);
           },
           // Composing Actions
           // actionA({ commit }) {
-          //   return new Promise((resolve, reject) => {
+          //   console.log('actionA:')
+          //   return new Promise((resolve) => {
           //     setTimeout(() => {
           //       commit("increment");
           //       resolve();
           //     }, 1000);
           //   });
           // },
-          // actionB({ dispatch, commit }) {
-          //   return dispatch("actionA").then(() => {
+          // actionB({ commit, dispatch }) {
+          //   console.log('actionB:')
+          //   // 先完成A 然后完成increment
+          //   dispatch("actionA").then(() => {
           //     commit("increment");
           //   });
           // },
-
-          // assuming `getData()` and `getOtherData()` return Promises
-          async actionA({ commit }) {
-            commit("increment", await getData());
+          async actionA({commit}) {
+            commit('increment',await getData())
           },
-          async actionB({ dispatch, commit }) {
-            await dispatch("actionA"); // wait for `actionA` to finish
-            commit("increment", await getOtherData());
-          },
+          async actionB ({dispatch,commit}) {
+            await dispatch('actionA')
+            commit('increment',await getOtherData())
+          }
         },
       });
-
-      
-
 
       const app = createApp({
         template: `
             <div>{{ $store.state.count }}</div>
-            <button @click="$store.dispatch('increment')">increment</button><br>
-            <button @click="$store.dispatch('incrementAsync')">incrementAsync</button><br>
-            <button @click="$store.dispatch('incrementAsync', {amount:10})">incrementAsync</button><br>
-            <button @click="$store.dispatch({type:'incrementAsync', amount:10})">incrementAsync</button><br>
-            <button @click="increment">increment</button><br>
-            <button @click="add">add</button><br>
-            <button @click="$store.dispatch('actionB')">actionB</button><br>
-            
+            <button @click="$store.dispatch('increment')">increment</button>
+            <button @click="$store.dispatch('incrementAsync',{amount: 100})">incrementAsync</button>
+            <button @click="$store.dispatch({type: 'incrementAsync',amount: 100})">incrementAsync</button>
+            <button @click="$store.dispatch({type: 'incrementAsync',amount: 100})">incrementAsync</button>
+            <button @click="increment()">increment()</button>
+            <button @click="add()">add()</button>
+            <button @click="$store.dispatch('actionA')">actionA()</button>
+            <button @click="$store.dispatch('actionB')">actionB()</button>
         `,
         methods: {
           ...mapActions([
             "increment", // map `this.increment()` to `this.$store.dispatch('increment')`
-
-            // `mapActions` also supports payloads:
-            "incrementBy", // map `this.incrementBy(amount)` to `this.$store.dispatch('incrementBy', amount)`
           ]),
           ...mapActions({
             add: "increment", // map `this.add()` to `this.$store.dispatch('increment')`
