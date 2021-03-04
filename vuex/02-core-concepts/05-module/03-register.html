@@ -15,9 +15,12 @@
       // import {createApp} from 'vue'
       // import {createStore} from 'vuex'
       const { createApp } = Vue;
-      const { createStore } = Vuex;
+      const { createStore,createNamespacedHelpers } = Vuex;
+
+      const { mapMutations } = createNamespacedHelpers('a')
 
       const moduleA = {
+        namespaced: true,
         state: () => ({
           count: 100,
         }),
@@ -41,12 +44,12 @@
               state.count,
               rootState.count
             );
-            if ((state.count + rootState.count) % 2 === 1) {
-              commit("increment");
-            }
+            commit("increment", null, { root: true });
+            // if ((state.count + rootState.count) % 2 === 1) {
+            //   commit("increment");
+            // }
           },
         },
-        namespaced:true
       };
 
       const store = createStore({
@@ -58,21 +61,31 @@
             state.count++;
           },
         },
+        // modules: {
+        //   a: moduleA,
+        // },
       });
 
-    //   store.registerModule('a',moduleA)
-      store.registerModule('a',moduleA)
-      store.registerModule('b',moduleA)
+      store.registerModule('a', moduleA)
+      store.registerModule('b', moduleA)
       const app = createApp({
         template: `
             <div>root: {{ $store.state.count }}</div>
             <div>a: {{ $store.state.a.count }}</div>
             <div>b: {{ $store.state.b.count }}</div>
-            <div>doubleCount: {{ $store.getters.doubleCount }}</div>
-            <div>sumWithRootCount: {{ $store.getters.sumWithRootCount }}</div>
-            <button @click="$store.commit('a/increment')">AddA</button>
-            <button @click="$store.dispatch('incrementIfOddOnRootSum')">incrementIfOddOnRootSum</button>
+            <div>doubleCount: {{ $store.getters['a/doubleCount'] }}</div>
+            <div>sumWithRootCount: {{ $store.getters['a/sumWithRootCount'] }}</div>
+            <button @click="$store.commit('increment')">Root:Add</button>
+            <button @click="$store.commit('a/increment')">A:Add</button>
+            <button @click="$store.commit('b/increment')">B:Add</button>
+            <button @click="$store.dispatch('a/incrementIfOddOnRootSum')">incrementIfOddOnRootSum</button>
+            <button @click="incA">incA</button>
         `,
+        methods: {
+            ...mapMutations({
+                incA:'increment'
+            })
+        }
       });
       app.use(store);
       app.mount("#app");
