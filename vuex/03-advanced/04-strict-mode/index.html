@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+    <script src="https://unpkg.com/vuex@next"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      // import {createApp} from 'vue'
+      // import {createStore} from 'vuex'
+      const { createApp } = Vue;
+      const { createStore } = Vuex;
+
+      const store = createStore({
+        strict: true,
+        // strict: process.env.NODE_ENV !== 'production'
+        state: {
+          count: 0,
+        },
+        mutations: {
+          increment(state) {
+            state.count++;
+          },
+        },
+      });
+
+      const app = createApp({
+        template: `
+            <div>{{ $store.state.count }}</div>
+            <button @click="$store.commit('increment')">Add</button>
+        `,
+      });
+      app.use(store);
+      app.mount("#app");
+
+      setTimeout(() => {
+        store.state.count = 100
+      },100)
+    </script>
+  </body>
+</html>
