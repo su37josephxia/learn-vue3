@@ -1,0 +1,30 @@
+{
+  "name": "06-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --mode development --config webpack.dev.config.js",
+    "build": "webpack",
+    "test": "webpack && mocha dist/test-bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.13.10",
+    "babel-loader": "^8.2.2",
+    "chai": "^4.3.4",
+    "inject-loader": "^4.0.1",
+    "mocha": "^8.3.2",
+    "mocha-loader": "^5.1.5",
+    "sinon": "^10.0.0",
+    "vue": "^3.0.7",
+    "vuex": "^4.0.0",
+    "webpack": "^5.27.2",
+    "webpack-cli": "^4.5.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.13.12"
+  }
+}

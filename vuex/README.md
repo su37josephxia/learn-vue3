@@ -123,6 +123,8 @@ yarn --ignorescript
 ### 05 Form Handing - 表单处理
 
 ### 06 Testing 测试
+> mocha是一个功能丰富的javascript测试框架，运行在node.js和浏览器中，使异步测试变得简单有趣。Mocha测试连续运行，允许灵活和准确的报告，同时将未捕获的异常映射到正确的测试用例。在Github上托管。
+
 
 ### 07 Hot Reloading 热重载
 
