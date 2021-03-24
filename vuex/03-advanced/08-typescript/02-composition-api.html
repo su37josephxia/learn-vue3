@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+    <script src="https://unpkg.com/vuex@next"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      // import {createApp} from 'vue'
+      // import {createStore} from 'vuex'
+      const { createApp, computed } = Vue;
+      const { createStore, useStore } = Vuex;
+
+      const store = createStore({
+        state: {
+          count: 0,
+        },
+        getters: {
+          double: (state) => {
+            return state.count * 2;
+          },
+        },
+        mutations: {
+          increment(state) {
+            state.count++;
+          },
+        },
+        actions: {
+          asyncIncrement(context) {
+            context.commit("increment");
+          },
+        },
+      });
+
+      const app = createApp({
+        template: `
+            <div>{{ count }}  {{ double }}</div>
+            <button @click="increment()">increment</button>
+            <button @click="asyncIncrement()">asyncIncrement</button>
+        `,
+
+        setup() {
+          const store = useStore();
+
+          return {
+            // access a state in computed function
+            count: computed(() => store.state.count),
+
+            // access a getter in computed function
+            double: computed(() => store.getters.double),
+
+            // access a mutation
+            increment: () => store.commit("increment"),
+
+            // access an action
+            asyncIncrement: () => store.dispatch("asyncIncrement"),
+          };
+        },
+      });
+      app.use(store);
+      app.mount("#app");
+    </script>
+  </body>
+</html>
