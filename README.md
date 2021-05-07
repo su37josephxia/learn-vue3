@@ -10,6 +10,7 @@
 ```
 .
 ├── mini-vite              // 简写版Vite
+├── mini-webpack           // 简写版webpack
 ├── mini-vue               // 简写版Vue
 ├── mini-vue-plus          // Vue(B站天天造轮子版)
 ├── vue-mastery            // Vue-Mastery 内容demo
