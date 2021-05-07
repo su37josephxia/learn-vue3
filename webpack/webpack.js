@@ -4,7 +4,7 @@ const parser = require("@babel/parser");
 const traverse = require("@babel/traverse").default;
 const babel = require("@babel/core");
 /**
- *
+ * 分析模块
  * @param {*} file
  * @returns
  */
@@ -35,6 +35,11 @@ function getModuleInfo(file) {
   return moduleInfo;
 }
 
+/**
+ * 获取依赖
+ * @param {*} temp 
+ * @param {*} param1 
+ */
 function getDeps(temp, { deps }) {
   Object.keys(deps).forEach((key) => {
     const child = getModuleInfo(deps[key]);
@@ -43,6 +48,11 @@ function getDeps(temp, { deps }) {
   });
 }
 
+/**
+ * 模块解析
+ * @param {*} file 
+ * @returns 
+ */
 function parseModules(file) {
   const entry = getModuleInfo(file);
   const temp = [entry];
@@ -58,7 +68,11 @@ function parseModules(file) {
   });
   return depsGraph;
 }
-// 新增代码
+/**
+ * 生成bundle文件
+ * @param {*} file 
+ * @returns 
+ */
 function bundle(file) {
   const depsGraph = JSON.stringify(parseModules(file));
   return `(function (graph) {
