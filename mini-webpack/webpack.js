@@ -20,6 +20,7 @@ function getModuleInfo(file) {
   // 依赖收集
   const deps = {};
   traverse(ast, {
+    // visitor函数
     ImportDeclaration({ node }) {
       const dirname = path.dirname(file);
       const abspath = "./" + path.join(dirname, node.source.value);
