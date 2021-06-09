@@ -57,6 +57,7 @@ class Module {
     this.definitions = {}; // 找到定义语句
     this.ast.body.forEach((statement) => {
       Object.keys(statement._defines).forEach((name) => {
+        console.log('===>>',name,statement)
         // 变量名对应的语句
         this.definitions[name] = statement;
       });
@@ -78,20 +79,25 @@ class Module {
   }
 
   expandStatement(statement) {
-    statement._included = true;
+    // statement._included = true;
     let result = [];
 
     // tree-sharking
+    // 检查此句的外部依赖
     const dependencies = Object.keys(statement._dependsOn);
     dependencies.forEach((name) => {
-      // 变量声明节点
+      statement._included = true;
+      // 查找变量声明节点
       const definition = this.define(name);
       result.push(...definition);
     });
+    console.log('expand......'+statement._included,statement)
     if (!statement._included) {
+     
       statement._included = true;
       result.push(statement);
     }
+    console.log('result:',result)
     return result;
   }
 
@@ -115,6 +121,7 @@ class Module {
     } else {
       let statement = this.definitions[name];
       if (statement && !statement._included) {
+        
         return this.expandStatement(statement);
       } else {
         return [];

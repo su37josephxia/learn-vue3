@@ -1,2 +1,5 @@
+console.log('abc')
+const c = 'c'
 console.log("Hello" + a);
-console.log("World");
+const b = "b";
+console.log("World"+ b);

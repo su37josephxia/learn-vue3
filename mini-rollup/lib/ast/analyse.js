@@ -13,11 +13,12 @@ function analyse(ast, magicStirng, module) {
   let scope = new Scope();
   // 遍历当前语法树
   ast.body.forEach((statement) => {
+
     // 给作用域内添加变量
     function addToScope(declaration) {
       var name = declaration.id.name; // 获取声明的变量
       scope.add(name);
-      if (scope.parent) {
+      if (!scope.parent) { // 如果此变量作用域不在父级作用域 即当前作用域
         // 如果当前是全局作用域的话
         // 在全局作用域下声明全局变量
         statement._defines[name] = true;
@@ -39,6 +40,7 @@ function analyse(ast, magicStirng, module) {
       enter(node) {
         let newScope;
         if(node === null || node.length === 0) return 
+        console.log('walk', node.type)
         switch (node.type) {
           case "FunctionDeclaration":
             const params = node.params.map((x) => x.name);
