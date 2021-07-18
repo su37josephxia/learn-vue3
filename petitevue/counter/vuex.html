@@ -1,0 +1,34 @@
+<!-- <script src="https://unpkg.com/petite-vue"></script> -->
+<script type="module">
+  import { createApp, reactive } from 'https://unpkg.com/petite-vue?module'
+  const store = reactive({
+    count: 0,
+    increment() {
+      this.count++;
+    },
+  });
+  console.log('store',store)
+  // 将count加1
+  setInterval(() => store.increment() , 100)
+  store.increment();
+  createApp({
+    store,
+  }).mount();
+</script>
+<div v-scope style="border: 3px solid">
+  <!-- 输出1 -->
+  <span style="font-size: 50px;">{{ store.count }}</span>
+</div>
+<br />
+<br />
+<br />
+<div v-scope="{c2 : 10}" style="border: 3px solid">
+  <!-- 输出1 -->
+  <span style="font-size: 50px">{{ store.count }}: {{c2}}</span>
+</div>
+<br />
+<br />
+<br />
+<div v-scope style="border: 3px solid">
+  <button @click="store.increment">inc</button>
+</div>

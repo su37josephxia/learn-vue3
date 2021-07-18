@@ -1,0 +1,18 @@
+<script
+  crossorigin="anonymous"
+  src="https://lib.baomitu.com/vue/3.1.4/vue.global.js"
+></script>
+<div id="counter">
+  Counter: {{ counter }}
+  <button @click="counter++">inc</button>
+</div>
+<script>
+  const { createApp, ref } = Vue;
+  const Counter = {
+    setup() {
+      const counter = ref(0);
+      return { counter };
+    },
+  };
+  createApp(Counter).mount("#counter");
+</script>
